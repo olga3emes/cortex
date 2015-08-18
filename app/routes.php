@@ -13,42 +13,41 @@
 
 
 //INICIO
-Route::get('/', function()
-{
+Route::get('/', function () {
     return View::make('inicio');
 });
 
-Route::get('inicio',function(){
+Route::get('inicio', function () {
 
     return View::make('inicio');
 
 });
 
-Route::get('conocenos',function(){
+Route::get('conocenos', function () {
 
     return View::make('conocenos');
 
 });
 
-Route::get('contacto',function(){
+Route::get('contacto', function () {
 
     return View::make('contacto');
 
 });
 
-Route::get('galeria',function(){
+Route::get('galeria', function () {
 
     return View::make('galeria');
 
 });
 
-Route::get('loginRegistro',function(){
+Route::get('aviso-legal', function () {
 
-    return View::make('loginRegistro');
+    return View::make('aviso');
 
 });
 
-Route::get('login',function(){
+Route::get('loginRegistro', function () {
 
     return View::make('loginRegistro');
 
@@ -56,6 +55,16 @@ Route::get('login',function(){
 
 
 Route::post('cliente/registrar', 'ClienteController@registrar');
+
+
+
+
+Route::get('login', function () {
+
+    return View::make('loginRegistro');
+
+});
+
 
 
 
@@ -75,7 +84,7 @@ Route::post('login', function () {
 // Para todas estas rutas el usuario debe haber iniciado sesión.
 // En caso de que se intente entrar y el usuario haya iniciado session
 // entonces será redirigido a la ruta login
-Route::group(array('before' => 'auth'), function() {
+Route::group(array('before' => 'auth'), function () {
 
     //Cerrar sesión
     Route::get('logout', function () {
@@ -85,78 +94,108 @@ Route::group(array('before' => 'auth'), function() {
     });
 
 
-
 //RUTAS DEL ADMINISTRADOR
 
-Route::get('administrador/calendario', function () {
+    //if (Auth::check() && !Cliente::esCliente()) {
 
-    return View::make('calendario');
+        Route::get('administrador/calendario', function () {
 
-});
+            return View::make('calendario');
 
-Route::get('administrador/clientes', function () {
+        });
 
-    return View::make('clientes');
+        Route::get('administrador/clientes', function () {
 
-});
+            return View::make('clientes');
 
-Route::get('administrador/disponibles', function () {
+        });
 
-    return View::make('disponibles');
+        Route::get('administrador/disponibles', function () {
 
-});
+            return View::make('disponibles');
 
-Route::get('administrador/eventos', function () {
+        });
 
-    return View::make('eventos');
+        Route::get('administrador/eventos', function () {
 
-});
+            return View::make('eventos');
 
-Route::get('administrador/galeria', function () {
+        });
 
-    return View::make('modGaleria');
+        Route::get('administrador/galeria', function () {
 
-});
-Route::get('administrador/ofertas', function () {
+            return View::make('modGaleria');
 
-    return View::make('ofertas');
+        });
+        Route::get('administrador/ofertas', function () {
 
-});
+            return View::make('ofertas');
 
-Route::get('administrador/pendientes', function () {
+        });
 
-    return View::make('pendientes');
+        Route::get('administrador/pendientes', function () {
 
-});
+            return View::make('pendientes');
 
-Route::get('administrador/perfil', function () {
+        });
 
-    return View::make('perfil');
+        Route::get('administrador/perfil', function () {
 
-});
+            return View::make('perfil');
+
+        });
 
 
-Route::get('administrador/servicios', function () {
+        Route::get('administrador/servicios', function () {
 
-    return View::make('servicios');
+            return View::make('servicios');
 
-});
+        });
 
-Route::get('administrador/tickets', function () {
+        Route::get('administrador/tickets', function () {
 
-    return View::make('tickets');
+            return View::make('tickets');
 
-});
+        });
+    //}
 
 
 //CLIENTE
 
+    if (Auth::check() && Cliente::esCliente()) {
 
-Route::get('cliente/calendario', function () {
+        Route::get('cliente/calendario', function () {
 
-    return View::make('calendario');
+            return View::make('calendario');
 
-});
+        });
+
+        Route::get('cliente/perfil', function () {
+
+            return View::make('perfil');
+
+        });
+
+        Route::get('cliente/tickets', function () {
+
+            return View::make('tickets');
+
+        });
+
+        Route::get('cliente/servicios', function () {
+
+            return View::make('servicios');
+
+        });
+
+        Route::get('cliente/ofertas', function () {
+
+            return View::make('ofertas');
+
+        });
+
+    }
+
 
 //FIN CLIENTE
 

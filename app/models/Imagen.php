@@ -10,7 +10,7 @@ class Imagen extends Eloquent{
 
     protected $table = 'imagenes';
 
-    protected $fillable = array('id','nombre');
+    protected $fillable = array('id','nombre','idGaleria');
 
 
     //Inicio: Relaciones

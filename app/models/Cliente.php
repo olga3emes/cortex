@@ -6,7 +6,7 @@
  * Time: 20:37
  */
 
-
+use Hash;
 class Cliente extends Eloquent{
 
     protected $table = 'clientes';

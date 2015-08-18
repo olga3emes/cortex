@@ -146,6 +146,38 @@
                 <!-- sidebar menu: : style can be found in sidebar.less -->
                 <ul class="sidebar-menu">
                     <li class="header">MENÚ PRINCIPAL</li>
+
+                    @if(Cliente::esCliente())
+                        <li>
+                            <a href="{{URL::asset('cliente/perfil')}}">
+                                <i class="fa fa-user"></i> <span>Editar Perfil</span>
+                            </a>
+                        </li>
+
+                        <li class="active">
+                            <a href="{{URL::asset('cliente/calendario')}}">
+                                <i class="fa fa-calendar"></i> <span>Calendario</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{URL::asset('cliente/servicios')}}">
+                                <i class="fa fa-scissors"></i> <span>Servicios</span>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="{{URL::asset('cliente/ofertas')}}">
+                                <i class="fa fa-certificate"></i> <span>Ofertas</span>
+                            </a>
+                        </li>
+
+
+                        <li>
+                            <a href="{{URL::asset('cliente/tickets')}}">
+                                <i class="fa fa-ticket"></i> <span>Mis Tickets</span>
+                            </a>
+                        </li>
+                    @else
                     <li>
                         <a href="{{URL::asset('administrador/perfil')}}">
                             <i class="fa fa-user"></i> <span>Editar Perfil</span>
@@ -197,6 +229,8 @@
                             <i class="fa fa-ticket"></i> <span>Mis Tickets</span>
                         </a>
                     </li>
+
+                        @endif
                 </ul>
             </section>
             <!-- /.sidebar -->

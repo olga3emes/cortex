@@ -10,8 +10,7 @@
 
             <div class="col_half">
                 &copy;2015 Corte'x
-                    <br><a href="{{URL::asset('administrador/calendario')}}"> Administrador</a>
-                    <br><a href="{{URL::asset('cliente/calendario')}}"> Cliente</a>
+                    <br><a href="{{URL::asset('aviso-legal')}}"> Términos y Condiciones de la Plataforma - Cookies - Política de Privacidad</a>
             </div>
 
 
