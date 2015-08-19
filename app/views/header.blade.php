@@ -38,7 +38,7 @@
     {{HTML::style('dist/css/fileinput.css')}}
     <!-- DATA TABLES -->
     {{HTML::style('href="plugins/datatables/dataTables.bootstrap.css')}}
-    
+
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -47,6 +47,8 @@
     {{HTML::script('https://oss.maxcdn.com/respond/1.4.2/respond.min.js')}}
 
     <![endif]-->
+
+
 
     {{HTML::script('js/jquery-scrolltofixed-min.js')}}
     {{HTML::script('/js/noty/packaged/jquery.noty.packaged.min.js')}}
@@ -69,8 +71,64 @@
                 timeout: 6000
             });
         }
+
+        function confirmacion(texto,idFormulario,url){
+            var n= noty({ text: texto,
+                type:'confirm',
+                theme:'relax',
+                layout:'topCenter',
+                timeout: false,
+                buttons: [
+                    {addClass: 'btn btn-primary', text: 'Ok', onClick: function($noty) {
+                        $noty.close();
+                        if(idFormulario!=null) {
+                            $(idFormulario).submit();
+                        }else{
+                            window.location.href = url;
+                        }
+
+                    }
+                    },
+                    {addClass: 'btn btn-danger', text: 'Cancel', onClick: function($noty) {
+                        $noty.close();
+                    }
+                    }
+                ]
+            });
+        }
+
+        function confirmacionCancelar(texto,idFormulario,url) {
+            var n = noty({
+                text: texto,
+                type: 'confirm',
+                theme: 'relax',
+                layout: 'topCenter',
+                timeout: false,
+                buttons: [
+                    {
+                        addClass: 'btn btn-primary', text: 'Ok', onClick: function ($noty) {
+                        $noty.close();
+                        <?php Form::submit('Cancelar');?>
+                    }
+                    },
+                    {
+                        addClass: 'btn btn-danger', text: 'Cancel', onClick: function ($noty) {
+                        $noty.close();
+
+                    }
+                    }
+                ]
+
+            });
+        }
     </script>
+
+
 </head>
+
+
+
+
 
 <body class="skin-red-light sidebar-mini"style="padding-top: 10px;background-color:#C02942">
 
@@ -80,23 +138,6 @@
         notificar(variablejs);
     </script>
 @endif
-
-@if($errors->has('email'))
-    @foreach($errors->get('email') as $error)
-        <script type="text/javascript">
-            var variablejs = "<?= $error ?>" ;
-            notificarError(variablejs);
-        </script>
-    @endforeach
-@endif
-@if($errors->has('password'))
-    @foreach($errors->get('password') as $error)
-        <script type="text/javascript">
-            var variablejs = "<?= $error ?>" ;
-            notificarError(variablejs);
-        </script>
-    @endforeach
-@endif
 @if($errors->has('mensaje'))
     @foreach($errors->get('mensaje') as $error)
         <script type="text/javascript">
@@ -105,11 +146,12 @@
         </script>
     @endforeach
 @endif
+
     <div class="wrapper" >
 
         <header class="main-header" >
             <!-- Logo -->
-            <a href="{{URL::asset('administrador/calendario')}}" class="logo">
+            <a href="{{URL::asset('inicio')}}" class="logo">
                 <!-- mini logo for sidebar mini 50x50 pixels -->
                 <span class="logo-mini"><img src="{{URL::asset('dist/img/logo-mini.png')}}" /></span>
                 <!-- logo for regular state and mobile devices -->
@@ -117,7 +159,8 @@
             </a>
             <!-- Header Navbar: style can be found in header.less -->
             <nav class="navbar navbar-static-top" role="navigation">
-                <!-- Sidebar toggle button-->
+
+                                <!-- Sidebar toggle button-->
                 <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
                     <span class="sr-only">Toggle navigation</span>
                     <span class="icon-bar"></span>

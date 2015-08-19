@@ -10,6 +10,6 @@ return array(
 
     'clienteCreado' => 'Se ha registrado en la plataforma con éxito. Bienvenido a Cortex',
     'sesionIniciada' => 'Bienvenido a Cortex',
-    'errorLogin' => 'El usuario o la contraseña introducidos no son válidos'
+    'errorLogin' => 'El email o la contraseña introducidos no son válidos'
 
 );

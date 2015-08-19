@@ -10,7 +10,7 @@ class Cita extends Eloquent{
 
 
     protected $table = 'citas';
-    protected $fillable = array('id','fecha','hora','horaInicio','horaFin','cliente','aceptada','comentario');
+    protected $fillable = array('id','fecha','hora','horaInicio','horaFin','cliente','aceptada','comentario','idServicio','idCliente','idOferta','idTicket');
 
 
     //Inicio: Relaciones
@@ -20,11 +20,11 @@ class Cita extends Eloquent{
     }
 
     public function oferta(){
-        return $this->belongsTo('Oferta', 'idOferta', 'id');
+        return $this->hasOne('Oferta', 'idOferta', 'id');
     }
 
     public function servicio(){
-        return $this->belongsTo('Servicio', 'idServicio', 'id');
+        return $this->hasOne('Servicio', 'idServicio', 'id');
     }
 
     public function ticket(){

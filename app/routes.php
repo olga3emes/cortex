@@ -47,6 +47,13 @@ Route::get('aviso-legal', function () {
 
 });
 
+
+Route::post('olvidar','RemindersController@postRemind');
+Route::get('password/reset/{token}', 'RemindersController@getReset');
+Route::post('password/reset/{token}', 'RemindersController@postReset');
+
+
+
 Route::get('loginRegistro', function () {
 
     return View::make('loginRegistro');
@@ -91,12 +98,12 @@ Route::group(array('before' => 'auth'), function () {
         Auth::logout();
         return Redirect::to('/')
             ->with('mensaje', Lang::get('notificaciones.sesionCerrada'));
-    });
 
+    });
 
 //RUTAS DEL ADMINISTRADOR
 
-    //if (Auth::check() && !Cliente::esCliente()) {
+
 
         Route::get('administrador/calendario', function () {
 
@@ -162,7 +169,6 @@ Route::group(array('before' => 'auth'), function () {
 
 //CLIENTE
 
-    if (Auth::check() && Cliente::esCliente()) {
 
         Route::get('cliente/calendario', function () {
 
@@ -182,11 +188,9 @@ Route::group(array('before' => 'auth'), function () {
 
         });
 
-        Route::get('cliente/servicios', function () {
+        Route::get('cliente/servicios','ServicioController@servicios' );
 
-            return View::make('servicios');
 
-        });
 
         Route::get('cliente/ofertas', function () {
 
@@ -194,11 +198,28 @@ Route::group(array('before' => 'auth'), function () {
 
         });
 
-    }
+        //FIN RUTAS CLIENTE
+
+        //RUTAS SERVICIOS
+
+        Route::post('servicio/crear', 'ServicioController@crear');
+        Route::post('servicio/editar/{id}', 'ServicioController@editar');
+        Route::get('servicio/eliminar/{id}', 'ServicioController@eliminar');
+
+        //FIN RUTAS SERVICIOS
 
 
-//FIN CLIENTE
 
+    App::missing(function ($exception) {
+        $pathInfo = Request::url();
+        $data = array(
+            'url' => $pathInfo
+        );
+
+
+        return Response::view('404', array(), 404);
+
+    });
 
 });
 

@@ -140,22 +140,22 @@
 
                         <ul>
                             <li>
-                                <a href="inicio">
+                                <a href="{{URL::asset('inicio')}}">
                                     <div>Inicio</div>
                                 </a>
                             </li>
                             <li>
-                                <a href="conocenos">
+                                <a href="{{URL::asset('conocenos')}}">
                                     <div>Conócenos</div>
                                 </a>
                             </li>
                             <li>
-                                <a href="galeria">
+                                <a href="{{URL::asset('galeria')}}">
                                     <div>Galería</div>
                                 </a>
                             </li>
                             <li>
-                                <a href="contacto">
+                                <a href="{{URL::asset('contacto')}}">
                                     <div>Contacto</div>
                                 </a>
                             </li>
@@ -163,13 +163,13 @@
                             @if(Auth::check()==true)
                                 @if(Cliente::esCliente()==true)
                                     <li>
-                                        <a href="cliente/calendario">
+                                        <a href="{{URL::asset('cliente/calendario')}}">
                                             <div>Ir a mi panel</div>
                                         </a>
                                     </li>
                                 @else
                                 <li>
-                                    <a href="administrador/calendario">
+                                    <a href="{{URL::asset('administrador/calendario')}}">
                                         <div>Ir a mi panel</div>
                                     </a>
                                 </li>
@@ -177,7 +177,7 @@
                                 @endif
                             @else
                             <li>
-                                <a href="loginRegistro">
+                                <a href="{{URL::asset('loginRegistro')}}">
                                     <div>Inicio Sesión | Registro</div>
                                 </a>
                             </li>

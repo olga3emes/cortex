@@ -8,4 +8,47 @@
 
 class OfertaController extends BaseController{
 
+    public static function ofertas(){
+
+        $ofertas=DB::table('ofertas')->paginate(10);
+
+        return View::make('ofertas')->with(['ofertas' => $ofertas])->render();
+    }
+
+
+
+    public function crear()
+    {
+        $respuesta = Oferta::crear(Input::all());
+
+        if ($respuesta['error'] == true) {
+            return Redirect::back()->withErrors($respuesta['mensaje'])->withInput();
+        }
+        else {
+            return Redirect::back()->with('mensaje', $respuesta['mensaje']);
+        }
+    }
+
+    public function editar($id){
+        $respuesta = Oferta::editar($id,Input::all());
+
+        if ($respuesta['error'] == true) {
+            return Redirect::back()->withErrors($respuesta['mensaje'])->withInput();
+        }
+        else {
+            return Redirect::back()->with('mensaje', $respuesta['mensaje']);
+        }
+    }
+
+    public function eliminar($id){
+        $respuesta = Oferta::eliminar($id);
+
+        if ($respuesta['error'] == true) {
+            return Redirect::back()->withErrors($respuesta['mensaje'])->withInput();
+        }
+        else {
+            return Redirect::to('cliente/ofertas')->with('mensaje', $respuesta['mensaje']);
+        }
+    }
+
 }

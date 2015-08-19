@@ -16,9 +16,80 @@ class Oferta extends Eloquent{
     //Inicio: Relaciones
 
     public function cita(){
-        return $this->hasOne('Cita', 'idOferta', 'id');
+        return $this->belongsTo('Cita', 'idOferta', 'id');
     }
     //Fin: Relaciones
 
+    public static function crear($input){
+
+        $respuesta = array();
+
+        $reglas = array(
+            'porcentaje' => array('required', 'min:0', 'max:9999'),
+            'nombre' => array('required', 'min:3', 'max:100'),
+        );
+
+        $validator = Validator::make($input, $reglas);
+
+        if ($validator->fails()) {
+            $respuesta['mensaje'] = $validator;
+            $respuesta['error'] = true;
+
+        } else {
+            $oferta = new oferta($input);
+            $oferta->save();
+
+            $respuesta['mensaje'] = 'oferta creado';
+            $respuesta['error'] = false;
+            $respuesta['data'] = $oferta;
+
+        }
+        return $respuesta;
+    }
+
+    public static function editar($id,$input){
+
+        $respuesta = array();
+
+        $reglas = array(
+            'porcentaje' => array('required', 'min:0', 'max:9999'),
+            'nombre' => array('required', 'min:3', 'max:100'),
+
+        );
+
+        $validator = Validator::make($input, $reglas);
+
+        if ($validator->fails()) {
+            $respuesta['mensaje'] = $validator;
+            $respuesta['error'] = true;
+        } else {
+            $oferta= oferta::find($id);
+            $oferta->nombre=$input['nombre'];
+            $oferta->porcentaje=$input['precio'];
+            $oferta->fechaFin=!isset($input['fechaFin']) ? $fechaFin = '' : $fechaFin = $input['fechaFin'];
+            $oferta->save();
+
+            $respuesta['mensaje'] = 'oferta editado';
+            $respuesta['error'] = false;
+            $respuesta['data'] = $oferta;
+        }
+        return $respuesta;
+    }
+
+    public static function eliminar($id){
+
+        $respuesta = array();
+
+        $oferta = oferta::find($id);
+        $oferta->delete();
+
+        //Mensajes de exito
+        $respuesta['mensaje'] = 'oferta Eliminado';
+        $respuesta['error'] = null;
+        $respuesta['data'] = $oferta;
+
+        return $respuesta;
+
+    }
 
 }

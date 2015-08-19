@@ -54,11 +54,15 @@
                 <div class="box-body">
                     <div class="form-group">
                         <label for="InputNombre">Nombre</label>
-                        <input class="form-control" id="InputNombre" placeholder="Nombre" type="text">
+                        <input class="form-control" id="nombre" placeholder="Nombre" type="text">
                     </div>
                     <div class="form-group">
-                        <label for="InputPrecio">Descuento</label>
-                        <input class="form-control" id="InputPrecio" placeholder="%" type="text">
+                        <label for="InputDescuento">Descuento</label>
+                        <input class="form-control" id="porcentaje" placeholder="%" type="number">
+                    </div>
+                    <div class="form-group">
+                        <label for="InputPrecio">Fecha de Fin de la oferta</label>
+                        <input class="form-control" id="fechaFin" placeholder="%" type="date">
                     </div>
                 </div>
                 <div class="box-footer">
@@ -82,16 +86,20 @@
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
                 </button>
-                <h4 class="modal-title" id="myModalLabel">Editar Servicio</h4>
+                <h4 class="modal-title" id="myModalLabel">Editar Oferta</h4>
             </div>
             <div class="modal-body">
                 <div class="form-group">
                     <label for="InputNombre">Nombre</label>
-                    <input class="form-control" id="InputNombre" placeholder="Nombre" type="text">
+                    <input class="form-control" id="nombre" placeholder="Nombre" type="text">
                 </div>
                 <div class="form-group">
-                    <label for="InputPrecio">Precio</label>
-                    <input class="form-control" id="InputPrecio" placeholder="Precio" type="text">
+                    <label for="InputDescuento">Descuento</label>
+                    <input class="form-control" id="porcentaje" placeholder="%" type="number">
+                </div>
+                <div class="form-group">
+                    <label for="InputPrecio">Fecha de Fin de la oferta</label>
+                    <input class="form-control" id="fechaFin" placeholder="%" type="date">
                 </div>
             </div>
             <div class="modal-footer">
