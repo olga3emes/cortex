@@ -170,11 +170,7 @@ Route::group(array('before' => 'auth'), function () {
 
     });
 
-    Route::get('cliente/perfil', function () {
-
-        return View::make('perfil');
-
-    });
+    Route::get('cliente/perfil', 'ClienteController@cliente');
 
     Route::get('cliente/tickets', function () {
 

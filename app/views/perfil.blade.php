@@ -1,3 +1,5 @@
+
+@include('header')
 <style>
     .file-drop-zone-title {
         color: #AAA;
@@ -9,8 +11,10 @@
         border-radius: 5px;
         border: 1px solid #DDD;
         padding: 5px;
-        width: 100%;
-        margin-bottom: 5px;
+        width: 50%;
+        margin-left: 25%;
+        margin-right: 25%;
+        margin-bottom: 20px;
         height: 200px !important;
     }
 
@@ -18,8 +22,6 @@
         height: 87% !important;
     }
 </style>
-@include('header')
-
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
 
@@ -35,7 +37,7 @@
                     <!-- END SIDEBAR USERPIC -->
                     <!-- SIDEBAR USER TITLE -->
                     <div class="profile-usertitle">
-                        <div class="profile-usertitle-name" style="color: #C02942">Olga M. Moreno</div>
+                        <div class="profile-usertitle-name" style="color: #C02942">{{$usuario->username}}</div>
                     </div>
                     <!-- END SIDEBAR USER TITLE -->
 
@@ -52,7 +54,7 @@
                             <div class="form-group">
                                 <form enctype="multipart/form-data">
                                     <label>Cambiar Imagen</label>
-                                    <input id="file-es" name="file-es[]" type="file">
+                                    <input id="imagen" name="imagen" name="file-es[]" type="file" >
                                 </form>
                             </div>
                         </div>
@@ -61,15 +63,15 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="InputName">Nombre</label>
-                                    <input class="form-control" id="InputName" placeholder="Introduce tu nombre"
+                                    <input class="form-control" id="name" value="{{$cliente->nombre}}"placeholder="Introduce tu nombre"
                                            type="text">
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="InputApellidos">Apellidos</label>
-                                    <input class="form-control" id="InputApellidos"
-                                           placeholder="Introduce tus apellidos" type="text">
+                                    <input class="form-control" id="apellidos"
+                                           placeholder="Introduce tus apellidos" value="{{$cliente->apellidos}}" type="text">
                                 </div>
                             </div>
 
@@ -77,8 +79,8 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="InputTelefono">Teléfono</label>
-                                    <input class="form-control" id="InputTelefono" placeholder="Teléfono de contacto"
-                                           type="password">
+                                    <input class="form-control" id="telefono" value="{{$cliente->telefono}}" placeholder="Teléfono de contacto"
+                                           type="text">
                                 </div>
                             </div>
 
@@ -96,19 +98,19 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="InputUser">Nombre de Usuario</label>
-                                    <input class="form-control" id="InputUser" placeholder="Introduce tu usuario"
+                                    <input class="form-control" id="username" value="{{$usuario->username}}" placeholder="Introduce tu usuario"
                                            type="text">
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="InputEmail">Email</label>
-                                    <input class="form-control" id="InputEmail" placeholder="Introduce tu email"
+                                    <input class="form-control" id="email" value="{{$usuario->email}}"placeholder="Introduce tu email"
                                            type="email">
                                 </div>
                             </div>
 
-                            <button class="btn btn-block btn-primary">Guardar</button>
+                            <button class="btn btn-block btn-primary" style="width: 50%;margin-left: 25%;margin-right: 25%;">Guardar</button>
 
 
                             <div class="col-md-4">
@@ -132,9 +134,6 @@
                                     <button type="" class="btn btn-block btn-primary">Cambiar</button>
                                 </div>
                             </div>
-
-
-
                     </div>
                 </div>
             </div>

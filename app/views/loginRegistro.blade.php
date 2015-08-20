@@ -40,7 +40,7 @@
                         </div>
 
                         <div class="col_full nobottommargin">
-                            <button type="submit" class="button button-rounded button-reveal button-red tright" id="login-form-submit" name="login-form-submit" value="login"><i class="icon-angle-right"></i><span>Acceder</span></button>
+                            <button type="submit" class="button button-rounded button-reveal button-red tright" id="login-form-submit" name="login-form-submit" value="login"><i class="icon-angle-right"></i>Entrar</button>
 
                             <a class="fright"data-toggle="modal" data-target="#modalLostPass" data-dismiss="modal" href="#">¿Has olvidado tu contraseña?</a>
                         </div>

@@ -505,7 +505,7 @@
             } else {
                 self.refreshContainer();
             }
-            self.$progress = self.$container.find('.kv-upload-progress');
+            self.$progress = self.$container.find('');
             self.$btnUpload = self.$container.find('.kv-fileinput-upload');
             self.$captionContainer = getElement(options, 'elCaptionContainer', self.$container.find('.file-caption'));
             self.$caption = getElement(options, 'elCaptionText', self.$container.find('.file-caption-name'));

@@ -20,4 +20,23 @@ class ClienteController extends BaseController{
     }
 
 
+    public static function clientes(){
+
+        $ofertas=DB::table('clientes')->paginate(10);
+
+        return View::make('clientes')->with(['clientes' => $ofertas])->render();
+    }
+
+    public static function cliente(){
+
+        $usuario=Auth::getUser();
+
+        $idUsuario=$usuario->id;
+
+        $cliente=DB::table('clientes')->where('idUsuario','=',$idUsuario)->first();
+
+        return View::make('perfil')->with(['cliente' => $cliente, 'usuario'=>$usuario])->render();
+    }
+
+
 }
