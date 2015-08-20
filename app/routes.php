@@ -48,10 +48,9 @@ Route::get('aviso-legal', function () {
 });
 
 
-Route::post('olvidar','RemindersController@postRemind');
+Route::post('olvidar', 'RemindersController@postRemind');
 Route::get('password/reset/{token}', 'RemindersController@getReset');
 Route::post('password/reset/{token}', 'RemindersController@postReset');
-
 
 
 Route::get('loginRegistro', function () {
@@ -64,15 +63,11 @@ Route::get('loginRegistro', function () {
 Route::post('cliente/registrar', 'ClienteController@registrar');
 
 
-
-
 Route::get('login', function () {
 
     return View::make('loginRegistro');
 
 });
-
-
 
 
 Route::post('login', function () {
@@ -104,110 +99,118 @@ Route::group(array('before' => 'auth'), function () {
 //RUTAS DEL ADMINISTRADOR
 
 
+    Route::get('administrador/calendario', function () {
 
-        Route::get('administrador/calendario', function () {
+        return View::make('calendario');
 
-            return View::make('calendario');
+    });
 
-        });
+    Route::get('administrador/clientes', function () {
 
-        Route::get('administrador/clientes', function () {
+        return View::make('clientes');
 
-            return View::make('clientes');
+    });
 
-        });
+    Route::get('administrador/disponibles', function () {
 
-        Route::get('administrador/disponibles', function () {
+        return View::make('disponibles');
 
-            return View::make('disponibles');
+    });
 
-        });
+    Route::get('administrador/eventos', function () {
 
-        Route::get('administrador/eventos', function () {
+        return View::make('eventos');
 
-            return View::make('eventos');
+    });
 
-        });
+    Route::get('administrador/galeria', function () {
 
-        Route::get('administrador/galeria', function () {
+        return View::make('modGaleria');
 
-            return View::make('modGaleria');
+    });
+    Route::get('administrador/ofertas', function () {
 
-        });
-        Route::get('administrador/ofertas', function () {
+        return View::make('ofertas');
 
-            return View::make('ofertas');
+    });
 
-        });
+    Route::get('administrador/pendientes', function () {
 
-        Route::get('administrador/pendientes', function () {
+        return View::make('pendientes');
 
-            return View::make('pendientes');
+    });
 
-        });
+    Route::get('administrador/perfil', function () {
 
-        Route::get('administrador/perfil', function () {
+        return View::make('perfil');
 
-            return View::make('perfil');
-
-        });
+    });
 
 
-        Route::get('administrador/servicios', function () {
+    Route::get('administrador/servicios', function () {
 
-            return View::make('servicios');
+        return View::make('servicios');
 
-        });
+    });
 
-        Route::get('administrador/tickets', function () {
+    Route::get('administrador/tickets', function () {
 
-            return View::make('tickets');
+        return View::make('tickets');
 
-        });
+    });
     //}
 
 
 //CLIENTE
 
 
-        Route::get('cliente/calendario', function () {
+    Route::get('cliente/calendario', function () {
 
-            return View::make('calendario');
+        return View::make('calendario');
 
-        });
+    });
 
-        Route::get('cliente/perfil', function () {
+    Route::get('cliente/perfil', function () {
 
-            return View::make('perfil');
+        return View::make('perfil');
 
-        });
+    });
 
-        Route::get('cliente/tickets', function () {
+    Route::get('cliente/tickets', function () {
 
-            return View::make('tickets');
+        return View::make('tickets');
 
-        });
+    });
 
-        Route::get('cliente/servicios','ServicioController@servicios' );
+    Route::get('cliente/servicios', 'ServicioController@servicios');
 
 
+    Route::get('cliente/ofertas', 'OfertaController@ofertas');
 
-        Route::get('cliente/ofertas', function () {
+    Route::get('cliente/citas', function () {
 
-            return View::make('ofertas');
+        return View::make('citasPendientes');
 
-        });
+    });
 
-        //FIN RUTAS CLIENTE
+    //FIN RUTAS CLIENTE
 
-        //RUTAS SERVICIOS
+    //RUTAS SERVICIOS
 
-        Route::post('servicio/crear', 'ServicioController@crear');
-        Route::post('servicio/editar/{id}', 'ServicioController@editar');
-        Route::get('servicio/eliminar/{id}', 'ServicioController@eliminar');
+    Route::post('servicio/crear', 'ServicioController@crear');
+    Route::post('servicio/editar/{id}', 'ServicioController@editar');
+    Route::get('servicio/eliminar/{id}', 'ServicioController@eliminar');
 
-        //FIN RUTAS SERVICIOS
+    //FIN RUTAS SERVICIOS
 
+
+    //RUTAS OFERTAS
+
+    Route::post('oferta/crear', 'OfertaController@crear');
+    Route::post('oferta/editar/{id}', 'OfertaController@editar');
+    Route::get('oferta/eliminar/{id}', 'OfertaController@eliminar');
+
+    //FIN RUTAS OFERTAS
 
 
     App::missing(function ($exception) {
@@ -215,7 +218,6 @@ Route::group(array('before' => 'auth'), function () {
         $data = array(
             'url' => $pathInfo
         );
-
 
         return Response::view('404', array(), 404);
 

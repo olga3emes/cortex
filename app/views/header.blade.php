@@ -197,11 +197,18 @@
                             </a>
                         </li>
 
-                        <li class="active">
+                        <li>
                             <a href="{{URL::asset('cliente/calendario')}}">
-                                <i class="fa fa-calendar"></i> <span>Calendario</span>
+                                <i class="fa fa-calendar"></i> <span>Calendario de Citas</span>
                             </a>
                         </li>
+
+                        <li>
+                            <a href="{{URL::asset('cliente/citas')}}">
+                                <i class="fa fa-calendar-o"></i><span>Citas Sin Confirmar</span>
+                            </a>
+                        </li>
+
                         <li>
                             <a href="{{URL::asset('cliente/servicios')}}">
                                 <i class="fa fa-scissors"></i> <span>Servicios</span>
@@ -237,7 +244,7 @@
                             </li>
                         </ul>
                     </li>
-                    <li class="active">
+                    <li>
                         <a href="{{URL::asset('administrador/calendario')}}">
                             <i class="fa fa-calendar"></i> <span>Calendario</span>
                         </a>

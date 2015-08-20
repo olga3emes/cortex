@@ -3,7 +3,7 @@
 <div class="content-wrapper">
 
     <!-- Main content -->
-    <section class="content">
+     <section class="content">
         <div class="col-sm-7 col-md-9 col-xs-12">
             <!-- Tabla Ofertas -->
             <div class="box box-solid">
@@ -22,22 +22,56 @@
                             </tr>
                         </thead>
                         <tbody>
+                        @foreach($ofertas as $oferta)
                             <tr>
-                                <td>Lavar - Cortar</td>
-                                <td>15%</td>
-                                <td><a href="#" data-toggle="modal" data-target="#editar"><i class="fa fa-pencil-square text-green"></i></a>
+                                <td>{{$oferta->nombre}}</td>
+                                <td>{{$oferta->porcentaje}}%</td>
+                                <td><a href="#" data-toggle="modal" data-target="{{'#'.$oferta->id}}"><i class="fa fa-pencil-square text-green"></i></a>
+
+                                    <!-- Modal Edición -->
+                                    <div class="modal fade" id="{{$oferta->id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                                        <form name="crearForm" id="crearForm" action="{{URL::asset('oferta/editar/'.$oferta->id)}}" method="POST">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                    <h4 class="modal-title" id="myModalLabel">Editar Oferta</h4>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <div class="form-group">
+                                                        <label for="InputNombre">Nombre</label>
+                                                        <input class="form-control" name="nombre"  required value="{{$oferta->nombre}}"  id="nombre" placeholder="Nombre" type="text">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="InputDescuento">Descuento</label>
+                                                        <input class="form-control" id="porcentaje" required name="porcentaje" value="{{$oferta->porcentaje}}" placeholder="%" type="number">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="InputPrecio">Fecha de Fin de la oferta</label>
+                                                        <input class="form-control" id="fechaFin"  name="fechaFin" placeholder="dd/mm/yyyy" value="{{$oferta->fechaFin}}"  type="date">
+                                                    </div>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="submit" class="btn btn-primary pull-right">Guardar</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                            </form>
+                                    </div>
+                                    <!-- END Modal Edición -->
                                 </td>
-                                <td><a href="#"><i class="fa fa-trash text-red"></i></a>
+                                <td><a href="{{URL::asset('oferta/eliminar/'.$oferta->id)}}"><i class="fa fa-trash text-red"></i></a>
                             </tr>
-                            <tr>
-                                <td>Tinte</td>
-                                <td>5%</td>
-                                <td><a href="#" data-toggle="modal" data-target="#editar"><i class="fa fa-pencil-square text-green"></i></a>
-                                </td>
-                                <td><a href="#"><i class="fa fa-trash text-red"></i></a>
-                            </tr>
+
+                        @endforeach
                         </tbody>
                     </table>
+
+                    <nav style="text-align: center">
+                        {{$ofertas->links()}}
+                    </nav>
+
                 </div>
                 <!-- /.box-body -->
             </div>
@@ -45,6 +79,8 @@
 
             <!-- END Tabla Ofertas -->
         </div>
+
+        <form name="crearForm" id="crearForm"action="{{URL::asset('oferta/crear')}}" method="POST">
         <div class="col-sm-5 col-md-3 col-xs-12">
             <div class="box box-solid">
                 <div class="box-header with-border">
@@ -54,15 +90,15 @@
                 <div class="box-body">
                     <div class="form-group">
                         <label for="InputNombre">Nombre</label>
-                        <input class="form-control" id="nombre" placeholder="Nombre" type="text">
+                        <input class="form-control" name="nombre"  required id="nombre" placeholder="Nombre" type="text">
                     </div>
                     <div class="form-group">
                         <label for="InputDescuento">Descuento</label>
-                        <input class="form-control" id="porcentaje" placeholder="%" type="number">
+                        <input class="form-control" name="porcentaje" required id="porcentaje" placeholder="%" type="number">
                     </div>
                     <div class="form-group">
                         <label for="InputPrecio">Fecha de Fin de la oferta</label>
-                        <input class="form-control" id="fechaFin" placeholder="%" type="date">
+                        <input class="form-control"name="fechaFin" id="fechaFin"  placeholder="dd/mm/yyyy" type="date">
                     </div>
                 </div>
                 <div class="box-footer">
@@ -70,6 +106,9 @@
                 </div>
             </div>
         </div>
+
+            </form>
+
     </section>
     <!-- /.content -->
 
@@ -78,47 +117,3 @@
 <!-- /.content-wrapper -->
 
 @include( "footer")
-
-<!-- Modal Edición -->
-<div class="modal fade" id="editar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
-                </button>
-                <h4 class="modal-title" id="myModalLabel">Editar Oferta</h4>
-            </div>
-            <div class="modal-body">
-                <div class="form-group">
-                    <label for="InputNombre">Nombre</label>
-                    <input class="form-control" id="nombre" placeholder="Nombre" type="text">
-                </div>
-                <div class="form-group">
-                    <label for="InputDescuento">Descuento</label>
-                    <input class="form-control" id="porcentaje" placeholder="%" type="number">
-                </div>
-                <div class="form-group">
-                    <label for="InputPrecio">Fecha de Fin de la oferta</label>
-                    <input class="form-control" id="fechaFin" placeholder="%" type="date">
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button type="submit" class="btn btn-primary pull-right">Guardar</button>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- END Modal Edición -->
-
-<script type="text/javascript">
-    $(function () {
-        $('#table').dataTable({
-            "bPaginate": true,
-            "bLengthChange": false,
-            "bFilter": false,
-            "bSort": true,
-            "bInfo": true,
-            "bAutoWidth": false
-        });
-    });
-</script>

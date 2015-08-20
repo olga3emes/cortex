@@ -36,6 +36,11 @@ class Oferta extends Eloquent{
             $respuesta['error'] = true;
 
         } else {
+
+            $input['fechaFin']=Tools::formatearFechaBD($input['fechaFin']);
+            if($input['fechaFin']=='1970-01-01'){
+                $input['fechaFin']='0000-00-00';
+            }
             $oferta = new oferta($input);
             $oferta->save();
 
@@ -63,10 +68,16 @@ class Oferta extends Eloquent{
             $respuesta['mensaje'] = $validator;
             $respuesta['error'] = true;
         } else {
+
+            $input['fechaFin']=Tools::formatearFechaBD($input['fechaFin']);
+            if($input['fechaFin']=='1970-01-01'){
+                $input['fechaFin']='0000-00-00';
+            }
+
             $oferta= oferta::find($id);
             $oferta->nombre=$input['nombre'];
-            $oferta->porcentaje=$input['precio'];
-            $oferta->fechaFin=!isset($input['fechaFin']) ? $fechaFin = '' : $fechaFin = $input['fechaFin'];
+            $oferta->porcentaje=$input['porcentaje'];
+            $oferta->fechaFin=$input['fechaFin'];
             $oferta->save();
 
             $respuesta['mensaje'] = 'oferta editado';
