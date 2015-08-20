@@ -33,10 +33,29 @@ class ClienteController extends BaseController{
 
         $idUsuario=$usuario->id;
 
-        $cliente=DB::table('clientes')->where('idUsuario','=',$idUsuario)->first();
+        $idImagen=$usuario->idImagen;
 
-        return View::make('perfil')->with(['cliente' => $cliente, 'usuario'=>$usuario])->render();
+        $imagen=DB::table('imagenes')->where('id','=',$idImagen)->first();
+
+        $cliente = DB::table('clientes')->where('idUsuario', '=', $idUsuario)->first();
+
+        if($imagen!=null) {
+
+            return View::make('perfil')->with(['cliente' => $cliente, 'usuario' => $usuario, 'imagen' => $imagen])->render();
+        }else{
+            return View::make('perfil')->with(['cliente' => $cliente, 'usuario' => $usuario])->render();
+        }
     }
 
+    public function actualizarPerfil($id)
+    {
+        $respuesta =Cliente::actualizarPerfil($id,Input::all());
+
+        if ($respuesta['error'] == true) {
+            return Redirect::back()->withErrors($respuesta['mensaje'])->withInput();
+        } else {
+            return Redirect::back()->with('mensaje', ($respuesta['mensaje']));
+        }
+    }
 
 }

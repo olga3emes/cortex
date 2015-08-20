@@ -208,6 +208,11 @@ Route::group(array('before' => 'auth'), function () {
 
     //FIN RUTAS OFERTAS
 
+    //RUTAS PERFIL
+    Route::post('perfil/actualizar/{id}', 'ClienteController@actualizarPerfil');
+
+    //FIN RUTAS PERFIL
+
 
     App::missing(function ($exception) {
         $pathInfo = Request::url();

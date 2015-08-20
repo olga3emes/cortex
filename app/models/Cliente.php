@@ -74,12 +74,12 @@ class Cliente extends Eloquent{
     }
 
 
-    public static function editarPerfil($id,$input){
+    public static function actualizarPerfil($id,$input){
         $respuesta = array();
 
         $reglas = array(
-            'email' => array('required', 'email', 'max:100', 'unique:usuarios,email'),
-            'username' => array('required', 'min:3', 'max:100', 'unique:usuarios,username'),
+            'email' => array('required', 'email', 'max:100'),
+            'username' => array('required', 'min:3', 'max:100'),
             'nombre' => array('required', 'min:3', 'max:100'),
             'apellidos' => array('required', 'min:3', 'max:100'),
             'telefono' => array('required', 'min:9', 'max:12'),
@@ -93,29 +93,32 @@ class Cliente extends Eloquent{
         } else {
 
             $cliente = Cliente::find($id);
+            $usuario= Usuario::find($cliente->idUsuario);
 
             if (!is_null(Input::file('imagen'))) {
-                $imagen = Input::file('imagen');
+                $imagenarchivo = Input::file('imagen');
 
-                $nombre = 'Cortex-' . $id . '-' . ".jpg";
-                $directorio = public_path('img/perfil/' . $id);
+                $nombre = 'Cortex-'.$id.".jpg";
+                $directorio = public_path('img/perfil');
 
                 if (!file_exists($directorio)) {
                     mkdir($directorio, 0777, true);
                 }
-                $path = $directorio . '/' . $nombre;
+                $path = $directorio.'/'. $nombre;
 
-                Image::make($imagen->getRealPath())->save($path);
 
-                $experiencia_imagen = new Imagen();
-                $experiencia_imagen->nombre = $nombre;
-                $experiencia_imagen->destacada = 1;
-                $experiencia_imagen->idExperiencia = $experiencia->id;
-                $experiencia_imagen->save();
+                $imagenarchivo->move($imagenarchivo,$directorio);
+                rename($imagenarchivo->getClientOriginalName(),$path);
+
+                $imagen = new Imagen();
+                $imagen->nombre = $nombre;
+                $imagen->idGaleria='';
+                $imagen->save();
+
+                $usuario->idImagen=$imagen->id;
+                $usuario->save();
             }
-            $cliente = Cliente::find($id);
 
-            $usuario= Usuario::find($cliente->idUsuario);
             $usuario->email=$input['email'];
             $usuario->username=$input['username'];
             $usuario->save();
@@ -130,8 +133,6 @@ class Cliente extends Eloquent{
             $respuesta['mensaje'] = 'Su perfil ha sido actualizado';
             $respuesta['error'] = false;
             $respuesta['data'] = $cliente;
-
-            Auth::login($usuario);
 
         }
 

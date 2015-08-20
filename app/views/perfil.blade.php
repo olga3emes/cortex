@@ -32,7 +32,11 @@
                 <div class="profile-sidebar">
                     <!-- SIDEBAR USERPIC -->
                     <div class="profile-userpic">
-                        <img src="{{URL::asset('dist/img/user2-160x160.jpg')}}" class="img-responsive" alt="">
+                        @if(isset($imagen))
+                        <img src="{{URL::asset('img/perfil/'.$imagen->nombre)}}" class="img-responsive" alt="">
+                        @else
+                            <img src="{{URL::asset('img/perfil/default.jpg')}}" class="img-responsive" alt="">
+                        @endif
                     </div>
                     <!-- END SIDEBAR USERPIC -->
                     <!-- SIDEBAR USER TITLE -->
@@ -47,30 +51,30 @@
                     </div>
                 </div>
             </div>
+
             <div class="col-md-10">
                 <div class="profile-content">
+
                     <div class="row">
+                        <form name="perfilCrear" id="perfilCrear" action="{{URL::asset('perfil/actualizar/'.$cliente->id)}}" enctype="multipart/form-data" method="POST">
                         <div class="col-md-12">
                             <div class="form-group">
-                                <form enctype="multipart/form-data">
                                     <label>Cambiar Imagen</label>
-                                    <input id="imagen" name="imagen" name="file-es[]" type="file" >
-                                </form>
+                                    <input id="imagen"  name="imagen" type="file" >
                             </div>
                         </div>
                         <!--SOLO CLIENTE-->
-                        @if(Cliente::esCliente())
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="InputName">Nombre</label>
-                                    <input class="form-control" id="name" value="{{$cliente->nombre}}"placeholder="Introduce tu nombre"
+                                    <input class="form-control" id="name" name="nombre" value="{{$cliente->nombre}}"placeholder="Introduce tu nombre"
                                            type="text">
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="InputApellidos">Apellidos</label>
-                                    <input class="form-control" id="apellidos"
+                                    <input class="form-control" id="apellidos" name="apellidos"
                                            placeholder="Introduce tus apellidos" value="{{$cliente->apellidos}}" type="text">
                                 </div>
                             </div>
@@ -79,7 +83,7 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="InputTelefono">Teléfono</label>
-                                    <input class="form-control" id="telefono" value="{{$cliente->telefono}}" placeholder="Teléfono de contacto"
+                                    <input class="form-control" id="telefono" name="telefono" value="{{$cliente->telefono}}" placeholder="Teléfono de contacto"
                                            type="text">
                                 </div>
                             </div>
@@ -92,26 +96,24 @@
                                 </div>
                             </div>
 
-
-                            @endif
                                     <!--FIN SOLO CLIENTE -->
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="InputUser">Nombre de Usuario</label>
-                                    <input class="form-control" id="username" value="{{$usuario->username}}" placeholder="Introduce tu usuario"
+                                    <input class="form-control" id="username"name="username" value="{{$usuario->username}}" placeholder="Introduce tu usuario"
                                            type="text">
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="InputEmail">Email</label>
-                                    <input class="form-control" id="email" value="{{$usuario->email}}"placeholder="Introduce tu email"
+                                    <input class="form-control" id="email" name="email"value="{{$usuario->email}}"placeholder="Introduce tu email"
                                            type="email">
                                 </div>
                             </div>
 
-                            <button class="btn btn-block btn-primary" style="width: 50%;margin-left: 25%;margin-right: 25%;">Guardar</button>
-
+                            <button type="submit "class="btn btn-block btn-primary" style="width: 50%;margin-left: 25%;margin-right: 25%;">Guardar</button>
+                            </form>
 
                             <div class="col-md-4">
                                 <div class="form-group">
@@ -147,7 +149,7 @@
 @include('footer')
 
 <script>
-    $('#file-es').fileinput({
+    $('#imagen').fileinput({
         language: 'es',
         uploadUrl: '#',
         allowedFileExtensions: ['jpg', 'png', 'gif']
