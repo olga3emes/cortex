@@ -105,11 +105,9 @@ Route::group(array('before' => 'auth'), function () {
 
     });
 
-    Route::get('administrador/clientes', function () {
+    Route::get('administrador/clientes', 'ClienteController@clientes');
 
-        return View::make('clientes');
 
-    });
 
     Route::get('administrador/disponibles', function () {
 

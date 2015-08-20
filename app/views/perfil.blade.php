@@ -60,7 +60,26 @@
                         <div class="col-md-12">
                             <div class="form-group">
                                     <label>Cambiar Imagen</label>
-                                    <input id="imagen"  name="imagen" type="file" >
+                                    <input id="imagen"  name="imagen" type="file" class="file" data-preview-file-type="text">
+                                <script>
+                                    $('#imagen').fileinput({
+                                        language: 'es',
+                                        uploadUrl: '#',
+                                        allowedFileExtensions: ['jpg','jpeg', 'png', 'gif']
+                                    });
+                                    $(".btn-warning").on('click', function () {
+                                        if ($('#file-4').attr('disabled')) {
+                                            $('#file-4').fileinput('enable');
+                                        } else {
+                                            $('#file-4').fileinput('disable');
+                                        }
+                                    });
+                                    $(".btn-info").on('click', function () {
+                                        $('#file-4').fileinput('refresh', {
+                                            previewClass: 'bg-info'
+                                        });
+                                    });
+                                </script>
                             </div>
                         </div>
                         <!--SOLO CLIENTE-->
@@ -148,23 +167,5 @@
 
 @include('footer')
 
-<script>
-    $('#imagen').fileinput({
-        language: 'es',
-        uploadUrl: '#',
-        allowedFileExtensions: ['jpg', 'png', 'gif']
-    });
-    $(".btn-warning").on('click', function () {
-        if ($('#file-4').attr('disabled')) {
-            $('#file-4').fileinput('enable');
-        } else {
-            $('#file-4').fileinput('disable');
-        }
-    });
-    $(".btn-info").on('click', function () {
-        $('#file-4').fileinput('refresh', {
-            previewClass: 'bg-info'
-        });
-    });
-</script>
+
 

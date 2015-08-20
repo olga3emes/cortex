@@ -153,9 +153,9 @@
             <!-- Logo -->
             <a href="{{URL::asset('inicio')}}" class="logo">
                 <!-- mini logo for sidebar mini 50x50 pixels -->
-                <span class="logo-mini"><img src="{{URL::asset('dist/img/logo-mini.png')}}" /></span>
+                <span class="logo-mini"><img src="{{URL::asset('dist/img/logo-mini.png')}}" /><br><h5>Inicio</h5></span>
                 <!-- logo for regular state and mobile devices -->
-                <span class="logo-lg"><img src="{{URL::asset('dist/img/logo-lg.png')}}" /></span>
+                <span class="logo-lg"><img src="{{URL::asset('dist/img/logo-lg.png')}}" /><br><h5>Ir al Inicio</h5></span>
             </a>
             <!-- Header Navbar: style can be found in header.less -->
             <nav class="navbar navbar-static-top" role="navigation">
@@ -178,12 +178,17 @@
             <section class="sidebar">
                 <!-- Sidebar user panel -->
                 <div class="user-panel">
-                    <div class="image" style="">
-                        <img src="{{URL::asset('dist/img/user2-160x160.jpg')}}" class="img-circle" alt="User Image" />
+                    <div class="image" style="width: 50%; margin-left: 25%; margin-right: 25%;">
+
+                        @if(Imagen::find(Auth::getUser()->idImagen)!=null)
+                        <img src="{{URL::asset('img/perfil/'.Imagen::find(Auth::getUser()->idImagen)->nombre)}}" class="img-circle" alt="User Image" />
+                        @else
+                            <img src="{{URL::asset('img/perfil/default.jpg')}}" class="img-circle" alt="User Image" />
+                        @endif
                     </div>
-                    <div class="info">
-                        <p style="color: #C02942">Olga M. Moreno</p>
-                    </div>
+
+                        <p style="color: #C02942;text-align: center;">{{Auth::getUser()->username}}</p>
+
                 </div>
 
                 <!-- sidebar menu: : style can be found in sidebar.less -->

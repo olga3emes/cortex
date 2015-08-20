@@ -16,7 +16,7 @@ class Cliente extends Eloquent{
     //Inicio: Relaciones
 
     public function usuario(){
-        return $this->hasOne('Usuario', 'idUsuario', 'id');
+        return $this->belongsTo('Usuario', 'idUsuario', 'id');
     }
 
     public function citas(){
@@ -98,25 +98,24 @@ class Cliente extends Eloquent{
             if (!is_null(Input::file('imagen'))) {
                 $imagenarchivo = Input::file('imagen');
 
-                $nombre = 'Cortex-'.$id.".jpg";
+                $nombreImagen = 'Cortex-'.$id.".jpg";
                 $directorio = public_path('img/perfil');
 
                 if (!file_exists($directorio)) {
                     mkdir($directorio, 0777, true);
                 }
-                $path = $directorio.'/'. $nombre;
+                $path = $directorio.'/'.$nombreImagen;
 
+                Image::make($imagenarchivo->getRealPath())->save($path);
+                //Image es una libreria, hay que instalarla con composer.phar.
+                if($usuario->idImagen=='') {
+                    $imagen = new Imagen();
+                    $imagen->nombre = $nombreImagen;
+                    $imagen->save();
 
-                $imagenarchivo->move($imagenarchivo,$directorio);
-                rename($imagenarchivo->getClientOriginalName(),$path);
-
-                $imagen = new Imagen();
-                $imagen->nombre = $nombre;
-                $imagen->idGaleria='';
-                $imagen->save();
-
-                $usuario->idImagen=$imagen->id;
-                $usuario->save();
+                    $usuario->idImagen = $imagen->id;
+                    $usuario->save();
+                }
             }
 
             $usuario->email=$input['email'];

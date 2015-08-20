@@ -4,7 +4,7 @@
 
     <!-- Main content -->
     <section class="content">
-        <div class="col-sm-7 col-md-9 col-xs-12">
+        <div class="col-sm-7 col-md-12 col-xs-12">
             <!-- Tabla Citas -->
             <div class="box box-solid">
                 <div class="box-header with-border">
@@ -15,8 +15,7 @@
                 <div class="box-body">
                     <h5 style="text-align: center"><p>Las citas recogidas aquí aún no han sido confirmadas por Corte'x.</p> <p> Si acaba de solicitar una,
                             espere unas horas hasta que podamos responderle.</p>
-                        <p>Una vez la cita sea aceptada, podrá verla en su calendario.</p>
-                   Gracias</h5>
+                        <p>Una vez la cita sea aceptada, podrá verla en su calendario.</p>Gracias.</h5>
                     <br>
                     <table id="table" class="table table-bordered table-hover table-responsive">
                         <thead>
@@ -57,31 +56,7 @@
 
             <!-- END Tabla Ofertas -->
         </div>
-        <div class="col-sm-5 col-md-3 col-xs-12">
-            <div class="box box-solid">
-                <div class="box-header with-border">
-                    <h3 class="box-title"><i class="fa fa-reply"></i> Añadir Oferta</h3>
-                </div>
-                <!-- /.box-header -->
-                <div class="box-body">
-                    <div class="form-group">
-                        <label for="InputNombre">Nombre</label>
-                        <input class="form-control" id="nombre" placeholder="Nombre" type="text">
-                    </div>
-                    <div class="form-group">
-                        <label for="InputDescuento">Descuento</label>
-                        <input class="form-control" id="porcentaje" placeholder="%" type="number">
-                    </div>
-                    <div class="form-group">
-                        <label for="InputPrecio">Fecha de Fin de la oferta</label>
-                        <input class="form-control" id="fechaFin" placeholder="%" type="date">
-                    </div>
-                </div>
-                <div class="box-footer">
-                    <button type="submit" class="btn btn-primary pull-right">Añadir</button>
-                </div>
-            </div>
-        </div>
+
     </section>
     <!-- /.content -->
 

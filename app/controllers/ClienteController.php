@@ -22,9 +22,10 @@ class ClienteController extends BaseController{
 
     public static function clientes(){
 
-        $ofertas=DB::table('clientes')->paginate(10);
+        $clientes=DB::table('clientes')->paginate(10);
 
-        return View::make('clientes')->with(['clientes' => $ofertas])->render();
+        return View::make('clientes')->with(['clientes' => $clientes])->render();
+
     }
 
     public static function cliente(){
@@ -54,7 +55,7 @@ class ClienteController extends BaseController{
         if ($respuesta['error'] == true) {
             return Redirect::back()->withErrors($respuesta['mensaje'])->withInput();
         } else {
-            return Redirect::back()->with('mensaje', ($respuesta['mensaje']));
+            return Redirect::to('cliente/perfil')->with('mensaje', ($respuesta['mensaje']));
         }
     }
 

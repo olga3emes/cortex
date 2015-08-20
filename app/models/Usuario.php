@@ -16,7 +16,7 @@ class Usuario extends Eloquent implements UserInterface{
 
     //Inicio: Relaciones
     public function cliente(){
-        return $this->belongsTo('Cliente', 'idUsuario', 'id');
+        return $this->hasOne('Cliente', 'idUsuario', 'id');
     }
     public function administrador(){
         return $this->hasOne('Administrador', 'idUsuario', 'id');
