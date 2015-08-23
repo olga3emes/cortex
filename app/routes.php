@@ -115,11 +115,6 @@ Route::group(array('before' => 'auth'), function () {
 
 
 
-    Route::get('administrador/disponibles', function () {
-
-        return View::make('disponibles');
-
-    });
 
     Route::get('administrador/eventos', function () {
 
@@ -127,20 +122,12 @@ Route::group(array('before' => 'auth'), function () {
 
     });
 
-    Route::get('administrador/galeria', 'GaleriaController@galerias');
 
 
-    Route::get('administrador/ofertas', function () {
 
-        return View::make('ofertas');
 
-    });
 
-    Route::get('administrador/pendientes', function () {
 
-        return View::make('pendientes');
-
-    });
 
     Route::get('administrador/perfil', function () {
 
@@ -172,7 +159,7 @@ Route::group(array('before' => 'auth'), function () {
 
     });
 
-    Route::get('cliente/perfil', 'ClienteController@cliente');
+
 
     Route::get('cliente/tickets', function () {
 
@@ -184,6 +171,8 @@ Route::group(array('before' => 'auth'), function () {
 
     Route::get('cliente/ofertas', 'OfertaController@ofertas');
 
+    Route::get('cliente/productos', 'ProductoController@productos');
+
 
 
     Route::get('cliente/citas', function () {
@@ -194,7 +183,7 @@ Route::group(array('before' => 'auth'), function () {
 
     //RUTAS PERFIL
     Route::post('perfil/actualizar/{id}', 'ClienteController@actualizarPerfil');
-
+    Route::get('cliente/perfil', 'ClienteController@cliente');
     //FIN RUTAS PERFIL
 
     //FIN RUTAS CLIENTE-------------------------------
@@ -209,6 +198,7 @@ Route::group(array('before' => 'auth'), function () {
 
 
     //RUTAS OFERTAS
+    Route::get('administrador/ofertas', 'OfertaController@ofertas');
 
     Route::post('oferta/crear', 'OfertaController@crear');
     Route::post('oferta/editar/{id}', 'OfertaController@editar');
@@ -216,8 +206,20 @@ Route::group(array('before' => 'auth'), function () {
 
     //FIN RUTAS OFERTAS
 
+    ////RUTAS PRODUCTOS
+
+    Route::get('administrador/disponibles', 'ProductoController@disponibles');
+    Route::get('administrador/pendientes', 'ProductoController@pendientes');
+
+    Route::post('producto/crear', 'ProductoController@crear');
+    Route::post('producto/editar/{id}', 'ProductoController@editar');
+    Route::get('producto/eliminar/{id}', 'ProductoController@eliminar');
+
+    //FIN RUTAS PRODUCTOS
+
 
     //RUTAS GALERIAS
+    Route::get('administrador/galeria', 'GaleriaController@galerias');
 
     Route::post('galeria/crear', 'GaleriaController@crear');
     Route::post('galeria/añadirImagen/{id}', 'GaleriaController@añadirImagen');

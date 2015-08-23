@@ -15,7 +15,7 @@ class ProductosTicket extends Eloquent{
     //Inicio: Relaciones
 
     public function producto(){
-        return $this->belongsTo('Producto', 'idProducto', 'id');
+        return $this->hasMany('Producto', 'idProducto', 'id');
     }
 
     public function ticket(){

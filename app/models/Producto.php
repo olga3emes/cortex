@@ -10,7 +10,7 @@ class Producto extends Eloquent{
 
     protected $table = 'productos';
 
-    protected $fillable = array('id','codigo','cantidadActual','cantidadMinima','descripcion','precio','iva');
+    protected $fillable = array('id','nombre','codigo','cantidadActual','cantidadMinima','descripcion','precio','iva','publicado');
 
     //Inicio: Relaciones
 
@@ -19,9 +19,150 @@ class Producto extends Eloquent{
     }
 
     public function productosTickets(){
-        return $this->hasMany('ProductosTicket', 'idProducto', 'id');
+        return $this->belongsTo('ProductosTicket', 'idProducto', 'id');
     }
 
     //Fin: Relaciones
+
+    public static function crear($input)
+    {
+        $respuesta = array();
+
+        $reglas = array(
+            'nombre' => array('required', 'min:3', 'max:45'),
+            'cantidadActual' => array('required', 'min:0', 'max:999'),
+            'cantidadMinima' => array('required', 'min:0', 'max:999'),
+            'precio' => array('required', 'min:0', 'max:99999'),
+            
+        );
+
+        $validator = Validator::make($input, $reglas);
+
+        if ($validator->fails()) {
+            $respuesta['mensaje'] = $validator;
+            $respuesta['error'] = true;
+        } else {
+
+            $producto = new Producto($input);
+            $producto->iva= '21';
+            $producto->publicado = 0;
+            $producto->save();
+
+            if (!is_null(Input::file('imagen'))) {
+                $imagenarchivo = Input::file('imagen');
+
+                $nombreImagen = 'Cortex-Producto-' . $producto->id . ".jpg";
+                $directorio = public_path('img/producto');
+
+                if (!file_exists($directorio)) {
+                    mkdir($directorio, 0777, true);
+                }
+                $path = $directorio . '/' . $nombreImagen;
+
+                Image::make($imagenarchivo->getRealPath())->save($path);
+                //Image es una libreria, hay que instalarla con composer.phar.
+
+                    $imagen = new Imagen();
+                    $imagen->nombre = $nombreImagen;
+                    $imagen->save();
+
+                    $producto->idImagen=$imagen->id;
+                    $producto->save();
+                }
+            }
+
+
+
+            //Mensajes de exito
+            $respuesta['mensaje'] = 'Producto añadido';
+            $respuesta['error'] = false;
+            $respuesta['data'] = $producto;
+
+
+
+        return $respuesta;
+
+
+    }
+
+    public static function editar($id,$input)
+    {
+        $respuesta = array();
+
+        $reglas = array(
+            'nombre' => array('required', 'min:3', 'max:45'),
+            'cantidadActual' => array('required', 'min:0', 'max:999'),
+            'cantidadMinima' => array('required', 'min:0', 'max:999'),
+            'precio' => array('required', 'min:0', 'max:99999'),
+
+        );
+
+        $validator = Validator::make($input, $reglas);
+
+        if ($validator->fails()) {
+            $respuesta['mensaje'] = $validator;
+            $respuesta['error'] = true;
+        } else {
+
+            $producto = Producto::find($id);
+            $producto->update($input);
+            $producto->iva = '21';
+            $producto->save();
+
+            if (!is_null(Input::file('imagen'))) {
+                $imagenarchivo = Input::file('imagen');
+
+                $nombreImagen = 'Cortex-Producto-' . $producto->id . ".jpg";
+                $directorio = public_path('img/producto');
+
+                if (!file_exists($directorio)) {
+                    mkdir($directorio, 0777, true);
+                }
+                $path = $directorio . '/' . $nombreImagen;
+
+                Image::make($imagenarchivo->getRealPath())->save($path);
+                //Image es una libreria, hay que instalarla con composer.phar.
+
+                if ($producto->idImagen == '') {
+                    $imagen = new Imagen();
+                    $imagen->nombre = $nombreImagen;
+                    $imagen->save();
+
+                    $producto->idImagen = $imagen->id;
+                    $producto->save();
+                }
+            }
+
+        }
+
+
+        //Mensajes de exito
+        $respuesta['mensaje'] = 'Producto añadido';
+        $respuesta['error'] = false;
+        $respuesta['data'] = $producto;
+
+
+
+        return $respuesta;
+
+    }
+
+    public static function eliminar($id){
+
+        $respuesta = array();
+
+        $producto = Producto::find($id);
+
+        $producto->delete();
+        Imagen::eliminar($producto->idImagen);
+
+        //Mensajes de exito
+        $respuesta['mensaje'] = 'oferta Eliminado';
+        $respuesta['error'] = null;
+        $respuesta['data'] = $producto;
+
+        return $respuesta;
+
+    }
 
 }

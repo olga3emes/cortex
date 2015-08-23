@@ -235,7 +235,8 @@
 
                         <li>
                             <a href="{{URL::asset('cliente/productos')}}">
-                                <i class="fa fa-tag"></i> Productos</a>
+                                <i class="fa fa-tag"></i><span>Productos</span>
+                            </a>
                         </li>
                     @else
                     <li>

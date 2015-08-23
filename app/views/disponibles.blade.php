@@ -27,22 +27,24 @@
     <!-- Main content -->
     <section class="content">
         <div class="col-md-8">
+            @foreach($productos as $producto)
+                @if($producto->cantidadMinima < $producto->cantidadActual)
             <div class="col-sm-4 col-md-4 col-xs-12">
-                @include("ficha-producto")
+                @include('ficha-producto')
             </div>
-            <div class="col-sm-4 col-md-4 col-xs-12">
-                @include("ficha-producto")
-            </div>
-            <div class="col-sm-4 col-md-4 col-xs-12">
-                @include("ficha-producto")
-            </div>
+                @endif
+            @endforeach
+
+
         </div>
+
         <div class="col-md-4">
             <div class="box box-solid">
                 <div class="box-header with-border">
                     <h3 class="box-title"><i class="fa fa-cubes"></i> Añadir Nuevo Producto</h3>
                 </div>
                 <!-- /.box-header -->
+                <form name="perfilCrear" id="perfilCrear" action="{{URL::asset('producto/crear')}}" enctype="multipart/form-data" method="POST">
                 <div class="box-body">
                     <div class="form-group">
                         <label>Imagen del producto</label>
@@ -69,31 +71,35 @@
                         });
                     </script>
                     <div class="form-group">
-                        <label for="InputPrecio">Precio</label>
-                        <input class="form-control" id="InputPrecio" placeholder="Precio" type="number">
+                        <label for="InputNombre">Nombre</label>
+                        <input class="form-control" id="nombre" name="nombre" placeholder="Nombre" type="text">
                     </div>
                     <div class="form-group">
-                        <label for="InputNombre">Nombre</label>
-                        <input class="form-control" id="InputNombre" placeholder="Nombre" type="text">
+                        <label for="InputPrecio">Precio</label>
+                        <input class="form-control" id="precio" name="precio" placeholder="Precio" type="text">
                     </div>
                     <div class="form-group">
                         <label for="InputCodigo">Código</label>
-                        <input class="form-control" id="InputCodigo" placeholder="Código" type="text">
+                        <input class="form-control" id="codigo" name="codigo" placeholder="Código" type="text">
                     </div>
                     <div class="form-group">
                         <label for="InputCantidadAct">Cantidad Actual</label>
-                        <input class="form-control" id="InputCantidadAct" placeholder="Cantidad Actual" type="number">
+                        <input class="form-control" id="cantidadActual" name="cantidadActual" placeholder="Cantidad Actual" type="number">
                     </div>
                     <div class="form-group">
                         <label for="InputCantidadMin">Cantidad Mínima</label>
-                        <input class="form-control" id="InputCantidadMin" placeholder="Cantidad Mínima" type="number">
+                        <input class="form-control" id="cantidadMinima" name="cantidadMinima" placeholder="Cantidad Mínima" type="number">
                     </div>
-
+                    <div class="form-group">
+                        <label>Descripción</label>
+                        <textarea class="form-control" id="descripcion" name="descripcion"style="resize: vertical;" rows="3" placeholder="..."></textarea>
+                    </div>
                 </div>
                 <!-- /.box-body -->
                 <div class="box-footer">
                     <button type="submit" class="btn btn-primary pull-right">Añadir</button>
                 </div>
+                    </form>
                 <!-- /.box-body -->
             </div>
         </div>
@@ -103,5 +109,6 @@
 </div>
 
 <!-- /.content-wrapper -->
+
 
 @include('footer')
