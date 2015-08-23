@@ -19,6 +19,19 @@ class Administrador extends Eloquent{
         return $this->belongsTo('Usuario', 'idUsuario', 'id');
     }
 
+    public static function esAdministrador()
+    {
+        if (Auth::check() == true) {
+            $id = Auth::user()->id;
+            $admin = DB::table('administradores')->where('idUsuario', '=', $id)->get();
+            if ($admin != null) {
+                return true;
+            }
+        } else {
+            return false;
+        }
+    }
+
 
     //Fin: Relaciones
 

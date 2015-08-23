@@ -20,7 +20,7 @@ class Imagen extends Eloquent{
     }
 
     public function usuario(){
-        return $this->hasOne('Usuario', 'idImagen', 'id');
+        return $this->belongsTo('Usuario', 'idImagen', 'id');
     }
 
     public function galeria(){
@@ -28,5 +28,13 @@ class Imagen extends Eloquent{
     }
 
     //Fin: Relaciones
+
+    public static function eliminar($id){
+
+        $imagen = Imagen::find($id);
+
+        $imagen->delete();
+
+    }
 
 }

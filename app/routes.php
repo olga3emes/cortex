@@ -35,11 +35,15 @@ Route::get('contacto', function () {
 
 });
 
-Route::get('galeria', function () {
+Route::get('imagenes', function () {
 
-    return View::make('galeria');
+    return View::make('imagenes');
 
 });
+
+Route::get('galeria', 'GaleriaController@galeriasMostrar');
+Route::get('galeria/imagenes/{id}', 'GaleriaController@imagenesMostrar');
+
 
 Route::get('aviso-legal', function () {
 
@@ -107,6 +111,8 @@ Route::group(array('before' => 'auth'), function () {
 
     Route::get('administrador/clientes', 'ClienteController@clientes');
 
+    Route::post('administrador/actualizarFicha/{id}', 'ClienteController@actualizarFicha');
+
 
 
     Route::get('administrador/disponibles', function () {
@@ -121,11 +127,9 @@ Route::group(array('before' => 'auth'), function () {
 
     });
 
-    Route::get('administrador/galeria', function () {
+    Route::get('administrador/galeria', 'GaleriaController@galerias');
 
-        return View::make('modGaleria');
 
-    });
     Route::get('administrador/ofertas', function () {
 
         return View::make('ofertas');
@@ -178,8 +182,9 @@ Route::group(array('before' => 'auth'), function () {
 
     Route::get('cliente/servicios', 'ServicioController@servicios');
 
-
     Route::get('cliente/ofertas', 'OfertaController@ofertas');
+
+
 
     Route::get('cliente/citas', function () {
 
@@ -187,7 +192,12 @@ Route::group(array('before' => 'auth'), function () {
 
     });
 
-    //FIN RUTAS CLIENTE
+    //RUTAS PERFIL
+    Route::post('perfil/actualizar/{id}', 'ClienteController@actualizarPerfil');
+
+    //FIN RUTAS PERFIL
+
+    //FIN RUTAS CLIENTE-------------------------------
 
     //RUTAS SERVICIOS
 
@@ -206,10 +216,15 @@ Route::group(array('before' => 'auth'), function () {
 
     //FIN RUTAS OFERTAS
 
-    //RUTAS PERFIL
-    Route::post('perfil/actualizar/{id}', 'ClienteController@actualizarPerfil');
 
-    //FIN RUTAS PERFIL
+    //RUTAS GALERIAS
+
+    Route::post('galeria/crear', 'GaleriaController@crear');
+    Route::post('galeria/añadirImagen/{id}', 'GaleriaController@añadirImagen');
+    Route::get('galeria/eliminar/{id}', 'GaleriaController@eliminar');
+
+    //FIN RUTAS GALERIAS
+
 
 
     App::missing(function ($exception) {

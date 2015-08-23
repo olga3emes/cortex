@@ -22,7 +22,7 @@ class Usuario extends Eloquent implements UserInterface{
         return $this->hasOne('Administrador', 'idUsuario', 'id');
     }
     public function imagen(){
-        return $this->belongsTo('Imagen', 'idImagen', 'id');
+        return $this->hasOne('Imagen', 'idImagen', 'id');
     }
     //Fin: Relaciones
 

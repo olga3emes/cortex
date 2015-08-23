@@ -2128,7 +2128,7 @@
         return this.each(function () {
             var $this = $(this), data = $this.data('fileinput'), defaults,
                 options = typeof option === 'object' && option,
-                lang = options.language || $this.data('language') || 'en';
+                lang = options.language || $this.data('language') || 'es';
 
             if (!data) {
                 defaults = $.extend({}, $.fn.fileinput.defaults);
@@ -2146,7 +2146,7 @@
     };
 
     $.fn.fileinput.defaults = {
-        language: 'en',
+        language: 'es',
         showCaption: true,
         showPreview: true,
         showRemove: true,
@@ -2172,7 +2172,7 @@
         allowedPreviewTypes: defaultPreviewTypes,
         allowedPreviewMimeTypes: null,
         allowedFileTypes: null,
-        allowedFileExtensions: null,
+        allowedFileExtensions: ['jpg','jpeg', 'png', 'gif', 'JPEG', 'JPG', 'PNG'],
         customLayoutTags: {},
         customPreviewTags: {},
         previewSettings: defaultPreviewSettings,

@@ -57,7 +57,11 @@
 
                     <div class="row">
                         <form name="perfilCrear" id="perfilCrear" action="{{URL::asset('perfil/actualizar/'.$cliente->id)}}" enctype="multipart/form-data" method="POST">
-                        <div class="col-md-12">
+                            <div class="box-header with-border">
+                                <h3 class="box-title"> <i class="fa fa-user"></i> </i>Mis Datos</h3>
+                            </div>
+                            <div class="col-md-12">
+                                <br>
                             <div class="form-group">
                                     <label>Cambiar Imagen</label>
                                     <input id="imagen"  name="imagen" type="file" class="file" data-preview-file-type="text">

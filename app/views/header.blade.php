@@ -198,7 +198,7 @@
                     @if(Cliente::esCliente())
                         <li>
                             <a href="{{URL::asset('cliente/perfil')}}">
-                                <i class="fa fa-user"></i> <span>Editar Perfil</span>
+                                <i class="fa fa-user"></i> <span>Mi Perfil</span>
                             </a>
                         </li>
 
@@ -232,10 +232,15 @@
                                 <i class="fa fa-ticket"></i> <span>Mis Tickets</span>
                             </a>
                         </li>
+
+                        <li>
+                            <a href="{{URL::asset('cliente/productos')}}">
+                                <i class="fa fa-tag"></i> Productos</a>
+                        </li>
                     @else
                     <li>
                         <a href="{{URL::asset('administrador/perfil')}}">
-                            <i class="fa fa-user"></i> <span>Editar Perfil</span>
+                            <i class="fa fa-user"></i> <span>Mi Perfil</span>
                         </a>
                     </li>
                     <li class="treeview">

@@ -3,6 +3,8 @@
 $nextid = isset( $_POST['portnext'] ) ? $_POST['portnext'] : '';
 $previd = isset( $_POST['portprev'] ) ? $_POST['portprev'] : '';
 $postid = isset( $_POST['portid'] ) ? $_POST['portid'] : '';
+$galeria = isset( $_POST['galeria'] ) ? $_POST['galeria'] : '';
+
 
 ?>
 
@@ -11,7 +13,7 @@ $postid = isset( $_POST['portid'] ) ? $_POST['portid'] : '';
 
 
     <div id="portfolio-ajax-title" style="position: relative;">
-        <h2>{{nombreGaleria}}</h2>
+        <h2>Galería</h2>
 
         <div id="portfolio-navigation">
             <?php if( $previd ){ ?><a href="#" id="prev-portfolio" data-id="<?php echo $previd; ?>"><i class="icon-angle-left"></i></a><?php } ?>
@@ -52,21 +54,18 @@ $postid = isset( $_POST['portid'] ) ? $_POST['portid'] : '';
 
 
     <!-- Galeria Single Imagen
-    ============================================= -->
+     ============================================= -->
     <div class="col_three_fifth portfolio-single-image nobottommargin">
         <div class="fslider" data-arrows="false" data-thumbs="true" data-animation="fade">
             <div class="flexslider">
                 <div class="slider-wrap" >
-                    <div class="slide" data-thumb="images/portfolio/single/slider-thumbs/1.jpg"><a href="#"><img src="images/portfolio/single/1.jpg" alt=""></a></div>
-                    <div class="slide" data-thumb="images/portfolio/single/slider-thumbs/7.jpg"><a href="#"><img src="images/portfolio/single/7.jpg" alt=""></a></div>
-                    <div class="slide" data-thumb="images/portfolio/single/slider-thumbs/10.jpg"><a href="#"><img src="images/portfolio/single/10.jpg" alt=""></a></div>
+                    <div class='slide' data - thumb = "#" ><a href ='#' ><img src = "#"  ></a ></div>
                 </div>
             </div>
         </div>
     </div><!-- END Galeria Single Imagen -->
 
 
-
-    </div>
+</div>
 
 </div>

@@ -35,29 +35,35 @@
                                 <!-- Modal Ficha -->
                                 <div class="modal fade" id="{{'ficha'.$cliente->id}}" tabindex="-1" role="dialog"
                                      aria-labelledby="myModalLabel">
-                                    <div class="modal-dialog" role="document">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <button type="button" class="close" data-dismiss="modal"
-                                                        aria-label="Close"><span aria-hidden="true">&times;</span>
-                                                </button>
-                                                <h4 class="modal-title" id="myModalLabel">{{'Ficha de'.' '.$cliente->nombre.' '.$cliente->apellidos}}</h4>
-                                            </div>
-                                            <div class="modal-body">
-                                                <div class="form-group">
-                                                    <label for="fichaCliente">Ficha</label>
+                                    <form name="ficha" id="ficha"
+                                          action="{{URL::asset('administrador/actualizarFicha/'.$cliente->id)}}"
+                                          method="POST">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <button type="button" class="close" data-dismiss="modal"
+                                                            aria-label="Close"><span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                    <h4 class="modal-title"
+                                                        id="myModalLabel">{{'Ficha de'.' '.$cliente->nombre.' '.$cliente->apellidos}}</h4>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <div class="form-group">
+                                                        <label for="fichaCliente">Ficha</label>
                                                         <textarea class="form-control" id="descripcion"
                                                                   name="descripcion"
                                                                   placeholder="Ficha del Cliente" rows="15"
                                                                   type="text">{{$cliente->descripcion}}</textarea>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="submit" class="btn btn-primary pull-right">Guardar
-                                                </button>
+                                                <div class="modal-footer">
+                                                    <button type="submit" class="btn btn-primary pull-right">Guardar
+                                                    </button>
+                                                </div>
+
                                             </div>
                                         </div>
-                                    </div>
+                                    </form>
                                 </div>
                                 <!-- END Modal ficha -->
 
@@ -73,7 +79,8 @@
                                                 <button type="button" class="close" data-dismiss="modal"
                                                         aria-label="Close"><span aria-hidden="true">&times;</span>
                                                 </button>
-                                                <h4 class="modal-title" id="myModalLabel">{{$cliente->nombre.' '.$cliente->apellidos}}</h4>
+                                                <h4 class="modal-title"
+                                                    id="myModalLabel">{{$cliente->nombre.' '.$cliente->apellidos}}</h4>
                                             </div>
                                             <div class="modal-content">
                                                 <div class="modal-body">
@@ -90,8 +97,6 @@
                                     </div>
                                 </div>
                                 <!-- END Modal Foto -->
-
-
                             </tr>
                         @endforeach
                         </tbody>

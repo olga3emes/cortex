@@ -26,7 +26,7 @@
 
     <!-- Main content -->
     <section class="content">
-        <div class="col-md-9">
+        <div class="col-md-8">
             <div class="col-sm-4 col-md-4 col-xs-12">
                 @include("ficha-producto")
             </div>
@@ -37,7 +37,7 @@
                 @include("ficha-producto")
             </div>
         </div>
-        <div class="col-md-3">
+        <div class="col-md-4">
             <div class="box box-solid">
                 <div class="box-header with-border">
                     <h3 class="box-title"><i class="fa fa-cubes"></i> Añadir Nuevo Producto</h3>
@@ -45,14 +45,32 @@
                 <!-- /.box-header -->
                 <div class="box-body">
                     <div class="form-group">
-                        <form enctype="multipart/form-data">
-                            <label>Subir Imagen</label>
-                            <input id="file-es" name="file-es[]" type="file">
-                        </form>
+                        <label>Imagen del producto</label>
+                        <input id="imagen" name="imagen" type="file"  required class="file" data-preview-file-type="text">
+
                     </div>
+                    <script type="text/javascript">
+                        $('#imagen').fileinput({
+                            language: 'es',
+                            uploadUrl: '#',
+                            allowedFileExtensions: ['jpg','jpeg', 'png', 'gif']
+                        });
+                        $(".btn-warning").on('click', function () {
+                            if ($('#file-4').attr('disabled')) {
+                                $('#file-4').fileinput('enable');
+                            } else {
+                                $('#file-4').fileinput('disable');
+                            }
+                        });
+                        $(".btn-info").on('click', function () {
+                            $('#file-4').fileinput('refresh', {
+                                previewClass: 'bg-info'
+                            });
+                        });
+                    </script>
                     <div class="form-group">
                         <label for="InputPrecio">Precio</label>
-                        <input class="form-control" id="InputPrecio" placeholder="Precio" type="text">
+                        <input class="form-control" id="InputPrecio" placeholder="Precio" type="number">
                     </div>
                     <div class="form-group">
                         <label for="InputNombre">Nombre</label>
@@ -70,10 +88,7 @@
                         <label for="InputCantidadMin">Cantidad Mínima</label>
                         <input class="form-control" id="InputCantidadMin" placeholder="Cantidad Mínima" type="number">
                     </div>
-                    <div class="form-group">
-                        <label>Comentarios</label>
-                        <textarea class="form-control" style="resize: vertical;" rows="3" placeholder="..."></textarea>
-                    </div>
+
                 </div>
                 <!-- /.box-body -->
                 <div class="box-footer">
@@ -90,23 +105,3 @@
 <!-- /.content-wrapper -->
 
 @include('footer')
-
-<script>
-    $('#file-es').fileinput({
-        language: 'es',
-        uploadUrl: '#',
-        allowedFileExtensions: ['jpg', 'png', 'gif'],
-    });
-    $(".btn-warning").on('click', function () {
-        if ($('#file-4').attr('disabled')) {
-            $('#file-4').fileinput('enable');
-        } else {
-            $('#file-4').fileinput('disable');
-        }
-    });
-    $(".btn-info").on('click', function () {
-        $('#file-4').fileinput('refresh', {
-            previewClass: 'bg-info'
-        });
-    });
-</script>

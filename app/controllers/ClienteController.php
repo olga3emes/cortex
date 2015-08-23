@@ -48,14 +48,23 @@ class ClienteController extends BaseController{
         }
     }
 
-    public function actualizarPerfil($id)
-    {
+    public function actualizarPerfil($id){
         $respuesta =Cliente::actualizarPerfil($id,Input::all());
 
         if ($respuesta['error'] == true) {
             return Redirect::back()->withErrors($respuesta['mensaje'])->withInput();
         } else {
             return Redirect::to('cliente/perfil')->with('mensaje', ($respuesta['mensaje']));
+        }
+    }
+
+    public function actualizarFicha($id){
+        $respuesta =Cliente::actualizarFicha($id,Input::all());
+
+        if ($respuesta['error'] == true) {
+            return Redirect::back()->withErrors($respuesta['mensaje'])->withInput();
+        } else {
+            return Redirect::back()->with('mensaje', ($respuesta['mensaje']));
         }
     }
 

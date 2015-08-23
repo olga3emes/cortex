@@ -142,258 +142,69 @@
 
     </div>
 
-<!-- Mapa -->
-<div id="section-contact" class="page-section notoppadding">
+    <!-- Mapa -->
+    <div id="section-contact" class="page-section notoppadding">
 
-    <div class="row noleftmargin norightmargin common-height">
-        <div id="headquarters-map" class="col-md-8 col-sm-6 gmap hidden-xs"></div>
-        <div class="col-md-4 col-sm-6" style="background-color: #F5F5F5; color: #282828;">
-            <div class="col-padding max-height">
-                <h3 class="font-body t400 ls1" style="color: #282828;">Donde Encontrarnos</h3>
+        <div class="row noleftmargin norightmargin common-height">
+            <div id="headquarters-map" class="col-md-8 col-sm-6 gmap hidden-xs"></div>
+            <div class="col-md-4 col-sm-6" style="background-color: #F5F5F5; color: #282828;">
+                <div class="col-padding max-height">
+                    <h3 class="font-body t400 ls1" style="color: #AA1B30;">Dónde Encontrarnos</h3>
 
-                <div style="font-size: 16px; line-height: 1.7;">
-                    <address style="line-height: 1.7;">
-                        Las Cabezas de San Juan<br>
-                        Dos hermanas<br>
-                        41700 Sevilla<br>
-                    </address>
+                    <div style="font-size: 16px; line-height: 1.7;">
+                        <address style="line-height: 1.7;">
+                            C/Las Cabezas de San Juan<br>
+                            41700 Dos Hermanas<br>
+                            Sevilla<br>
+                        </address>
 
-                    <div class="clear topmargin"></div>
+                        <div class="clear topmargin"></div>
 
-                    <strong>Teléfono:</strong> +34 600 00 00 00
-                    <br>
-                    <strong>Email:</strong> info@cortex.com
+                        <strong style="color: #AA1B30;">Teléfono:</strong> +34 625 623 616
+                        <br>
+                        <strong style="color: #AA1B30;">Email:</strong> peluqueriacortex@gmail.com
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
 
-    <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=true"></script>
-    <script type="text/javascript" src="js/jquery.gmap.js"></script>
+        {{HTML::script('http://maps.google.com/maps/api/js?sensor=true')}}
+        {{HTML::script('js/jquery.gmap.js')}}
 
-    <script type="text/javascript">
-        jQuery(window).load(function () {
-            jQuery('#headquarters-map').gMap({
-                address: 'C/ Las Cabezas de San Juan, Dos Hermanas, Sevilla, 41700',
-                maptype: 'SATELLITE',
-                zoom: 17,
-                markers: [
-                    {
-                        address: "C/ Las Cabezas de San Juan, Dos Hermanas, Sevilla, 41700",
-                        html: "Las Cabezas de San Juan, Dos hermanas, Sevilla, 41700",
-                        icon: {
-                            image: "images/icons/map-icon-red.png",
-                            iconsize: [32, 32],
-                            iconanchor: [14, 44]
+        <script type="text/javascript">
+            jQuery(window).load(function () {
+                jQuery('#headquarters-map').gMap({
+                    address: 'Las Cabezas de San Juan, Dos Hermanas, Sevilla, 41700',
+                    maptype: 'ROADMAP',
+                    zoom: 17,
+                    panControl: true,
+                    zoomControl: true,
+                    mapTypeControl: true,
+                    scaleControl: true,
+                    streetViewControl: true,
+                    controls: {
+
+                        overviewMapControl: true
+                    },
+                    markers: [
+                        {
+                            address: "Las Cabezas de San Juan, Dos Hermanas, Sevilla, 41700",
+                            html: "Las Cabezas de San Juan, Dos hermanas, Sevilla, 41700",
+                            icon: {
+                                image: "images/icons/map-icon.png",
+                                iconsize: [32, 32],
+                                iconanchor: [14, 44]
+                            }
                         }
-                    }
-                ],
-                doubleclickzoom: false,
-                controls: {
-                    panControl: false,
-                    zoomControl: false,
-                    mapTypeControl: false,
-                    scaleControl: false,
-                    streetViewControl: false,
-                    overviewMapControl: false
-                },
-                styles: [{
-                    "featureType": "all",
-                    "elementType": "labels.text.fill",
-                    "stylers": [{
-                        "saturation": 36
-                    }, {
-                        "color": "#000000"
-                    }, {
-                        "lightness": 40
-                    }]
-                }, {
-                    "featureType": "all",
-                    "elementType": "labels.text.stroke",
-                    "stylers": [{
-                        "visibility": "on"
-                    }, {
-                        "color": "#000000"
-                    }, {
-                        "lightness": 16
-                    }]
-                }, {
-                    "featureType": "all",
-                    "elementType": "labels.icon",
-                    "stylers": [{
-                        "visibility": "off"
-                    }]
-                }, {
-                    "featureType": "administrative",
-                    "elementType": "geometry.fill",
-                    "stylers": [{
-                        "color": "#000000"
-                    }, {
-                        "lightness": 20
-                    }]
-                }, {
-                    "featureType": "administrative",
-                    "elementType": "geometry.stroke",
-                    "stylers": [{
-                        "color": "#000000"
-                    }, {
-                        "lightness": 17
-                    }, {
-                        "weight": 1.2
-                    }]
-                }, {
-                    "featureType": "administrative",
-                    "elementType": "labels",
-                    "stylers": [{
-                        "visibility": "off"
-                    }]
-                }, {
-                    "featureType": "administrative.country",
-                    "elementType": "all",
-                    "stylers": [{
-                        "visibility": "simplified"
-                    }]
-                }, {
-                    "featureType": "administrative.country",
-                    "elementType": "geometry",
-                    "stylers": [{
-                        "visibility": "simplified"
-                    }]
-                }, {
-                    "featureType": "administrative.country",
-                    "elementType": "labels.text",
-                    "stylers": [{
-                        "visibility": "simplified"
-                    }]
-                }, {
-                    "featureType": "administrative.province",
-                    "elementType": "all",
-                    "stylers": [{
-                        "visibility": "off"
-                    }]
-                }, {
-                    "featureType": "administrative.locality",
-                    "elementType": "all",
-                    "stylers": [{
-                        "visibility": "simplified"
-                    }, {
-                        "saturation": "-100"
-                    }, {
-                        "lightness": "30"
-                    }]
-                }, {
-                    "featureType": "administrative.neighborhood",
-                    "elementType": "all",
-                    "stylers": [{
-                        "visibility": "off"
-                    }]
-                }, {
-                    "featureType": "administrative.land_parcel",
-                    "elementType": "all",
-                    "stylers": [{
-                        "visibility": "off"
-                    }]
-                }, {
-                    "featureType": "landscape",
-                    "elementType": "all",
-                    "stylers": [{
-                        "visibility": "simplified"
-                    }, {
-                        "gamma": "0.00"
-                    }, {
-                        "lightness": "74"
-                    }]
-                }, {
-                    "featureType": "landscape",
-                    "elementType": "geometry",
-                    "stylers": [{
-                        "color": "#000000"
-                    }, {
-                        "lightness": 20
-                    }]
-                }, {
-                    "featureType": "landscape.man_made",
-                    "elementType": "all",
-                    "stylers": [{
-                        "lightness": "3"
-                    }]
-                }, {
-                    "featureType": "poi",
-                    "elementType": "all",
-                    "stylers": [{
-                        "visibility": "off"
-                    }]
-                }, {
-                    "featureType": "poi",
-                    "elementType": "geometry",
-                    "stylers": [{
-                        "color": "#000000"
-                    }, {
-                        "lightness": 21
-                    }]
-                }, {
-                    "featureType": "road",
-                    "elementType": "geometry",
-                    "stylers": [{
-                        "visibility": "simplified"
-                    }]
-                }, {
-                    "featureType": "road.highway",
-                    "elementType": "geometry.fill",
-                    "stylers": [{
-                        "color": "#000000"
-                    }, {
-                        "lightness": 17
-                    }]
-                }, {
-                    "featureType": "road.highway",
-                    "elementType": "geometry.stroke",
-                    "stylers": [{
-                        "color": "#000000"
-                    }, {
-                        "lightness": 29
-                    }, {
-                        "weight": 0.2
-                    }]
-                }, {
-                    "featureType": "road.arterial",
-                    "elementType": "geometry",
-                    "stylers": [{
-                        "color": "#000000"
-                    }, {
-                        "lightness": 18
-                    }]
-                }, {
-                    "featureType": "road.local",
-                    "elementType": "geometry",
-                    "stylers": [{
-                        "color": "#000000"
-                    }, {
-                        "lightness": 16
-                    }]
-                }, {
-                    "featureType": "transit",
-                    "elementType": "geometry",
-                    "stylers": [{
-                        "color": "#000000"
-                    }, {
-                        "lightness": 19
-                    }]
-                }, {
-                    "featureType": "water",
-                    "elementType": "geometry",
-                    "stylers": [{
-                        "color": "#000000"
-                    }, {
-                        "lightness": 17
-                    }]
-                }]
+                    ],
+                    doubleclickzoom: false
+
+
+                });
             });
-        });
-    </script>
+        </script>
 
 
-</div>
-<!-- END Mapa -->
-
+    </div>
+    <!-- END Mapa -->
 @include('footerInicio')

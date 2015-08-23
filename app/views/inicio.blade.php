@@ -111,47 +111,93 @@
 
 <!-- Content
         ============================================= -->
-
 <section id="content">
+<!-- Precios -->
+<section>
+    <div class="container">
+        <div class="content-wrap" style="margin-left: 20%;margin-right: 20%">
+            <div class="fancy-title title-bottom-border center">
+                <h2>La filosofía<span> Corte'x</span></h2>
+            </div>
+
+            <p>Nuestra filosofía es mantenernos siempre informados de las últimas tendencias en el mundo de la  peluquería, tanto en corte y técnicas cómo en productos de peluquería, para así  poder ofrece a nuestros clientes siempre el mejor servicio.</p>
+
+            <p>La pasión que ponemos en todo lo relacionado con el mundo de la peluquería y las tendencias, se refleja en cada uno de los trabajos que realizamos en nuestro salón.</p>
+
+            <p>Consideramos que cada cliente es único, y por tanto merece un trato personalizado, asesorándole siempre sobre las mejores opciones respecto a su estilo, facciones y personalidad,así como teniendo en cuenta sus preferencias y gustos,  para así,  con todo ello, obtener unos resultados óptimos y vanguardistas.</p>
+        </div>
+    </div>
+
+
+</section>
+<!-- END Precios -->
+
+
     <!-- CTA Cita -->
     <div class="section">
         <div class="container">
             <div class="row" style="margin-left: 20%;margin-right: 20%">
                 <ul class="list-inline center">
-                            <div class="fancy-title center">
-                                <h2>Solicitar<span>Cita</span></h2>
-                            </div>
+                    <div class="fancy-title title-bottom-border center" style="margin-left: 30%;margin-right: 30%">
+                        <h2>Solicitar<span> Cita</span></h2>
+                    </div>
                     <li>
                         <div class="form-group">
-                            <div class='input-group date' id='datetimepicker1'>
-                                <span class="input-group-addon"><span class="icon-calendar"></span></span>
-                                <input type='date' placeholder="dd/mm/yyyy" class="form-control" />
-
-                            </div>
-
-                            <div class='input-group date' id='datetimepicker2'>
-                                <span class="input-group-addon">
-                        <span class="icon-clock"></span>
-                                </span>
-                                <input type='time' placeholder="00:00"class="form-control" />
-
-                            </div>
+                            <h5>Para poder coger cita para nuestra peluquería, tendrá que registrarse o iniciar sesión primero.</h5>
                         </div>
-                    </li>
 
+                        Los servicios ofrecidos en esta web son completamente gratuitos, por cortesía de Corte'x hacia sus clientes.<br>
+                        ¡Adelante, no dude en hacer uso de ellos!
+                    </li>
                     <div class="row">
-                        <a href="{{URL::asset('loginRegistro')}}" class="button button-rounded button-reveal button-red tright info" style="margin-top: 5%"><i class="icon-angle-right"></i><span>Continuar</span></a>
+                        <a href="{{URL::asset('loginRegistro')}}" class="button button-rounded button-reveal button-red tright info" style="margin-bottom: 5%; margin-top: 5%;"><i class="icon-angle-right"></i><span>Continuar</span></a>
                     </div>
                 </ul>
-                <br>
+                        </div>
+
+
+                    </div>
             </div>
-        </div>
-    </div>
+
+
     <!-- END CTA Cita -->
     <!-- Precios -->
     <section>
         <div class="container">
+
             <div class="content-wrap" style="margin-left: 20%;margin-right: 20%">
+
+                <div class="fancy-title title-bottom-border center">
+                    <h2>Nuestras <span>Ofertas</span></h2>
+                </div>
+                <div class="table-responsive">
+
+                    <table id="table" class="table table-bordered table-hover table-responsive">
+                        <thead>
+                        <tr>
+                            <td>Oferta</td>
+                            <td width="60">Descuento</td>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>Todos los jueves lavar y peinar</td>
+                            <td>15% más barato</td>
+                        </tr>
+                        <tr>
+                            <td>Lorem Ipsum</td>
+                            <td>17€</td>
+                        </tr>
+                        <tr>
+                            <td>Lorem Ipsum</td>
+                            <td>17€</td>
+                        </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+                <br>
+                <div class="row" style="margin-left: 20%;margin-right: 20%">
                 <div class="fancy-title title-bottom-border center">
                     <h2>Nuestros <span>Precios</span></h2>
                 </div>
@@ -211,6 +257,7 @@
                 </div>
 
             </div>
+                </div>
         </div>
     </section>
     <!-- END Precios -->
@@ -266,20 +313,20 @@
             <div id="headquarters-map" class="col-md-8 col-sm-6 gmap hidden-xs"></div>
             <div class="col-md-4 col-sm-6" style="background-color: #F5F5F5; color: #282828;">
                 <div class="col-padding max-height">
-                    <h3 class="font-body t400 ls1" style="color: #282828;">Dónde Encontrarnos</h3>
+                    <h3 class="font-body t400 ls1" style="color: #AA1B30;">Dónde Encontrarnos</h3>
 
                     <div style="font-size: 16px; line-height: 1.7;">
                         <address style="line-height: 1.7;">
 										C/Las Cabezas de San Juan<br>
-										Dos Hermanas<br>
-										41700 Sevilla<br>
+										41700 Dos Hermanas<br>
+                                        Sevilla<br>
 									</address>
 
                         <div class="clear topmargin"></div>
 
-                        <strong>Teléfono:</strong> +34 600 00 00 00
+                        <strong style="color: #AA1B30;">Teléfono:</strong> +34 955 677 264
                         <br>
-                        <strong>Email:</strong> info@cortex.com
+                        <strong style="color: #AA1B30;">Email:</strong> peluqueriacortex@gmail.com
                     </div>
                 </div>
             </div>
@@ -292,219 +339,31 @@
             jQuery(window).load(function () {
                 jQuery('#headquarters-map').gMap({
                     address: 'Las Cabezas de San Juan, Dos Hermanas, Sevilla, 41700',
-                    maptype: 'SATELLITE',
+                    maptype: 'ROADMAP',
                     zoom: 17,
+                    panControl: true,
+                    zoomControl: true,
+                    mapTypeControl: true,
+                    scaleControl: true,
+                    streetViewControl: true,
+                    controls: {
+
+                        overviewMapControl: true
+                    },
                     markers: [
                         {
                             address: "Las Cabezas de San Juan, Dos Hermanas, Sevilla, 41700",
                             html: "Las Cabezas de San Juan, Dos hermanas, Sevilla, 41700",
                             icon: {
-                                image: "images/icons/map-icon-red.png",
+                                image: "images/icons/map-icon.png",
                                 iconsize: [32, 32],
                                 iconanchor: [14, 44]
                             }
          }
         ],
-                    doubleclickzoom: false,
-                    controls: {
-                        panControl: false,
-                        zoomControl: true,
-                        mapTypeControl: true,
-                        scaleControl: true,
-                        streetViewControl: true,
-                        overviewMapControl: false
-                    },
-                    styles: [{
-                        "featureType": "all",
-                        "elementType": "labels.text.fill",
-                        "stylers": [{
-                            "saturation": 36
-                        }, {
-                            "color": "#000000"
-                        }, {
-                            "lightness": 40
-                        }]
-                    }, {
-                        "featureType": "all",
-                        "elementType": "labels.text.stroke",
-                        "stylers": [{
-                            "visibility": "on"
-                        }, {
-                            "color": "#000000"
-                        }, {
-                            "lightness": 16
-                        }]
-                    }, {
-                        "featureType": "all",
-                        "elementType": "labels.icon",
-                        "stylers": [{
-                            "visibility": "off"
-                        }]
-                    }, {
-                        "featureType": "administrative",
-                        "elementType": "geometry.fill",
-                        "stylers": [{
-                            "color": "#000000"
-                        }, {
-                            "lightness": 20
-                        }]
-                    }, {
-                        "featureType": "administrative",
-                        "elementType": "geometry.stroke",
-                        "stylers": [{
-                            "color": "#000000"
-                        }, {
-                            "lightness": 17
-                        }, {
-                            "weight": 1.2
-                        }]
-                    }, {
-                        "featureType": "administrative",
-                        "elementType": "labels",
-                        "stylers": [{
-                            "visibility": "off"
-                        }]
-                    }, {
-                        "featureType": "administrative.country",
-                        "elementType": "all",
-                        "stylers": [{
-                            "visibility": "simplified"
-                        }]
-                    }, {
-                        "featureType": "administrative.country",
-                        "elementType": "geometry",
-                        "stylers": [{
-                            "visibility": "simplified"
-                        }]
-                    }, {
-                        "featureType": "administrative.country",
-                        "elementType": "labels.text",
-                        "stylers": [{
-                            "visibility": "simplified"
-                        }]
-                    }, {
-                        "featureType": "administrative.province",
-                        "elementType": "all",
-                        "stylers": [{
-                            "visibility": "off"
-                        }]
-                    }, {
-                        "featureType": "administrative.locality",
-                        "elementType": "all",
-                        "stylers": [{
-                            "visibility": "simplified"
-                        }, {
-                            "saturation": "-100"
-                        }, {
-                            "lightness": "30"
-                        }]
-                    }, {
-                        "featureType": "administrative.neighborhood",
-                        "elementType": "all",
-                        "stylers": [{
-                            "visibility": "off"
-                        }]
-                    }, {
-                        "featureType": "administrative.land_parcel",
-                        "elementType": "all",
-                        "stylers": [{
-                            "visibility": "off"
-                        }]
-                    }, {
-                        "featureType": "landscape",
-                        "elementType": "all",
-                        "stylers": [{
-                            "visibility": "simplified"
-                        }, {
-                            "gamma": "0.00"
-                        }, {
-                            "lightness": "74"
-                        }]
-                    }, {
-                        "featureType": "landscape",
-                        "elementType": "geometry",
-                        "stylers": [{
-                            "color": "#000000"
-                        }, {
-                            "lightness": 20
-                        }]
-                    }, {
-                        "featureType": "landscape.man_made",
-                        "elementType": "all",
-                        "stylers": [{
-                            "lightness": "3"
-                        }]
-                    }, {
-                        "featureType": "poi",
-                        "elementType": "all",
-                        "stylers": [{
-                            "visibility": "off"
-                        }]
-                    }, {
-                        "featureType": "poi",
-                        "elementType": "geometry",
-                        "stylers": [{
-                            "color": "#000000"
-                        }, {
-                            "lightness": 21
-                        }]
-                    }, {
-                        "featureType": "road",
-                        "elementType": "geometry",
-                        "stylers": [{
-                            "visibility": "simplified"
-                        }]
-                    }, {
-                        "featureType": "road.highway",
-                        "elementType": "geometry.fill",
-                        "stylers": [{
-                            "color": "#000000"
-                        }, {
-                            "lightness": 17
-                        }]
-                    }, {
-                        "featureType": "road.highway",
-                        "elementType": "geometry.stroke",
-                        "stylers": [{
-                            "color": "#000000"
-                        }, {
-                            "lightness": 29
-                        }, {
-                            "weight": 0.2
-                        }]
-                    }, {
-                        "featureType": "road.arterial",
-                        "elementType": "geometry",
-                        "stylers": [{
-                            "color": "#000000"
-                        }, {
-                            "lightness": 18
-                        }]
-                    }, {
-                        "featureType": "road.local",
-                        "elementType": "geometry",
-                        "stylers": [{
-                            "color": "#000000"
-                        }, {
-                            "lightness": 16
-                        }]
-                    }, {
-                        "featureType": "transit",
-                        "elementType": "geometry",
-                        "stylers": [{
-                            "color": "#000000"
-                        }, {
-                            "lightness": 19
-                        }]
-                    }, {
-                        "featureType": "water",
-                        "elementType": "geometry",
-                        "stylers": [{
-                            "color": "#000000"
-                        }, {
-                            "lightness": 17
-                        }]
-                    }]
+                    doubleclickzoom: false
+
+
                 });
             });
         </script>

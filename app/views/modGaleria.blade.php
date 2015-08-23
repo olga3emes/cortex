@@ -26,31 +26,67 @@
 
     <!-- Main content -->
     <section class="content">
-        <div class="col-sm-7 col-md-9 col-xs-12">
+        <div class="col-sm-7 col-md-8 col-xs-12">
             <!-- Tabla Servicios -->
             <div class="box box-solid">
                 <div class="box-header with-border">
-                    <h3 class="box-title"><i class="fa fa-picture-o"></i> Galerías</h3>
+                    <h3 class="box-title"><i class="fa fa-picture-o"></i>Galerías</h3>
                 </div>
                 <!-- /.box-header -->
                 <div class="box-body">
                     <table id="table" class="table table-bordered table-hover table-responsive">
                         <thead>
                             <tr>
-                                <th>Nombre de la Galería</th>
+                                <th width="200">Nombre de la Galería</th>
                                 <th class="no-sorting" width="120">Añadir Imagen</th>
                                 <th class="no-sorting" width="60">Eliminar</th>
                             </tr>
                         </thead>
                         <tbody>
+                        @foreach($galerias as $galeria)
                             <tr>
-                                <td>$galeria</td>
-                                <td><a href="#" data-toggle="modal" data-target="#añadir"><i class="fa fa-plus-circle text-green"></i></a>
+                                <td>{{$galeria->nombre}}</td>
+                                <td>
+                                    <form name="añadir" id="añadir"action="{{URL::asset('galeria/añadirImagen/'.$galeria->id)}}" enctype="multipart/form-data" method="POST">
+
+
+                                        <input id="imagen" name="imagen" type="file"  required class="file" data-preview-file-type="text">
+
+                                    <script type="text/javascript">
+                                        $('#imagen').fileinput({
+                                            language: 'es',
+                                            uploadUrl: '#',
+                                            allowedFileExtensions: ['jpg','jpeg', 'png', 'gif', 'JPEG', 'JPG', 'PNG']
+                                        });
+                                        $(".btn-warning").on('click', function () {
+                                            if ($('#file-4').attr('disabled')) {
+                                                $('#file-4').fileinput('enable');
+                                            } else {
+                                                $('#file-4').fileinput('disable');
+                                            }
+                                        });
+                                        $(".btn-info").on('click', function () {
+                                            $('#file-4').fileinput('refresh', {
+                                                previewClass: 'bg-info'
+                                            });
+                                        });
+                                    </script>
+
+
+                                    </form>
                                 </td>
-                                <td><a href="#"><i class="fa fa-trash text-red"></i></a>
+                                <!-- Modal Edición -->
+
+                                <!-- END Modal Edición -->
+                                <td><a href="{{URL::asset('galeria/eliminar/'.$galeria->id)}}"><i class="fa fa-trash text-red"></i></a>
                             </tr>
+                         @endforeach
                         </tbody>
                     </table>
+                    <nav style="text-align: center">
+                        {{$galerias->links()}}
+                    </nav>
+
                 </div>
                 <!-- /.box-body -->
             </div>
@@ -58,7 +94,9 @@
 
             <!-- END Tabla Servicios -->
         </div>
-        <div class="col-sm-5 col-md-3 col-xs-12">
+
+        <form name="crearForm" id="crearForm"action="{{URL::asset('galeria/crear')}}" enctype="multipart/form-data" method="POST">
+        <div class="col-sm-5 col-md-4 col-xs-12">
             <div class="box box-solid">
                 <div class="box-header with-border">
                     <h3 class="box-title"><i class="fa fa-reply"></i>  Añadir Galería</h3>
@@ -66,14 +104,32 @@
                 <!-- /.box-header -->
                 <div class="box-body">
                    <div class="form-group">
-                    <form enctype="multipart/form-data">
                         <label>Imagen de Portada</label>
-                        <input id="file-es" name="file-es[]" type="file">
-                    </form>
+                        <input id="imagen" name="imagen" type="file"  required class="file" data-preview-file-type="text">
+
                 </div>
+                    <script type="text/javascript">
+                        $('#imagen').fileinput({
+                            language: 'es',
+                            uploadUrl: '#',
+                            allowedFileExtensions: [['jpg','jpeg', 'png', 'gif', 'JPEG', 'JPG', 'PNG']
+                        });
+                        $(".btn-warning").on('click', function () {
+                            if ($('#file-4').attr('disabled')) {
+                                $('#file-4').fileinput('enable');
+                            } else {
+                                $('#file-4').fileinput('disable');
+                            }
+                        });
+                        $(".btn-info").on('click', function () {
+                            $('#file-4').fileinput('refresh', {
+                                previewClass: 'bg-info'
+                            });
+                        });
+                    </script>
                     <div class="form-group">
                         <label for="InputNombre">Nombre</label>
-                        <input class="form-control" id="InputNombre" placeholder="Nombre" type="text">
+                        <input class="form-control" id="nombre" required name="nombre" placeholder="Nombre" type="text">
                     </div>
                 </div>
                 <div class="box-footer">
@@ -81,6 +137,7 @@
                 </div>
             </div>
         </div>
+            </form>
     </section>
     <!-- /.content -->
 
@@ -89,67 +146,9 @@
 <!-- /.content-wrapper -->
 
 
-<!-- Modal Edición -->
-<div class="modal fade" id="añadir" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
-                </button>
-                <h4 class="modal-title" id="myModalLabel">Añadir Imagen</h4>
-            </div>
-            <div class="modal-body">
-                <div class="form-group">
-                    <form enctype="multipart/form-data">
-                        <label>Subir Imagen</label>
-                        <input id="file-es" name="file-es[]" type="file">
-                    </form>
-                </div>
-                <div class="form-group">
-                    <label for="InputNombre">Nombre</label>
-                    <input class="form-control" id="InputNombre" placeholder="Nombre" type="text">
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button type="submit" class="btn btn-primary pull-right">Guardar</button>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- END Modal Edición -->
 
 
 @include("footer")
 
-<script type="text/javascript">
-    $(function () {
-        $('#table').dataTable({
-            "bPaginate": true,
-            "bLengthChange": false,
-            "bFilter": false,
-            "bSort": true,
-            "bInfo": true,
-            "bAutoWidth": false
-        });
-    });
-</script>
 
-<script type="text/javascript">
-    $('#file-es').fileinput({
-        language: 'es',
-        uploadUrl: '#',
-        allowedFileExtensions: ['jpg', 'png', 'gif'],
-    });
-    $(".btn-warning").on('click', function () {
-        if ($('#file-4').attr('disabled')) {
-            $('#file-4').fileinput('enable');
-        } else {
-            $('#file-4').fileinput('disable');
-        }
-    });
-    $(".btn-info").on('click', function () {
-        $('#file-4').fileinput('refresh', {
-            previewClass: 'bg-info'
-        });
-    });
-</script>
+

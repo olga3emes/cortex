@@ -1,31 +1,35 @@
 <?php
+
 /**
  * Created by PhpStorm.
  * User: olga
  * Date: 26/7/15
  * Time: 20:37
  */
-
-
-class Cliente extends Eloquent{
+class Cliente extends Eloquent
+{
 
     protected $table = 'clientes';
-    protected $fillable = array('id','nombre','apellidos','telefono','descripcion', 'idUsuario');
+    protected $fillable = array('id', 'nombre', 'apellidos', 'telefono', 'descripcion', 'idUsuario');
 
 
     //Inicio: Relaciones
 
-    public function usuario(){
+    public function usuario()
+    {
         return $this->belongsTo('Usuario', 'idUsuario', 'id');
     }
 
-    public function citas(){
+    public function citas()
+    {
         return $this->hasOne('Cita', 'idCliente', 'id');
     }
+
     //Fin: Relaciones
 
 
-    public static function registrar($input){
+    public static function registrar($input)
+    {
         $respuesta = array();
 
         $reglas = array(
@@ -74,7 +78,8 @@ class Cliente extends Eloquent{
     }
 
 
-    public static function actualizarPerfil($id,$input){
+    public static function actualizarPerfil($id, $input)
+    {
         $respuesta = array();
 
         $reglas = array(
@@ -93,22 +98,22 @@ class Cliente extends Eloquent{
         } else {
 
             $cliente = Cliente::find($id);
-            $usuario= Usuario::find($cliente->idUsuario);
+            $usuario = Usuario::find($cliente->idUsuario);
 
             if (!is_null(Input::file('imagen'))) {
                 $imagenarchivo = Input::file('imagen');
 
-                $nombreImagen = 'Cortex-'.$id.".jpg";
+                $nombreImagen = 'Cortex-' . $id . ".jpg";
                 $directorio = public_path('img/perfil');
 
                 if (!file_exists($directorio)) {
                     mkdir($directorio, 0777, true);
                 }
-                $path = $directorio.'/'.$nombreImagen;
+                $path = $directorio . '/' . $nombreImagen;
 
                 Image::make($imagenarchivo->getRealPath())->save($path);
                 //Image es una libreria, hay que instalarla con composer.phar.
-                if($usuario->idImagen=='') {
+                if ($usuario->idImagen == '') {
                     $imagen = new Imagen();
                     $imagen->nombre = $nombreImagen;
                     $imagen->save();
@@ -118,8 +123,8 @@ class Cliente extends Eloquent{
                 }
             }
 
-            $usuario->email=$input['email'];
-            $usuario->username=$input['username'];
+            $usuario->email = $input['email'];
+            $usuario->username = $input['username'];
             $usuario->save();
 
             $cliente->nombre = $input['nombre'];
@@ -142,10 +147,10 @@ class Cliente extends Eloquent{
 
     public static function esCliente()
     {
-        if (Auth::check()==true) {
-            $id=Auth::user()->id;
-            $cliente=DB::table('clientes')->where('idUsuario','=',$id)->get();
-            if($cliente!=null){
+        if (Auth::check() == true) {
+            $id = Auth::user()->id;
+            $cliente = DB::table('clientes')->where('idUsuario', '=', $id)->get();
+            if ($cliente != null) {
                 return true;
             }
         } else {
@@ -154,6 +159,25 @@ class Cliente extends Eloquent{
     }
 
 
+    public static function actualizarFicha($id, $input)
+    {
+        $respuesta = array();
 
+
+        $cliente = Cliente::find($id);
+        $cliente->descripcion = $input['descripcion'];
+        $cliente->save();
+
+
+        //Mensajes de exito
+        $respuesta['mensaje'] = Lang::get('La ficha del cliente se ha actualizado');
+        $respuesta['error'] = false;
+        $respuesta['data'] = $cliente;
+
+
+        return $respuesta;
+
+
+    }
 
 }
