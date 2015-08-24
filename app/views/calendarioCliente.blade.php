@@ -3,15 +3,58 @@
 @if(Auth::check()==true)
 
     <!-- Content Wrapper. Contains page content -->
+
+    <!-- END Calendario -->
     <div class="content-wrapper">
+        <!-- Calendario -->
+        <section>
+            <div class="col-md-12">
+                <div class="box box-solid" style="margin-top: 1%;">
+                    <div class="box-header with-border">
+                        <h3 class="box-title"><i class="fa fa-calendar"> Horario de apertura</i></h3>
+                    </div>
+                    <table class="table table-bordered table-hover table-responsive" style="text-align: center;">
+                        <tr >
+                            <th style="text-align: center;">Lunes</th>
+                            <th style="text-align: center;">Martes</th>
+                            <th style="text-align: center;">Miércoles</th>
+                            <th style="text-align: center;">Jueves</th>
+                            <th style="text-align: center;">Viernes</th>
+                            <th style="text-align: center;">Sábado</th>
+                            <th style="text-align: center;">Domingo</th>
+                        </tr>
+                        <tr>
+                            <td >9:00 - 14:00</td>
+                            <td>9:00 - 14:00</td>
+                            <td style="background-color: #C02942; color: #fff;">Cerrado</td>
+                            <td>9:00 - 14:00</td>
+                            <td>9:00 - 14:00</td>
+                            <td>9:00 - 14:30</td>
+                            <td style="background-color: #C02942; color: #fff;">Cerrado</td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: center;">16:00 - 20:00</td>
+                            <td>16:00 - 20:00</td>
+                            <td style="background-color: #C02942; color: #fff;">Cerrado</td>
+                            <td>16:00 - 20:00</td>
+                            <td>16:00 - 20:00</td>
+                            <td style="background-color: #C02942; color: #fff;">Cerrado</td>
+                            <td style="background-color: #C02942; color: #fff;">Cerrado</td>
+                        </tr>
+                    </table>
+
+                </div>
+            </div>
+        </section>
+
         <!-- Main content -->
         <section class="content">
             <div class="row">
                 <div class="col-md-4">
 
-                    <div class="box box-solid">
+                    <div class="box box-primary">
                         <div class="box-header with-border">
-                            <h4 class="box-title">Añadir Cita</h4>
+                            <h4 style="color:#AA1B30;text-align: center"><i class="fa fa-calendar"></i> Coger Cita</h4>
                             <div class="box-tools pull-right">
                                 <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
                                 </button>
@@ -31,31 +74,6 @@
                                 <!-- /.input group -->
                             </div>
                             <!-- time Picker -->
-                            <div class="timepicker">
-                                <label>Hora</label>
-
-                                <div class="col-md-12 col-xs-12">
-                                    <label>Desde:</label>
-                                    <div class="input-group">
-                                        <input type="time" placeholder="0:00" class="form-control timepicker"/>
-
-                                        <div class="input-group-addon">
-                                            <i class="fa fa-clock-o"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-12 col-xs-12">
-                                    <label>Hasta:</label>
-
-                                    <div class="input-group">
-                                        <input type="time" placeholder="0:00" class="form-control timepicker"/>
-
-                                        <div class="input-group-addon">
-                                            <i class="fa fa-clock-o"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
 
                             <label style="margin-top: 5%;">Servicio a contratar</label>
                             <div class="col-md-12 col-xs-12">
@@ -68,37 +86,12 @@
                                 </select>
                             </div>
 
-                            <div>
-                                <label style="margin-top: 5%;">Cliente</label>
-                                <div class="col-md-12 col-xs-12">
-                                    <!-- Time 00:00 -->
-                                    <div class="form-group">
-                                        <label>Cliente sin Registrar:</label>
-                                        <input class="form-control" id="InputNombre" placeholder="Nombre" type="text">
-                                        <!-- /.input group -->
-                                    </div>
-                                    <!-- /.form group -->
-                                </div>
-                                <div class="col-md-12 col-xs-12">
-                                    <!-- Time 00:00 -->
-                                    <div class="form-group">
-                                        <label>Cliente Registrado</label>
-                                        <select class="form-control">
-                                            <option>opción 1</option>
-                                            <option>opción 2</option>
-                                            <option>opción 3</option>
-                                            <option>opción 4</option>
-                                            <option>opción 5</option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
 
                             <div class="timepicker">
-                                <label>Cita Fijada a las:</label>
+                                <label style="margin-top: 5%;">Cita Fijada a las:</label>
                                 <div class="col-md-12 col-xs-12">
                                     <div class="input-group">
-                                        <input type="time" placeholder="0:00" class="form-control timepicker"/>
+                                        <input type="time" placeholder="0:00"  disabled class="form-control timepicker"/>
                                         <div class="input-group-addon">
                                             <i class="fa fa-clock-o"></i>
                                         </div>
@@ -111,19 +104,15 @@
                             <label style="margin-top: 5%;">Comentario:</label>
                             <div class="col-md-12 col-xs-12">
                                 <textarea class="form-control" style="resize: vertical;" rows="3"
-                                          placeholder="..."></textarea>
+                                          placeholder="¿Entre qué horas desea obtener la cita?"></textarea>
                             </div>
 
-                            <div class="row">
-                                <div class="col-md-6 col-xs-12" style="margin-top: 5%;">
-                                    <div class="checkbox">
-                                        <label>
-                                            <input type="checkbox" checked="checked"> Aceptada
-                                        </label>
-                                    </div>
-                                </div>
-                                <div class="col-md-6 col-xs-12" style="margin-top: 5%;">
-                                    <button type="submit" class="btn btn-primary pull-right">Añadir</button>
+                            <div class="col-md-12 col-xs-12" style="margin-top: 5%;">
+                                Una vez solicite la cita, puede consultar el estado de la misma en el apartado "Mis citas".
+                            </div>
+
+                                <div class="col-md-12 col-xs-12" style="margin-top: 5%;">
+                                    <button type="submit" class="btn btn-primary pull-right">Solicitar</button>
                                 </div>
                                 <!-- /.form group -->
                             </div>
@@ -132,115 +121,14 @@
                         <!-- /.box-body -->
                     </div>
                     <!-- /. box -->
-
-                    <!--CREAR EVENTO -->
-                    <div class="box box-solid">
-                        <div class="box-header with-border">
-                            <h3 class="box-title">Crear Evento</h3>
-                        </div>
-                        <div class="box-body">
-                            <div class="btn-group" style="width: 100%; margin-bottom: 10px;">
-                                <!--<button type="button" id="color-chooser-btn" class="btn btn-info btn-block dropdown-toggle" data-toggle="dropdown">Color <span class="caret"></span></button>-->
-                                <ul class="fc-color-picker" id="color-chooser">
-                                    <li><a class="text-aqua" href="#"><i class="fa fa-square"></i></a>
-                                    </li>
-                                    <li><a class="text-blue" href="#"><i class="fa fa-square"></i></a>
-                                    </li>
-                                    <li><a class="text-teal" href="#"><i class="fa fa-square"></i></a>
-                                    </li>
-                                    <li><a class="text-yellow" href="#"><i class="fa fa-square"></i></a>
-                                    </li>
-                                    <li><a class="text-orange" href="#"><i class="fa fa-square"></i></a>
-                                    </li>
-                                    <li><a class="text-fuchsia" href="#"><i class="fa fa-square"></i></a>
-                                    </li>
-                                    <li><a class="text-green" href="#"><i class="fa fa-square"></i></a>
-                                    </li>
-                                    <li><a class="text-olive" href="#"><i class="fa fa-square"></i></a>
-                                    </li>
-                                    <li><a class="text-lime" href="#"><i class="fa fa-square"></i></a>
-                                    </li>
-                                    <li><a class="text-purple" href="#"><i class="fa fa-square"></i></a>
-                                    </li>
-                                    <li><a class="text-muted" href="#"><i class="fa fa-square"></i></a>
-                                    </li>
-                                    <li><a class="text-navy" href="#"><i class="fa fa-square"></i></a>
-                                    </li>
-                                </ul>
-                            </div>
-                            <!-- /btn-group -->
-                            <!-- time Picker -->
-                            <label>Fecha</label>
-
-                            <div class="input-group">
-                                <div class="input-group-addon">
-                                    <i class="fa fa-calendar"></i>
-                                </div>
-                                <input type="date" class="form-control" placeholder="dd/mm/aaaa"/>
-                            </div>
-                            <label>Hora</label>
-
-                            <div class="row">
-                                <div class="col-md-6 col-xs-12">
-                                    <div class="timepicker">
-                                        <label>Desde:</label>
-
-                                        <div class="input-group">
-                                            <input type="time" placeholder="0:00" class="form-control timepicker"/>
-
-                                            <div class="input-group-addon">
-                                                <i class="fa fa-clock-o"></i>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6 col-xs-12">
-                                    <div class="timepicker">
-                                        <div class="form-group">
-                                            <label>Hasta:</label>
-
-                                            <div class="input-group">
-                                                <input type="time" placeholder="0:00" class="form-control timepicker"/>
-
-                                                <div class="input-group-addon">
-                                                    <i class="fa fa-clock-o"></i>
-                                                </div>
-                                            </div>
-                                            <!-- /.input group -->
-                                        </div>
-                                        <!-- /.form group -->
-                                    </div>
-                                </div>
-                                <!-- /.form group -->
-                            </div>
-                            <div class="col-md-12">
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox"> Todo el día
-                                    </label>
-                                </div>
-                            </div>
-                            <div class="input-group">
-                                <input id="new-event" type="text" class="form-control"
-                                       placeholder="Nombre del evento">
-
-                                <div class="input-group-btn">
-                                    <button id="add-new-event" type="button" class="btn btn-primary btn-flat">Añadir
-                                    </button>
-                                </div>
-                                <!-- /btn-group -->
-                            </div>
-                            <!-- /input-group -->
-                        </div>
-                    </div>
+                <div class="col-md-1">
                 </div>
-                <!-- FIN CREAR EVENTO -->
 
-
-                <div class="col-md-8">
+                <div class="col-md-6">
                     <div class="box box-primary">
+                        <div class="box-header with-border">
+                            <h4 style="color:#AA1B30;text-align: center"><i class="fa fa-calendar"></i> Consulta nuestra disponibilidad</h4>
+                        </div>
                         <div class="box-body no-padding">
                             <!-- THE CALENDAR -->
                             <div id="calendar"></div>
@@ -256,6 +144,10 @@
         <!-- /.content -->
     </div>
     <!-- /.content-wrapper -->
+
+    <div class="col-md-1">
+    </div>
+
 
     @include('footer')
 

@@ -15,7 +15,7 @@ class Ticket extends Eloquent{
     //Inicio: Relaciones
 
     public function cita(){
-        return $this->hasOne('Cita', 'idTicket', 'id');
+        return $this->belongsTo('Cita', 'idTicket', 'id');
     }
 
     public function productosTickets(){

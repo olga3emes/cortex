@@ -122,13 +122,6 @@ Route::group(array('before' => 'auth'), function () {
 
     });
 
-
-
-
-
-
-
-
     Route::get('administrador/perfil', function () {
 
         return View::make('perfil');
@@ -147,17 +140,10 @@ Route::group(array('before' => 'auth'), function () {
         return View::make('tickets');
 
     });
-    //}
+
 
 
 //CLIENTE
-
-
-    Route::get('cliente/calendario', function () {
-
-        return View::make('calendario');
-
-    });
 
 
 
@@ -174,12 +160,6 @@ Route::group(array('before' => 'auth'), function () {
     Route::get('cliente/productos', 'ProductoController@productos');
 
 
-
-    Route::get('cliente/citas', function () {
-
-        return View::make('citasPendientes');
-
-    });
 
     //RUTAS PERFIL
     Route::post('perfil/actualizar/{id}', 'ClienteController@actualizarPerfil');
@@ -226,6 +206,36 @@ Route::group(array('before' => 'auth'), function () {
     Route::get('galeria/eliminar/{id}', 'GaleriaController@eliminar');
 
     //FIN RUTAS GALERIAS
+
+    //RUTAS CITAS
+
+    Route::get('cliente/citas', function () {
+
+        return View::make('citasPendientes');
+
+    });
+
+    Route::get('cliente/calendario', function () {
+
+        return View::make('calendarioCliente');
+
+    });
+
+    Route::get('cliente/calendario2', function () {
+
+        return View::make('calendario');
+
+    });
+
+    Route::post('cita/clienteCrear', 'CitaController@clienteCrear');
+    Route::post('cita/clienteEditar/{id}', 'CitaController@clienteEditar');
+    Route::get('cita/clienteEliminar/{id}', 'CitaController@clienteEliminar');
+
+    Route::post('cita/administradorCrear', 'CitaController@administradorCrear');
+    Route::post('cita/administradorEditar/{id}', 'CitaController@administradorEditar');
+    Route::get('cita/administradorEliminar/{id}', 'CitaController@administradorEliminar');
+
+    //FIN RUTAS CITAS
 
 
 

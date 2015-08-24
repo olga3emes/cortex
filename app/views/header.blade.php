@@ -210,7 +210,7 @@
 
                         <li>
                             <a href="{{URL::asset('cliente/citas')}}">
-                                <i class="fa fa-calendar-o"></i><span>Citas Sin Confirmar</span>
+                                <i class="fa fa-calendar-o"></i><span> Mis Citas</span>
                             </a>
                         </li>
 

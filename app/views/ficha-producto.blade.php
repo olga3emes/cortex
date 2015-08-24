@@ -90,6 +90,19 @@
                                     <label>Descripción</label>
                                     <textarea class="form-control" id="descripcion" name="descripcion"style="resize: vertical;" rows="3" placeholder="...">{{$producto->descripcion}}"</textarea>
                                 </div>
+                                <div class="col-md-6 col-xs-12">
+                                    <div class="checkbox">
+
+                                        <label>
+                                            @if($producto->publicado==0)
+                                            <input id="publicadoCheck" name="publicadoCheck" value="0" type="checkbox"> Publicar para clientes
+                                            @else
+                                                <input id="publicadoCheck"  name="publicadoCheck" checked="checked" value="1" type="checkbox"> Publicar para clientes
+                                            @endif
+                                        </label>
+
+                                    </div>
+                                </div>
                             </div>
                             <!-- /.box-body -->
 

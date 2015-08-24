@@ -107,6 +107,11 @@ class Producto extends Eloquent{
             $producto = Producto::find($id);
             $producto->update($input);
             $producto->iva = '21';
+            if(isset($_REQUEST['publicadoCheck'])) {
+                $producto->publicado = 1;
+            }else{
+                $producto->publicado = 0;
+            }
             $producto->save();
 
             if (!is_null(Input::file('imagen'))) {
