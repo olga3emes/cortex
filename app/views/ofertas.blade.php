@@ -4,7 +4,11 @@
 
     <!-- Main content -->
      <section class="content">
-        <div class="col-sm-7 col-md-9 col-xs-12">
+         @if(Administrador::esAdministrador())
+             <div class="col-sm-7 col-md-9 col-xs-12">
+                 @else
+                     <div class="col-sm-7 col-md-12 col-xs-12">
+                         @endif
             <!-- Tabla Ofertas -->
             <div class="box box-solid">
                 <div class="box-header with-border">
@@ -17,8 +21,10 @@
                             <tr>
                                 <th>Nombre de la Oferta</th>
                                 <th width="60">Descuento</th>
+                                @if(Administrador::esAdministrador())
                                 <th class="no-sorting" width="60">Editar</th>
                                 <th class="no-sorting" width="60">Eliminar</th>
+                                    @endif
                             </tr>
                         </thead>
                         <tbody>
@@ -26,6 +32,7 @@
                             <tr>
                                 <td>{{$oferta->nombre}}</td>
                                 <td>{{$oferta->porcentaje}}%</td>
+                                @if(Administrador::esAdministrador())
                                 <td><a href="#" data-toggle="modal" data-target="{{'#'.$oferta->id}}"><i class="fa fa-pencil-square text-green"></i></a>
 
                                     <!-- Modal Edición -->
@@ -62,9 +69,11 @@
                                     <!-- END Modal Edición -->
                                 </td>
                                 <td><a href="{{URL::asset('oferta/eliminar/'.$oferta->id)}}"><i class="fa fa-trash text-red"></i></a>
+                            @endif
                             </tr>
 
                         @endforeach
+
                         </tbody>
                     </table>
 
@@ -79,7 +88,7 @@
 
             <!-- END Tabla Ofertas -->
         </div>
-
+                     @if(Administrador::esAdministrador())
         <form name="crearForm" id="crearForm"action="{{URL::asset('oferta/crear')}}" method="POST">
         <div class="col-sm-5 col-md-3 col-xs-12">
             <div class="box box-solid">
@@ -110,6 +119,7 @@
             </form>
 
     </section>
+    @endif
     <!-- /.content -->
 
 </div>

@@ -55,8 +55,10 @@
             <div class="col-md-10">
                 <div class="profile-content">
 
+                    @if(Administrador::esAdministrador())
+
                     <div class="row">
-                        <form name="perfilCrear" id="perfilCrear" action="{{URL::asset('perfil/actualizar/'.$cliente->id)}}" enctype="multipart/form-data" method="POST">
+                        <form name="perfilCrear" id="perfilCrear" action="{{URL::asset('perfilAdmin/actualizar/'.$administrador->id)}}" enctype="multipart/form-data" method="POST">
                             <div class="box-header with-border">
                                 <h3 class="box-title"> <i class="fa fa-user"></i> </i>Mis Datos</h3>
                             </div>
@@ -86,40 +88,7 @@
                                 </script>
                             </div>
                         </div>
-                        <!--SOLO CLIENTE-->
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="InputName">Nombre</label>
-                                    <input class="form-control" id="name" name="nombre" value="{{$cliente->nombre}}"placeholder="Introduce tu nombre"
-                                           type="text">
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="InputApellidos">Apellidos</label>
-                                    <input class="form-control" id="apellidos" name="apellidos"
-                                           placeholder="Introduce tus apellidos" value="{{$cliente->apellidos}}" type="text">
-                                </div>
-                            </div>
 
-
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="InputTelefono">Teléfono</label>
-                                    <input class="form-control" id="telefono" name="telefono" value="{{$cliente->telefono}}" placeholder="Teléfono de contacto"
-                                           type="text">
-                                </div>
-                            </div>
-
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <h5 style="text-align: justify; ">El teléfono que introduzca es un dato esencial
-                                        para comunicarse con usted en caso de imprevisto. Por favor, introduzca un
-                                        número válido, de lo contrario no podremos avisarle.</h5>
-                                </div>
-                            </div>
-
-                                    <!--FIN SOLO CLIENTE -->
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="InputUser">Nombre de Usuario</label>
@@ -135,20 +104,21 @@
                                 </div>
                             </div>
 
-                            <button type="submit "class="btn btn-block btn-primary" style="width: 50%;margin-left: 25%;margin-right: 25%;">Guardar</button>
+                            <button type="submit "class="btn btn-block btn-primary" style="width: 50%;margin-left: 25%;margin-right: 25%; margin-bottom: 10%;">Guardar</button>
                             </form>
 
+                        <form id="cambiar" name="cambiar" action="{{URL::asset('administrador/cambiarPassword/'.$administrador->id)}}" method="POST">
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="InputPassword">Contraseña</label>
-                                    <input class="form-control" id="InputPassword" placeholder="Contraseña"
+                                    <input class="form-control" required id="password" name="password" placeholder="Contraseña"
                                            type="password">
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="InputPassword">Repetir Contraseña</label>
-                                    <input class="form-control" id="InputPassword" placeholder="Repetir Contraseña"
+                                    <input class="form-control" required id="password2" name="password2" placeholder="Repetir Contraseña"
                                            type="password">
                                 </div>
                             </div>
@@ -156,10 +126,123 @@
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label>Confirmar nueva contraseña</label>
-                                    <button type="" class="btn btn-block btn-primary">Cambiar</button>
+                                    <button type="submit" class="btn btn-block btn-primary">Cambiar</button>
                                 </div>
                             </div>
+                        </form>
                     </div>
+
+                    @else
+                        @if(Cliente::esCliente())
+                        <div class="row">
+                            <form name="perfilCrear" id="perfilCrear" action="{{URL::asset('perfil/actualizar/'.$cliente->id)}}" enctype="multipart/form-data" method="POST">
+                                <div class="box-header with-border">
+                                    <h3 class="box-title"> <i class="fa fa-user"></i> </i>Mis Datos</h3>
+                                </div>
+                                <div class="col-md-12">
+                                    <br>
+                                    <div class="form-group">
+                                        <label>Cambiar Imagen</label>
+                                        <input id="imagen"  name="imagen" type="file" class="file" data-preview-file-type="text">
+                                        <script>
+                                            $('#imagen').fileinput({
+                                                language: 'es',
+                                                uploadUrl: '#',
+                                                allowedFileExtensions: ['jpg','jpeg', 'png', 'gif']
+                                            });
+                                            $(".btn-warning").on('click', function () {
+                                                if ($('#file-4').attr('disabled')) {
+                                                    $('#file-4').fileinput('enable');
+                                                } else {
+                                                    $('#file-4').fileinput('disable');
+                                                }
+                                            });
+                                            $(".btn-info").on('click', function () {
+                                                $('#file-4').fileinput('refresh', {
+                                                    previewClass: 'bg-info'
+                                                });
+                                            });
+                                        </script>
+                                    </div>
+                                </div>
+                                <!--SOLO CLIENTE-->
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="InputName">Nombre</label>
+                                        <input class="form-control" id="name" name="nombre" value="{{$cliente->nombre}}"placeholder="Introduce tu nombre"
+                                               type="text">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="InputApellidos">Apellidos</label>
+                                        <input class="form-control" id="apellidos" name="apellidos"
+                                               placeholder="Introduce tus apellidos" value="{{$cliente->apellidos}}" type="text">
+                                    </div>
+                                </div>
+
+
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="InputTelefono">Teléfono</label>
+                                        <input class="form-control" id="telefono" name="telefono" value="{{$cliente->telefono}}" placeholder="Teléfono de contacto"
+                                               type="text">
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <h5 style="text-align: justify; ">El teléfono que introduzca es un dato esencial
+                                            para comunicarse con usted en caso de imprevisto. Por favor, introduzca un
+                                            número válido, de lo contrario no podremos avisarle.</h5>
+                                    </div>
+                                </div>
+
+                                <!--FIN SOLO CLIENTE -->
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="InputUser">Nombre de Usuario</label>
+                                        <input class="form-control" id="username"name="username" value="{{$usuario->username}}" placeholder="Introduce tu usuario"
+                                               type="text">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="InputEmail">Email</label>
+                                        <input class="form-control" id="email" name="email"value="{{$usuario->email}}"placeholder="Introduce tu email"
+                                               type="email">
+                                    </div>
+                                </div>
+
+                                <button type="submit "class="btn btn-block btn-primary" style="width: 50%;margin-left: 25%;margin-right: 25%;">Guardar</button>
+                            </form>
+
+                            <form id="cambiar" name="cambiar"action="{{URL::asset('cliente/cambiarPassword/'.$cliente->id)}}" method="POST">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="InputPassword">Contraseña</label>
+                                    <input class="form-control" required id="password" name="password" placeholder="Contraseña"
+                                           type="password">
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="InputPassword">Repetir Contraseña</label>
+                                    <input class="form-control" required id="password2" name="password2" placeholder="Repetir Contraseña"
+                                           type="password">
+                                </div>
+                            </div>
+
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>Confirmar nueva contraseña</label>
+                                    <button type="submit" class="btn btn-block btn-primary">Cambiar</button>
+                                </div>
+                            </div>
+                                </form>
+                        </div>
+                        @endif
+                    @endif
                 </div>
             </div>
         </div>

@@ -6,8 +6,11 @@
     <!-- Main content -->
     <section class="content">
 
-
+        @if(Administrador::esAdministrador())
         <div class="col-sm-7 col-md-9 col-xs-12">
+        @else
+                <div class="col-sm-7 col-md-12 col-xs-12">
+                    @endif
             <!-- Tabla Servicios -->
             <div class="box box-solid">
                 <div class="box-header with-border">
@@ -20,8 +23,10 @@
                             <tr>
                                 <th>Nombre del Servicio</th>
                                 <th width="60">Precio</th>
+                                @if(Administrador::esAdministrador())
                                 <th class="no-sorting" width="60">Editar</th>
                                 <th class="no-sorting" width="60">Eliminar</th>
+                                @endif
                             </tr>
                         </thead>
                         <tbody>
@@ -29,6 +34,7 @@
                         <tr>
                             <td>{{$servicio->nombre}}</td>
                             <td>{{$servicio->precio}}€</td>
+                            @if(Administrador::esAdministrador())
                             <td><a href="#" data-toggle="modal" data-target="{{'#'.$servicio->id}}">
                                     <i class="fa fa-pencil-square text-green"></i></a>
                                 <!-- Modal Edición -->
@@ -62,6 +68,7 @@
                             </td>
                             <td><a href="{{URL::asset('servicio/eliminar/'.$servicio->id)}}">
                                     <i class="fa fa-trash text-red"></i></a></td>
+                            @endif
 
                             <!-- <td><a href="#" onclick="confirmacion('¿Seguro que quiere eliminar este Servicio?',null,'{{'servicio/eliminar/'.$servicio->id}}')">
                                     <i class="fa fa-trash text-red"></i></a></td>-->
@@ -80,6 +87,7 @@
 
             <!-- END Tabla Servicios -->
         </div>
+        @if(Administrador::esAdministrador())
         <form name="crearForm" id="crearForm"action="{{URL::asset('servicio/crear')}}" method="POST">
         <div class="col-sm-5 col-md-3 col-xs-12">
             <div class="box box-solid">
@@ -109,6 +117,7 @@
         </form>
     </section>
     <!-- /.content -->
+    @endif
 
 </div>
 

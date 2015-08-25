@@ -19,7 +19,7 @@ class Cita extends Eloquent{
         return $this->belongsTo('Cliente', 'idCliente', 'id');
     }
 
-    public function oferta(){
+    public function cita(){
         return $this->hasOne('Oferta', 'idOferta', 'id');
     }
 
@@ -38,8 +38,11 @@ class Cita extends Eloquent{
         $respuesta = array();
 
         $reglas = array(
-            'porcentaje' => array('required', 'min:0', 'max:9999'),
-            'nombre' => array('required', 'min:3', 'max:100'),
+            $date= date('Y-m-d'),
+            $input['fecha']=Tools::formatearFechaBD($input['fecha']),
+            'fecha' => array('required', 'after:'.$date),
+            'comentario' => array('required'),
+
         );
 
         $validator = Validator::make($input, $reglas);
@@ -50,16 +53,36 @@ class Cita extends Eloquent{
 
         } else {
 
-            $input['fechaFin']=Tools::formatearFechaBD($input['fechaFin']);
-            if($input['fechaFin']=='1970-01-01'){
-                $input['fechaFin']='0000-00-00';
-            }
-            $oferta = new oferta($input);
-            $oferta->save();
+
+            $cita = new Cita();
+
+            $idUsuario=Auth::getUser()->id;
+            $cliente=DB::table('clientes')->where('idUsuario','=',$idUsuario)->first();
+
+            $cita->idCliente=$cliente->id;
+            $cita->cliente= $cliente->nombre.' '.$cliente->apellidos;
+
+            $cita->idServicio= $_POST['servicio'];
+
+            $input['fecha']=Tools::formatearFechaBD($input['fecha']);
+            $cita->fecha= $input['fecha'];
+            $cita->comentario=$input['comentario'];
+            $cita->aceptada= 0;
+
+            $cita->save();
+
+
+            $ticket= new Ticket();
+            $ticket->fecha=$input['fecha'];
+            $ticket->save();
+
+            $cita->idTicket=$ticket->id;
+            $cita->save();
+
 
             $respuesta['mensaje'] = 'Cita solicitada';
             $respuesta['error'] = false;
-            $respuesta['data'] = $oferta;
+            $respuesta['data'] = $cita;
 
         }
         return $respuesta;
@@ -70,8 +93,11 @@ class Cita extends Eloquent{
         $respuesta = array();
 
         $reglas = array(
-            'porcentaje' => array('required', 'min:0', 'max:9999'),
-            'nombre' => array('required', 'min:3', 'max:100'),
+            $date= date('Y-m-d'),
+            $input['fecha']=Tools::formatearFechaBD($input['fecha']),
+            'fecha' => array('required', 'after:'.$date),
+            'comentario' => array('required'),
+
         );
 
         $validator = Validator::make($input, $reglas);
@@ -82,16 +108,64 @@ class Cita extends Eloquent{
 
         } else {
 
-            $input['fechaFin']=Tools::formatearFechaBD($input['fechaFin']);
-            if($input['fechaFin']=='1970-01-01'){
-                $input['fechaFin']='0000-00-00';
+
+            $cita = new Cita();
+
+            //Fecha
+
+            $input['fecha']=Tools::formatearFechaBD($input['fecha']);
+            $cita->fecha= $input['fecha'];
+
+            //Hora
+
+
+
+            //Cliente
+
+            if(isset($_POST['clienteRegistrado'])){
+                $cita->idCliente=$_POST['clienteRegistrado'];
+                $cliente=DB::table('clientes')->where('id','=',$cita->idCliente)->first();
+                $cita->cliente=$cliente->nombre.' '.$cliente->apellidos;
+
+            }else{
+                $cita->cliente=$input['cliente'];
             }
-            $oferta = new oferta($input);
-            $oferta->save();
+
+            //Servicio
+
+            $cita->idServicio= $_POST['servicio'];
+
+
+            //Hora fijada
+
+
+
+            //Comentario
+
+            $cita->comentario=$input['comentario'];
+
+            //Aceptada por el Administrador
+
+            if(isset($_REQUEST['aceptada'])) {
+                $cita->aceptada = 1;
+            }else{
+                $cita->aceptada = 0;
+            }
+
+            $cita->save();
+
+
+            $ticket= new Ticket();
+            $ticket->fecha=$input['fecha'];
+            $ticket->save();
+
+            $cita->idTicket=$ticket->id;
+            $cita->save();
+
 
             $respuesta['mensaje'] = 'Cita solicitada';
             $respuesta['error'] = false;
-            $respuesta['data'] = $oferta;
+            $respuesta['data'] = $cita;
 
         }
         return $respuesta;
@@ -123,15 +197,15 @@ class Cita extends Eloquent{
                 $input['fechaFin']='0000-00-00';
             }
 
-            $oferta= oferta::find($id);
-            $oferta->nombre=$input['nombre'];
-            $oferta->porcentaje=$input['porcentaje'];
-            $oferta->fechaFin=$input['fechaFin'];
-            $oferta->save();
+            $cita= cita::find($id);
+            $cita->nombre=$input['nombre'];
+            $cita->porcentaje=$input['porcentaje'];
+            $cita->fechaFin=$input['fechaFin'];
+            $cita->save();
 
-            $respuesta['mensaje'] = 'oferta editado';
+            $respuesta['mensaje'] = 'cita editado';
             $respuesta['error'] = false;
-            $respuesta['data'] = $oferta;
+            $respuesta['data'] = $cita;
         }
         return $respuesta;
     }
@@ -140,13 +214,13 @@ class Cita extends Eloquent{
 
         $respuesta = array();
 
-        $oferta = oferta::find($id);
-        $oferta->delete();
+        $cita = cita::find($id);
+        $cita->delete();
 
         //Mensajes de exito
-        $respuesta['mensaje'] = 'oferta Eliminado';
+        $respuesta['mensaje'] = 'cita Eliminado';
         $respuesta['error'] = null;
-        $respuesta['data'] = $oferta;
+        $respuesta['data'] = $cita;
 
         return $respuesta;
 

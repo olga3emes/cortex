@@ -5,7 +5,8 @@
 	"license": "MIT",
 	"require": {
 		"laravel/framework": "4.2.*",
-		"intervention/image": "^2.3"
+		"intervention/image": "^2.3",
+		"barryvdh/laravel-ide-helper": "~1.11"
 	},
 	"autoload": {
 		"classmap": [

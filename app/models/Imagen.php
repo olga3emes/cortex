@@ -20,7 +20,7 @@ class Imagen extends Eloquent{
     }
 
     public function usuario(){
-        return $this->belongsTo('Usuario', 'idImagen', 'id');
+        return $this->hasOne('Usuario', 'idImagen', 'id');
     }
 
     public function galeria(){

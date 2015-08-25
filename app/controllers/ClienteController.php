@@ -68,4 +68,14 @@ class ClienteController extends BaseController{
         }
     }
 
+    public function cambiarPassword($id){
+        $respuesta = Cliente::cambiarPassword($id,Input::all());
+
+        if ($respuesta['error'] == true) {
+            return Redirect::back()->withErrors($respuesta['mensaje'])->withInput();
+        } else {
+            return Redirect::to('cliente/perfil')->with('mensaje', ($respuesta['mensaje']));
+        }
+    }
+
 }

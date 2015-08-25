@@ -8,11 +8,17 @@
 
 // se debe indicar en donde esta la interfaz a implementar
 use Illuminate\Auth\UserInterface;
+use Illuminate\Auth\UserTrait;
+//Para el recordatorio de pass
+use Illuminate\Auth\Reminders\RemindableTrait;
+use Illuminate\Auth\Reminders\RemindableInterface;
 
-class Usuario extends Eloquent implements UserInterface{
+class Usuario extends Eloquent implements UserInterface, RemindableInterface{
+
+    use UserTrait, RemindableTrait;
 
     protected $table = 'usuarios';
-    protected $fillable = array('id','username', 'email', 'password','idImagen');
+    protected $fillable = array('id','username', 'email', 'password','idImagen','remember_token');
 
     //Inicio: Relaciones
     public function cliente(){
@@ -22,7 +28,7 @@ class Usuario extends Eloquent implements UserInterface{
         return $this->hasOne('Administrador', 'idUsuario', 'id');
     }
     public function imagen(){
-        return $this->hasOne('Imagen', 'idImagen', 'id');
+        return $this->belongsTo('Imagen', 'idImagen', 'id');
     }
     //Fin: Relaciones
 

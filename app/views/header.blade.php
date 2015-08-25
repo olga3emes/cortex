@@ -1,9 +1,38 @@
 
 <head>
 
+    {{HTML::script('js/jquery-scrolltofixed-min.js')}}
+    {{HTML::script('/js/noty/packaged/jquery.noty.packaged.min.js')}}
+    <script type="text/javascript">
+        function notificar(texto) {
+            var n = noty({
+                text: texto,
+                theme: 'relax',
+                type: 'alert',
+                layout: 'center',
+                timeout: 6000
+            });
+        }
+        function notificarError(texto) {
+            var n = noty({
+                text: texto,
+                type: 'error',
+                theme: 'relax',
+                layout: 'center',
+                timeout: 6000
+            });
+        }
+
+
+    </script>
+
     <meta charset="UTF-8">
     <title>Corte´x | Panel de Control</title>
     <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
+
+
+
+
     {{HTML::script('js/jquery.cookiebar.js')}}
     {{HTML::style('css/jquery.cookiebar.css')}}
     <!-- Bootstrap 3.3.4 -->
@@ -15,7 +44,7 @@
     <link href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" rel="stylesheet" type="text/css" />
     <!-- Theme style -->
     {{HTML::style("dist/css/AdminLTE.css" )}}
-    <!-- AdminLTE Skins. Choose a skin from the css/skins 
+    <!-- AdminLTE Skins. Choose a skin from the css/skins
          folder instead of downloading all of them to reduce the load. -->
     {{HTML::style('dist/css/skins/_all-skins.css')}}
     <!-- iCheck -->
@@ -50,79 +79,6 @@
 
 
 
-    {{HTML::script('js/jquery-scrolltofixed-min.js')}}
-    {{HTML::script('/js/noty/packaged/jquery.noty.packaged.min.js')}}
-    <script type="text/javascript">
-        function notificar(texto) {
-            var n = noty({
-                text: texto,
-                theme: 'relax',
-                type: 'sucess',
-                layout: 'top',
-                timeout: 6000
-            });
-        }
-        function notificarError(texto) {
-            var n = noty({
-                text: texto,
-                type: 'error',
-                theme: 'relax',
-                layout: 'top',
-                timeout: 6000
-            });
-        }
-
-        function confirmacion(texto,idFormulario,url){
-            var n= noty({ text: texto,
-                type:'confirm',
-                theme:'relax',
-                layout:'topCenter',
-                timeout: false,
-                buttons: [
-                    {addClass: 'btn btn-primary', text: 'Ok', onClick: function($noty) {
-                        $noty.close();
-                        if(idFormulario!=null) {
-                            $(idFormulario).submit();
-                        }else{
-                            window.location.href = url;
-                        }
-
-                    }
-                    },
-                    {addClass: 'btn btn-danger', text: 'Cancel', onClick: function($noty) {
-                        $noty.close();
-                    }
-                    }
-                ]
-            });
-        }
-
-        function confirmacionCancelar(texto,idFormulario,url) {
-            var n = noty({
-                text: texto,
-                type: 'confirm',
-                theme: 'relax',
-                layout: 'topCenter',
-                timeout: false,
-                buttons: [
-                    {
-                        addClass: 'btn btn-primary', text: 'Ok', onClick: function ($noty) {
-                        $noty.close();
-                        <?php Form::submit('Cancelar');?>
-                    }
-                    },
-                    {
-                        addClass: 'btn btn-danger', text: 'Cancel', onClick: function ($noty) {
-                        $noty.close();
-
-                    }
-                    }
-                ]
-
-            });
-        }
-    </script>
-
 
 </head>
 
@@ -146,6 +102,7 @@
         </script>
     @endforeach
 @endif
+
 
     <div class="wrapper" >
 

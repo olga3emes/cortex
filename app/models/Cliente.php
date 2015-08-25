@@ -22,7 +22,7 @@ class Cliente extends Eloquent
 
     public function citas()
     {
-        return $this->hasOne('Cita', 'idCliente', 'id');
+        return $this->hasMany('Cita', 'idCliente', 'id');
     }
 
     //Fin: Relaciones
@@ -35,7 +35,8 @@ class Cliente extends Eloquent
         $reglas = array(
             'email' => array('required', 'email', 'max:100', 'unique:usuarios,email'),
             'username' => array('required', 'min:3', 'max:100', 'unique:usuarios,username'),
-            'password' => array('required', 'min:8', 'max:20'),
+            'password' => array('required', 'min:8', 'max:200'),
+            'password2' => array('required', 'min:8', 'max:200'),
             'nombre' => array('required', 'min:3', 'max:100'),
             'apellidos' => array('required', 'min:3', 'max:100'),
             'telefono' => array('required', 'min:9', 'max:12'),
@@ -48,27 +49,33 @@ class Cliente extends Eloquent
             $respuesta['error'] = true;
         } else {
 
-            $usuario = new Usuario;
-            $usuario->email = $input['email'];
-            $usuario->password = Hash::make($input['password']);
-            $usuario->username = $input['username'];
-            $usuario->save();
+            if ($input['password'] == $input['password2']) {
+                $usuario = new Usuario;
+                $usuario->email = $input['email'];
+                $usuario->username = $input['username'];
+                $usuario->password = Hash::make($input['password']);
+                $usuario->save();
 
-            $cliente = new Cliente;
-            $cliente->idUsuario = $usuario->id;
-            $cliente->nombre = $input['nombre'];
-            $cliente->apellidos = $input['apellidos'];
-            $cliente->telefono = $input['telefono'];
-            $cliente->descripcion = '';
-            $cliente->save();
+                $cliente = new Cliente;
+                $cliente->idUsuario = $usuario->id;
+                $cliente->nombre = $input['nombre'];
+                $cliente->apellidos = $input['apellidos'];
+                $cliente->telefono = $input['telefono'];
+                $cliente->descripcion = '';
+                $cliente->save();
+                $usuario->save();
 
+                $respuesta['mensaje'] = Lang::get('notificaciones.clienteCreado');
+                $respuesta['error'] = false;
+                $respuesta['data'] = $cliente;
 
-            //Mensajes de exito
-            $respuesta['mensaje'] = Lang::get('notificaciones.clienteCreado');
-            $respuesta['error'] = false;
-            $respuesta['data'] = $cliente;
+                Auth::login($usuario);
 
-            Auth::login($usuario);
+            }else{
+                $respuesta['mensaje'] = 'Las contraseñas introducidas no son iguales';
+                $respuesta['error'] = true;
+
+            }
 
         }
 
@@ -132,7 +139,6 @@ class Cliente extends Eloquent
             $cliente->telefono = $input['telefono'];
             $cliente->save();
 
-
             //Mensajes de exito
             $respuesta['mensaje'] = 'Su perfil ha sido actualizado';
             $respuesta['error'] = false;
@@ -141,7 +147,6 @@ class Cliente extends Eloquent
         }
 
         return $respuesta;
-
 
     }
 
@@ -158,11 +163,9 @@ class Cliente extends Eloquent
         }
     }
 
-
     public static function actualizarFicha($id, $input)
     {
         $respuesta = array();
-
 
         $cliente = Cliente::find($id);
         $cliente->descripcion = $input['descripcion'];
@@ -174,10 +177,54 @@ class Cliente extends Eloquent
         $respuesta['error'] = false;
         $respuesta['data'] = $cliente;
 
+        return $respuesta;
+
+    }
+
+
+    public static function cambiarPassword($id, $input)
+    {
+        $respuesta = array();
+
+        $reglas = array(
+            'password' => array('required', 'min:8', 'max:100'),
+            'password2' => array('required', 'min:8', 'max:100'),
+        );
+
+        $validator = Validator::make($input, $reglas);
+
+        if ($validator->fails()) {
+            $respuesta['mensaje'] = 'La contraseña introducida
+             no tiene el tamaño adecuado,éste debe estar entre 8 y 100 caracteres.';
+            $respuesta['error'] = true;
+        } else {
+
+            $cliente = Cliente::find($id);
+            $usuario = Usuario::find($cliente->idUsuario);
+
+            if ($input['password'] == $input['password2']) {
+
+                $usuario->password = Hash::make($input['password']);
+                $usuario->save();
+
+                $respuesta['mensaje'] = 'Su contraseña ha sido cambiada';
+                $respuesta['error'] = false;
+                $respuesta['data'] = $cliente;
+
+            }else{
+                $respuesta['mensaje'] = 'Las contraseñas introducidas no son iguales';
+                $respuesta['error'] = true;
+                $respuesta['data'] = $cliente;
+
+            }
+        }
+
+
 
         return $respuesta;
 
 
     }
+
 
 }

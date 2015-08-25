@@ -356,8 +356,8 @@
                             html: "Las Cabezas de San Juan, Dos hermanas, Sevilla, 41700",
                             icon: {
                                 image: "images/icons/map-icon.png",
-                                iconsize: [32, 32],
-                                iconanchor: [14, 44]
+                                iconsize: [34, 34],
+                                iconanchor: [0, 30]
                             }
          }
         ],

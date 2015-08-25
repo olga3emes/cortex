@@ -81,6 +81,11 @@
                             <input type="password" id="password" required name="password" placeholder="La contraseña debe tener como mínimo 8 caracteres" class="form-control" />
                         </div>
 
+                    <div class="col_full">
+                        <label for="register-form-password">Repite la contraseña:</label>
+                        <input type="password" id="password2" required name="password2"  class="form-control" />
+                    </div>
+
 
                         <div class="col_full">
 
@@ -92,10 +97,7 @@
 
                         </div>
 
-                        <!--<div class="col_full">
-                            <label for="register-form-repassword">Repetir Contraseña:</label>
-                            <input type="password" id="register-form-repassword" name="register-form-repassword" value="" class="form-control" />
-                        </div>-->
+
 
                         <div class="col_full nobottommargin">
                             <button type="submit" class="button button-rounded button-reveal button-red tright" disabled id="registro" name="registro" ><i class="icon-angle-right"></i><span>Registro</span></button>

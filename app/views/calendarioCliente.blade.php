@@ -1,12 +1,12 @@
 @include('header')
 
-@if(Auth::check()==true)
+@if(Cliente::esCliente())
 
     <!-- Content Wrapper. Contains page content -->
 
-    <!-- END Calendario -->
+
     <div class="content-wrapper">
-        <!-- Calendario -->
+        <!-- Semanal -->
         <section>
             <div class="col-md-12">
                 <div class="box box-solid" style="margin-top: 1%;">
@@ -62,30 +62,26 @@
                         </div>
                         <div class="box-body">
                             <!-- Form -->
+                            <form name="crearForm" id="crearForm" action="{{URL::asset('cita/clienteCrear')}}" method="POST">
                             <div class="form-group">
                                 <label>Fecha</label>
-
                                 <div class="input-group">
                                     <div class="input-group-addon">
                                         <i class="fa fa-calendar"></i>
                                     </div>
-                                    <input type="date" class="form-control" placeholder="dd/mm/aaaa"/>
+                                    <input type="date" min="{{date('Y-m-d')}}" required id="fecha" name="fecha" class="form-control" placeholder="dd/mm/aaaa"/>
                                 </div>
-                                <!-- /.input group -->
                             </div>
-                            <!-- time Picker -->
 
                             <label style="margin-top: 5%;">Servicio a contratar</label>
                             <div class="col-md-12 col-xs-12">
-                                <select class="form-control">
-                                    <option>opción 1</option>
-                                    <option>opción 2</option>
-                                    <option>opción 3</option>
-                                    <option>opción 4</option>
-                                    <option>opción 5</option>
+                                <select id="servicio" name="servicio"class="form-control">
+                                    @foreach($servicios as $servicio)
+                                    <option value="{{$servicio->id}}">
+                                        {{$servicio->nombre.': '.$servicio->precio.'€'}}</option>
+                                    @endforeach
                                 </select>
                             </div>
-
 
                             <div class="timepicker">
                                 <label style="margin-top: 5%;">Cita Fijada a las:</label>
@@ -96,14 +92,12 @@
                                             <i class="fa fa-clock-o"></i>
                                         </div>
                                     </div>
-                                    <!-- /.input group -->
                                 </div>
-                                <!-- /.form group -->
                             </div>
 
                             <label style="margin-top: 5%;">Comentario:</label>
                             <div class="col-md-12 col-xs-12">
-                                <textarea class="form-control" style="resize: vertical;" rows="3"
+                                <textarea required class="form-control" id="comentario" name="comentario" style="resize: vertical;" rows="3"
                                           placeholder="¿Entre qué horas desea obtener la cita?"></textarea>
                             </div>
 
@@ -114,9 +108,9 @@
                                 <div class="col-md-12 col-xs-12" style="margin-top: 5%;">
                                     <button type="submit" class="btn btn-primary pull-right">Solicitar</button>
                                 </div>
-                                <!-- /.form group -->
+                            </form>
                             </div>
-                            <!-- /.form group -->
+
                         </div>
                         <!-- /.box-body -->
                     </div>
@@ -142,6 +136,7 @@
             <!-- /.row -->
         </section>
         <!-- /.content -->
+
     </div>
     <!-- /.content-wrapper -->
 

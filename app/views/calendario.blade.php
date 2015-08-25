@@ -1,6 +1,6 @@
 @include('header')
 
-@if(Auth::check()==true)
+@if(Administrador::esAdministrador())
 
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
