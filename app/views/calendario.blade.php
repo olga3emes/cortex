@@ -2,6 +2,9 @@
 
 @if(Administrador::esAdministrador())
 
+
+
+
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
         <!-- Main content -->
@@ -19,6 +22,7 @@
                         </div>
                         <div class="box-body">
                             <!-- Form -->
+                            <form name="crearForm" id="crearForm" action="{{URL::asset('cita/administradorCrear')}}" method="POST">
                             <div class="form-group">
                                 <label>Fecha</label>
 
@@ -26,7 +30,7 @@
                                     <div class="input-group-addon">
                                         <i class="fa fa-calendar"></i>
                                     </div>
-                                    <input type="date" class="form-control" placeholder="dd/mm/aaaa"/>
+                                    <input type="date" min="{{date('Y-m-d')}}"required id="fecha" name="fecha" class="form-control" placeholder="dd/mm/yyyy"/>
                                 </div>
                                 <!-- /.input group -->
                             </div>
@@ -37,7 +41,7 @@
                                 <div class="col-md-12 col-xs-12">
                                     <label>Desde:</label>
                                     <div class="input-group">
-                                        <input type="time" placeholder="0:00" class="form-control timepicker"/>
+                                        <input type="time" id="horaInicio" name="horaInicio" required placeholder="0:00" class="form-control timepicker"/>
 
                                         <div class="input-group-addon">
                                             <i class="fa fa-clock-o"></i>
@@ -48,7 +52,7 @@
                                     <label>Hasta:</label>
 
                                     <div class="input-group">
-                                        <input type="time" placeholder="0:00" class="form-control timepicker"/>
+                                        <input type="time" id="horaFin" name="horaFin" required placeholder="0:00" class="form-control timepicker"/>
 
                                         <div class="input-group-addon">
                                             <i class="fa fa-clock-o"></i>
@@ -57,24 +61,22 @@
                                 </div>
                             </div>
 
-                            <label style="margin-top: 5%;">Servicio a contratar</label>
-                            <div class="col-md-12 col-xs-12">
-                                <select class="form-control">
-                                    <option>opción 1</option>
-                                    <option>opción 2</option>
-                                    <option>opción 3</option>
-                                    <option>opción 4</option>
-                                    <option>opción 5</option>
-                                </select>
-                            </div>
-
+                                <label style="margin-top: 5%;">Servicio a contratar</label>
+                                <div class="col-md-12 col-xs-12">
+                                    <select required id="servicio" name="servicio"class="form-control">
+                                        @foreach($servicios as $servicio)
+                                            <option value="{{$servicio->id}}">
+                                                {{$servicio->nombre.': '.Tools::precioConIva($servicio->precio,$servicio->iva).'€'}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
                             <div>
                                 <label style="margin-top: 5%;">Cliente</label>
                                 <div class="col-md-12 col-xs-12">
                                     <!-- Time 00:00 -->
                                     <div class="form-group">
                                         <label>Cliente sin Registrar:</label>
-                                        <input class="form-control" id="InputNombre" placeholder="Nombre" type="text">
+                                        <input class="form-control" id="cliente" name="cliente" placeholder="Nombre" type="text">
                                         <!-- /.input group -->
                                     </div>
                                     <!-- /.form group -->
@@ -83,12 +85,12 @@
                                     <!-- Time 00:00 -->
                                     <div class="form-group">
                                         <label>Cliente Registrado</label>
-                                        <select class="form-control">
-                                            <option>opción 1</option>
-                                            <option>opción 2</option>
-                                            <option>opción 3</option>
-                                            <option>opción 4</option>
-                                            <option>opción 5</option>
+                                        <select id="clienteRegistrado" name="clienteRegistrado" class="form-control">
+                                            <option value="0">Seleccionar</option>
+                                            @foreach($clientes as $cliente)
+                                                <option value="{{$cliente->id}}">
+                                                    {{$cliente->nombre.' '.$cliente->apellidos}}</option>
+                                            @endforeach
                                         </select>
                                     </div>
                                 </div>
@@ -98,7 +100,7 @@
                                 <label>Cita Fijada a las:</label>
                                 <div class="col-md-12 col-xs-12">
                                     <div class="input-group">
-                                        <input type="time" placeholder="0:00" class="form-control timepicker"/>
+                                        <input type="time" required id="hora" name="hora" placeholder="0:00" class="form-control timepicker"/>
                                         <div class="input-group-addon">
                                             <i class="fa fa-clock-o"></i>
                                         </div>
@@ -110,7 +112,7 @@
 
                             <label style="margin-top: 5%;">Comentario:</label>
                             <div class="col-md-12 col-xs-12">
-                                <textarea class="form-control" style="resize: vertical;" rows="3"
+                                <textarea required id="comentario" name="comentario" class="form-control" style="resize: vertical;" rows="3"
                                           placeholder="..."></textarea>
                             </div>
 
@@ -118,7 +120,7 @@
                                 <div class="col-md-6 col-xs-12" style="margin-top: 5%;">
                                     <div class="checkbox">
                                         <label>
-                                            <input type="checkbox" checked="checked"> Aceptada
+                                            <input id="aceptada" name="aceptada" type="checkbox" checked="checked"> Aceptada
                                         </label>
                                     </div>
                                 </div>
@@ -128,65 +130,54 @@
                                 <!-- /.form group -->
                             </div>
                             <!-- /.form group -->
+                                </form>
                         </div>
                         <!-- /.box-body -->
                     </div>
                     <!-- /. box -->
 
                     <!--CREAR EVENTO -->
+                    <form name="crearEvento" id="crearEvento" action="{{URL::asset('evento/crear')}}" method="POST">
                     <div class="box box-solid">
                         <div class="box-header with-border">
                             <h3 class="box-title">Crear Evento</h3>
                         </div>
                         <div class="box-body">
-                            <div class="btn-group" style="width: 100%; margin-bottom: 10px;">
-                                <!--<button type="button" id="color-chooser-btn" class="btn btn-info btn-block dropdown-toggle" data-toggle="dropdown">Color <span class="caret"></span></button>-->
-                                <ul class="fc-color-picker" id="color-chooser">
-                                    <li><a class="text-aqua" href="#"><i class="fa fa-square"></i></a>
-                                    </li>
-                                    <li><a class="text-blue" href="#"><i class="fa fa-square"></i></a>
-                                    </li>
-                                    <li><a class="text-teal" href="#"><i class="fa fa-square"></i></a>
-                                    </li>
-                                    <li><a class="text-yellow" href="#"><i class="fa fa-square"></i></a>
-                                    </li>
-                                    <li><a class="text-orange" href="#"><i class="fa fa-square"></i></a>
-                                    </li>
-                                    <li><a class="text-fuchsia" href="#"><i class="fa fa-square"></i></a>
-                                    </li>
-                                    <li><a class="text-green" href="#"><i class="fa fa-square"></i></a>
-                                    </li>
-                                    <li><a class="text-olive" href="#"><i class="fa fa-square"></i></a>
-                                    </li>
-                                    <li><a class="text-lime" href="#"><i class="fa fa-square"></i></a>
-                                    </li>
-                                    <li><a class="text-purple" href="#"><i class="fa fa-square"></i></a>
-                                    </li>
-                                    <li><a class="text-muted" href="#"><i class="fa fa-square"></i></a>
-                                    </li>
-                                    <li><a class="text-navy" href="#"><i class="fa fa-square"></i></a>
-                                    </li>
-                                </ul>
-                            </div>
                             <!-- /btn-group -->
+                            <label for="background-color">Elige un color para el evento:</label>
+                            <div class="input-group" style="margin-bottom: 5%;">
+                                <h4><i class="fa fa-pencil" style="margin-right: 5px;"></i> <input  id="color" name="color" id="background-color" type="color" /></h4>
+                                </div>
                             <!-- time Picker -->
-                            <label>Fecha</label>
 
-                            <div class="input-group">
+                            <div class="col-md-12 col-xs-12" style="margin-bottom: 5%;">
+                                <label>Nombre del evento</label>
+                                <!-- Time 00:00 -->
+                                <div class="input-group">
+                                    <input class="form-control" id="nombre" name="nombre" placeholder="Nombre" type="text">
+                                    <!-- /.input group -->
+                                </div>
+                                <!-- /.form group -->
+                            </div>
+
+
+
+                            <div class="col-md-12 col-xs-12" style="margin-bottom: 5%;">
+                                <label>Fecha</label>
                                 <div class="input-group-addon">
                                     <i class="fa fa-calendar"></i>
                                 </div>
-                                <input type="date" class="form-control" placeholder="dd/mm/aaaa"/>
+                                <input min='{{date('Y-m-d')}}' type="date" id="fecha" name="fecha" class="form-control"  placeholder="dd/mm/aaaa"/>
                             </div>
-                            <label>Hora</label>
+                            <label style="margin-bottom: 5%;">Hora</label>
 
                             <div class="row">
-                                <div class="col-md-6 col-xs-12">
+                                <div class="col-md-6 col-xs-12" style="margin-left: 5%;">
                                     <div class="timepicker">
                                         <label>Desde:</label>
 
                                         <div class="input-group">
-                                            <input type="time" placeholder="0:00" class="form-control timepicker"/>
+                                            <input type="time" placeholder="0:00" id="horaInicio" name="horaInicio"class="form-control timepicker"/>
 
                                             <div class="input-group-addon">
                                                 <i class="fa fa-clock-o"></i>
@@ -196,13 +187,13 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-md-6 col-xs-12">
+                                <div class="col-md-6 col-xs-12" style="margin-left: 5%;">
                                     <div class="timepicker">
                                         <div class="form-group">
                                             <label>Hasta:</label>
 
                                             <div class="input-group">
-                                                <input type="time" placeholder="0:00" class="form-control timepicker"/>
+                                                <input type="time" placeholder="0:00" id="horaFin" name="horaFin"class="form-control timepicker"/>
 
                                                 <div class="input-group-addon">
                                                     <i class="fa fa-clock-o"></i>
@@ -218,23 +209,19 @@
                             <div class="col-md-12">
                                 <div class="checkbox">
                                     <label>
-                                        <input type="checkbox"> Todo el día
+                                        <input id="diaCompleto" name="diaCompleto"type="checkbox"> Todo el día
                                     </label>
                                 </div>
                             </div>
-                            <div class="input-group">
-                                <input id="new-event" type="text" class="form-control"
-                                       placeholder="Nombre del evento">
 
-                                <div class="input-group-btn">
-                                    <button id="add-new-event" type="button" class="btn btn-primary btn-flat">Añadir
-                                    </button>
-                                </div>
-                                <!-- /btn-group -->
+                            <div class="col-md-12 col-xs-12" style="margin-top: 5%;">
+                                <button type="submit" class="btn btn-primary pull-right">Añadir</button>
                             </div>
-                            <!-- /input-group -->
+                                <!-- /btn-group -->
+
                         </div>
                     </div>
+                        </form>
                 </div>
                 <!-- FIN CREAR EVENTO -->
 
@@ -297,6 +284,7 @@
             var d = date.getDate(),
                     m = date.getMonth(),
                     y = date.getFullYear();
+
             $('#calendar').fullCalendar({
                 header: {
                     left: 'prev,next today',
@@ -309,38 +297,61 @@
                     week: 'Semana',
                     day: 'Día'
                 },
+
                 //Random default events : Formato de la fecha año- mes (del 0 al 11)- dia- hora- minuto
                 events: [
+                        @foreach($citas as $cita)
                     {
-                        id: 1,
-                        title: 'Lunch',
-                        start: new Date(2015, 7, 28, 11, 30),
-                        end: new Date(2015, 7, 29, 19, 50),
-                        allDay: false,
-                        url: '{{URL::asset('administrador/eventos')}}',
-                        backgroundColor: "#00c0ef", //Info (aqua)
-                        borderColor: "#00c0ef" //Info (aqua)
+                        id: '{{$cita->id}}',
+                        title: '{{$cita->cliente}}',
 
-                    }, {
-                        id: 2,
-                        title: 'Lunch',
-                        start: new Date(2015, 8, 30, 12, 0),
-                        end: new Date(2015, 8, 30, 14, 30),
+                        start: new Date(
+                                parseInt('{{Tools::year($cita->fecha)}}'),
+                                parseInt('{{Tools::month($cita->fecha)-1}}'),
+                                parseInt('{{Tools::day($cita->fecha)}}'),
+                                parseInt('{{Tools::hour($cita->horaInicio)}}'),
+                                parseInt('{{Tools::min($cita->horaInicio)}}')),
+                        end: new Date(
+                                parseInt('{{Tools::year($cita->fecha)}}'),
+                                parseInt('{{Tools::month($cita->fecha)-1}}'),
+                                parseInt('{{Tools::day($cita->fecha)}}'),
+                                parseInt('{{Tools::hour($cita->horaFin)}}'),
+                                parseInt('{{Tools::min($cita->horaInicio)}}')),
                         allDay: false,
-                        url: '{{URL::asset('administrador/eventos')}}',
-                        backgroundColor: "#02c06f", //Info (aqua)
-                        borderColor: "#02c06f" //Info (aqua)
+                        url: '{{URL::asset('administrador/citaDetalles/'.$cita->id)}}',
+                        backgroundColor: "#AA1B30",
+                        borderColor: "#AA1B30"
+
                     },
+                        @endforeach
+
+                        @foreach($eventos as $evento)
                     {
-                        id: 3,
-                        title: '2 días',
-                        start: new Date(2015, 7, 1, 0, 0),
-                        end: new Date(2015, 7, 1, 0, 0),
-                        allDay: true,
-                        url: '{{URL::asset('administrador/eventos')}}',
-                        backgroundColor: "#09a03f", //Info (aqua)
-                        borderColor: "#09a03f" //Info (aqua)
-                    }
+                        id: '{{$evento->id}}',
+                        title: '{{$evento->nombre}}',
+
+                        start: new Date(
+                                parseInt('{{Tools::year($evento->fecha)}}'),
+                                parseInt('{{Tools::month($evento->fecha)-1}}'),
+                                parseInt('{{Tools::day($evento->fecha)}}'),
+                                parseInt('{{Tools::hour($evento->horaInicio)}}'),
+                                parseInt('{{Tools::min($evento->horaInicio)}}')),
+                        end: new Date(
+                                parseInt('{{Tools::year($evento->fecha)}}'),
+                                parseInt('{{Tools::month($evento->fecha)-1}}'),
+                                parseInt('{{Tools::day($evento->fecha)}}'),
+                                parseInt('{{Tools::hour($evento->horaFin)}}'),
+                                parseInt('{{Tools::min($evento->horaInicio)}}')),
+                        @if($evento->diaCompleto==0)
+                        allDay: false,
+                        @else
+                        allDay:true,
+                        @endif
+                        url: '{{URL::asset('evento/detalles/'.$evento->id)}}',
+                        backgroundColor: "{{$evento->color}}", //Info (aqua)
+                        borderColor: "{{$evento->color}}" //Info (aqua)
+                    },
+                        @endforeach
                 ],
                 editable: false,
                 droppable: true, // this allows things to be dropped onto the calendar !!!

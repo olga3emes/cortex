@@ -1,8 +1,8 @@
 
 <head>
 
-    {{HTML::script('js/jquery-scrolltofixed-min.js')}}
-    {{HTML::script('/js/noty/packaged/jquery.noty.packaged.min.js')}}
+    {{HTML::script('js/jquery-scrolltofixed.js')}}
+    {{HTML::script('js/noty/packaged/jquery.noty.packaged.js')}}
     <script type="text/javascript">
         function notificar(texto) {
             var n = noty({
@@ -32,9 +32,6 @@
 
 
 
-
-    {{HTML::script('js/jquery.cookiebar.js')}}
-    {{HTML::style('css/jquery.cookiebar.css')}}
     <!-- Bootstrap 3.3.4 -->
     {{HTML::style('bootstrap/css/bootstrap.min.css')}}
 
@@ -66,7 +63,7 @@
     <!-- File Input -->
     {{HTML::style('dist/css/fileinput.css')}}
     <!-- DATA TABLES -->
-    {{HTML::style('href="plugins/datatables/dataTables.bootstrap.css')}}
+
 
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -217,6 +214,12 @@
                             <i class="fa fa-calendar"></i> <span>Calendario</span>
                         </a>
                     </li>
+
+                        <li>
+                            <a href="{{URL::asset('administrador/citas')}}">
+                                <i class="fa fa-calendar-o"></i> <span>Citas</span>
+                            </a>
+                        </li>
                     <li>
                         <a href="{{URL::asset('administrador/servicios')}}">
                             <i class="fa fa-scissors"></i> <span>Servicios</span>

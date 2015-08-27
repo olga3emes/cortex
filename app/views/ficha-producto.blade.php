@@ -5,7 +5,7 @@
         <div class="box-header with-border">
 
             <img src="{{URL::asset('img/producto/Cortex-Producto-' . $producto->id . '.jpg')}}" class="img-responsive">
-            <div class="precio"><h4 style="color: #AA1B30;"><strong>{{$producto->precio}} €</strong></h4></div>
+            <div class="precio"><h4 style="color: #AA1B30;"><strong>{{Tools::precioConIva($producto->precio,$producto->iva)}} €</strong></h4></div>
 
         </div>
         <!-- /.box-header -->
@@ -71,7 +71,7 @@
 
                                 <div class="col-md-6" style="margin-bottom: 10px;">
                                     <label for="InputPrecio">Precio</label>
-                                    <input class="form-control" id="precio" name="precio"  value="{{$producto->precio}}"placeholder="Precio" type="text">
+                                    <input class="form-control" id="precio" name="precio"  value="{{Tools::precioConIva($producto->precio,$producto->iva)}}"placeholder="Precio" type="text">
                                 </div>
                                 <div class="col-md-6" style="margin-bottom: 10px;">
                                     <label for="InputCodigo">Código</label>

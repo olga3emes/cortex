@@ -75,7 +75,7 @@
                         <input class="form-control" id="nombre" name="nombre" placeholder="Nombre" type="text">
                     </div>
                     <div class="form-group">
-                        <label for="InputPrecio">Precio</label>
+                        <label for="InputPrecio">Precio sin IVA</label>
                         <input class="form-control" id="precio" name="precio" placeholder="Precio" type="text">
                     </div>
                     <div class="form-group">

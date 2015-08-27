@@ -1,5 +1,6 @@
 @include('header')
 
+
 @if(Cliente::esCliente())
 
     <!-- Content Wrapper. Contains page content -->
@@ -24,20 +25,20 @@
                             <th style="text-align: center;">Domingo</th>
                         </tr>
                         <tr>
-                            <td >9:00 - 14:00</td>
-                            <td>9:00 - 14:00</td>
+                            <td >9:30 - 13:30</td>
+                            <td>9:30 - 13:30</td>
                             <td style="background-color: #C02942; color: #fff;">Cerrado</td>
-                            <td>9:00 - 14:00</td>
-                            <td>9:00 - 14:00</td>
-                            <td>9:00 - 14:30</td>
+                            <td>9:30 - 13:30</td>
+                            <td>9:30 - 13:30</td>
+                            <td>9:30 - 14:00</td>
                             <td style="background-color: #C02942; color: #fff;">Cerrado</td>
                         </tr>
                         <tr>
-                            <td style="text-align: center;">16:00 - 20:00</td>
-                            <td>16:00 - 20:00</td>
+                            <td style="text-align: center;">16:30 - 20:00</td>
+                            <td>16:30 - 20:00</td>
                             <td style="background-color: #C02942; color: #fff;">Cerrado</td>
-                            <td>16:00 - 20:00</td>
-                            <td>16:00 - 20:00</td>
+                            <td>16:30 - 20:00</td>
+                            <td>16:30 - 20:00</td>
                             <td style="background-color: #C02942; color: #fff;">Cerrado</td>
                             <td style="background-color: #C02942; color: #fff;">Cerrado</td>
                         </tr>
@@ -69,7 +70,9 @@
                                     <div class="input-group-addon">
                                         <i class="fa fa-calendar"></i>
                                     </div>
-                                    <input type="date" min="{{date('Y-m-d')}}" required id="fecha" name="fecha" class="form-control" placeholder="dd/mm/aaaa"/>
+                                    <input type="date" required id="fecha" name="fecha" class="form-control" placeholder="dd/mm/aaaa"/>
+
+
                                 </div>
                             </div>
 
@@ -78,7 +81,7 @@
                                 <select id="servicio" name="servicio"class="form-control">
                                     @foreach($servicios as $servicio)
                                     <option value="{{$servicio->id}}">
-                                        {{$servicio->nombre.': '.$servicio->precio.'€'}}</option>
+                                        {{$servicio->nombre.': '.Tools::precioConIva($servicio->precio,$servicio->iva).'€'}}</option>
                                     @endforeach
                                 </select>
                             </div>

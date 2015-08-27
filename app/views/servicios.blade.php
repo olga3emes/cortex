@@ -33,7 +33,7 @@
                         @foreach($servicios as $servicio)
                         <tr>
                             <td>{{$servicio->nombre}}</td>
-                            <td>{{$servicio->precio}}€</td>
+                            <td>{{Tools::precioConIva($servicio->precio,$servicio->iva)}}€</td>
                             @if(Administrador::esAdministrador())
                             <td><a href="#" data-toggle="modal" data-target="{{'#'.$servicio->id}}">
                                     <i class="fa fa-pencil-square text-green"></i></a>
@@ -53,7 +53,7 @@
                                                         <input class="form-control" id="nombre" name="nombre" placeholder="Nombre" value="{{$servicio->nombre}}" type="text">
                                                     </div>
                                                     <div class="form-group">
-                                                        <label for="InputPrecio">Precio</label>
+                                                        <label for="InputPrecio">Precio sin IVA</label>
                                                         <input class="form-control" id="precio" name="precio" placeholder="Precio" value="{{$servicio->precio}}" type="text">
                                                     </div>
                                                 </div>

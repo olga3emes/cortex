@@ -24,7 +24,7 @@ class Tools {
         if ($fecha == '0000-00-00')
             $fecha = '';
         else
-            $fecha = date("dd-mm-YY", strtotime($fecha));
+            $fecha = date("d-m-Y", strtotime($fecha));
         return $fecha;
     }
 
@@ -37,7 +37,32 @@ class Tools {
 
     public static function formatearHora($hora)
     {
-        return date("G:s", strtotime($hora));
+        return date("G:m", strtotime($hora));
+    }
+
+    public static function year($fecha)
+    {
+        return date("Y", strtotime($fecha));
+    }
+
+    public static function month($fecha)
+    {
+        return date("m", strtotime($fecha));
+    }
+
+    public static function day($fecha)
+    {
+        return date("d", strtotime($fecha));
+    }
+
+    public static function hour($hora)
+    {
+        return date("H", strtotime($hora));
+    }
+
+    public static function min($hora)
+    {
+        return date("i", strtotime($hora));
     }
 
 
@@ -56,6 +81,12 @@ class Tools {
         }
 
         return $key;
+    }
+
+    public static function precioConIva($precio,$iva) {
+        $porcentaje=(100+$iva)/100;
+        $precioTotal= $precio*$porcentaje;
+        return $precioTotal;
     }
 
 

@@ -23,6 +23,12 @@ Route::get('inicio', function () {
 
 });
 
+Route::get('ticket', function () {
+
+    return View::make('ticket');
+
+});
+
 Route::get('conocenos', function () {
 
     return View::make('conocenos');
@@ -142,11 +148,7 @@ Route::group(array('before' => 'auth'), function () {
 
         //RUTAS CITAS
 
-        Route::get('cliente/citas', function () {
-
-            return View::make('citasPendientes');
-
-        });
+        Route::get('cliente/citas', 'CitaController@clienteMisCitas');
 
         Route::get('cliente/calendario', 'CitaController@citasEventosyServicios');
 
@@ -160,6 +162,7 @@ Route::group(array('before' => 'auth'), function () {
         Route::post('cita/clienteCrear', 'CitaController@clienteCrear');
         Route::post('cita/clienteEditar/{id}', 'CitaController@clienteEditar');
         Route::get('cita/clienteEliminar/{id}', 'CitaController@clienteEliminar');
+        Route::get('cita/clienteDetalles/{id}', 'CitaController@clienteDetalles');
 
 
     });//FIN FILTRO CLIENTE
@@ -168,7 +171,6 @@ Route::group(array('before' => 'auth'), function () {
         //RUTAS DEL ADMINISTRADOR___________________________________________________________
 
 
-        Route::get('administrador/calendario', 'CitaController@administrador');
 
         Route::get('administrador/clientes', 'ClienteController@clientes');
 
@@ -176,9 +178,11 @@ Route::group(array('before' => 'auth'), function () {
 
         Route::get('administrador/eventos', function () {
 
-            return View::make('eventos');
+            return View::make('modCitas');
 
         });
+
+
 
 
         Route::get('administrador/servicios', 'ServicioController@servicios');
@@ -236,12 +240,20 @@ Route::group(array('before' => 'auth'), function () {
         //FIN RUTAS GALERIAS
 
         //RUTAS CITAS
+        Route::get('administrador/calendario', 'CitaController@administrador');
+        Route::get('administrador/citas', 'CitaController@citasPendientes');
 
         Route::post('cita/administradorCrear', 'CitaController@administradorCrear');
         Route::post('cita/administradorEditar/{id}', 'CitaController@administradorEditar');
         Route::get('cita/administradorEliminar/{id}', 'CitaController@administradorEliminar');
 
         //FIN RUTAS CITAS
+
+        //RUTAS EVENTOS
+
+        Route::post('evento/crear', 'EventoController@crear');
+
+        //FIN RUTAS EVENTOS
 
     });
 

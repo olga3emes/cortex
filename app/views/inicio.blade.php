@@ -270,30 +270,30 @@
                 </div>
                 <div class="table-responsive">
                     <table class="table table-hover table-comparison nobottommargin horario">
-                        <tr>
+                        <tr >
                             <th style="text-align: center;">Lunes</th>
-                            <th>Martes</th>
-                            <th>Miércoles</th>
-                            <th>Jueves</th>
-                            <th>Viernes</th>
-                            <th>Sábado</th>
-                            <th>Domingo</th>
+                            <th style="text-align: center;">Martes</th>
+                            <th style="text-align: center;">Miércoles</th>
+                            <th style="text-align: center;">Jueves</th>
+                            <th style="text-align: center;">Viernes</th>
+                            <th style="text-align: center;">Sábado</th>
+                            <th style="text-align: center;">Domingo</th>
                         </tr>
                         <tr>
-                            <td style="text-align: center;">9:00 - 14:00</td>
-                            <td>9:00 - 14:00</td>
+                            <td style="text-align:center;">9:30 - 13:30</td>
+                            <td>9:30 - 13:30</td>
                             <td style="background-color: #C02942; color: #fff;">Cerrado</td>
-                            <td>9:00 - 14:00</td>
-                            <td>9:00 - 14:00</td>
-                            <td>9:00 - 14:30</td>
+                            <td>9:30 - 13:30</td>
+                            <td>9:30 - 13:30</td>
+                            <td>9:30 - 14:00</td>
                             <td style="background-color: #C02942; color: #fff;">Cerrado</td>
                         </tr>
                         <tr>
-                            <td style="text-align: center;">16:00 - 20:00</td>
-                            <td>16:00 - 20:00</td>
+                            <td style="text-align: center;">16:30 - 20:00</td>
+                            <td>16:30 - 20:00</td>
                             <td style="background-color: #C02942; color: #fff;">Cerrado</td>
-                            <td>16:00 - 20:00</td>
-                            <td>16:00 - 20:00</td>
+                            <td>16:30 - 20:00</td>
+                            <td>16:30 - 20:00</td>
                             <td style="background-color: #C02942; color: #fff;">Cerrado</td>
                             <td style="background-color: #C02942; color: #fff;">Cerrado</td>
                         </tr>
@@ -357,7 +357,7 @@
                             icon: {
                                 image: "images/icons/map-icon.png",
                                 iconsize: [34, 34],
-                                iconanchor: [0, 30]
+                                iconanchor: [15, 30]
                             }
          }
         ],

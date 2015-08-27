@@ -1,7 +1,7 @@
+
 @include("header")
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
-
 
     <!-- Main content -->
     <section class="content">
@@ -9,40 +9,43 @@
             <!-- Tabla Citas -->
             <div class="box box-solid">
                 <div class="box-header with-border">
-                    <h3  style="text-align: center; color: #21a117"; ><i class="fa fa-calendar-o"></i> Citas aceptadas</h3>
+                    <h3 style="text-align: center; color: #21a117;"><i class="fa fa-calendar-o"></i> Próximas Citas</h3>
                 </div>
 
                 <!-- /.box-header -->
                 <div class="box-body">
-                    <h5 style="text-align: center"><p>Aquí figuran sus próximas citas en Corte'x.</p>
-                        <p>Para más información consulte los detalles.</p><p>Gracias.</p></h5>
+                    <h5 style="text-align: center"><p>Aquí figuran las próximas citas de Corte'x.</p>
+                        <p>Para más información consulte los detalles.</p></h5>
                     <br>
                     <table id="table" class="table table-bordered table-hover table-responsive">
                         <thead>
                         <tr>
                             <th>Fecha </th>
                             <th>Hora</th>
-                            <th>Estado</th>
+                            <th>Cliente</th>
                             <th class="no-sorting" width="60">Detalles</th>
 
                         </tr>
                         </thead>
                         <tbody>
-                        @foreach($citasAceptadas as $cita)
+                        @foreach($proximasCitas as $proxCita)
                         <tr>
-                            <td>{{Tools::formatearFechaVacia($cita->fecha)}}</td>
-                            <td>{{Tools::formatearHora($cita->hora)}}</td>
-                            <td>Aceptada</td>
-                            <td><a href="{{URL::asset('cita/clienteDetalles/'.$cita->id)}}">
+
+                            <td>{{Tools::formatearFechaVacia($proxCita->fecha)}}</td>
+                            <td>{{Tools::formatearHora($proxCita->hora)}}</td>
+                            <td>{{$proxCita->cliente}}</td>
+                            <td><a href="{{URL::asset('cita/detalles/')}}">
                                     <i class="fa fa-diamond text-green"></i></a></td>
                         </tr>
                         @endforeach
                         </tbody>
                     </table>
                     <nav style="text-align: center">
-                        {{$citasAceptadas->links()}}
+                        {{$proximasCitas->links()}}
                     </nav>
                 </div>
+
+
                 <!-- /.box-body -->
             </div>
             <!-- /.box -->
@@ -58,29 +61,27 @@
 
                 <!-- /.box-header -->
                 <div class="box-body">
-                    <h5 style="text-align: center"><p>Las citas recogidas aquí aún no han sido confirmadas por Corte'x.</p> <p> Si acaba de solicitar una,
-                            espere un poco hasta que podamos responderle.</p>
-                        <p>Una vez la cita sea aceptada, podrá verla tanto en el calendario como en el panel de la izquierda.</p>Gracias.</h5>
+                    <h5 style="text-align: center"><p>Las citas recogidas aquí aún no han sido aceptadas por Corte'x.</p>
+                        <p>Para aceptar la cita pulse sobre los detalles de la misma.</p></h5>
                     <br>
                     <table id="table" class="table table-bordered table-hover table-responsive">
                         <thead>
                         <tr>
-                            <th>Fecha</th>
-                            <th>Estado</th>
+                            <th>Fecha </th>
+                            <th>Hora</th>
+                            <th>Cliente</th>
                             <th class="no-sorting" width="60">Detalles</th>
-                            <th class="no-sorting" width="60">Eliminar</th>
                         </tr>
                         </thead>
                         <tbody>
                         @foreach($citasPendientes as $cita)
                             <tr>
-                                <td>{{Tools::formatearFechaVacia($cita->fecha)}}</td>
 
-                                <td>Pendiente</td>
-                                <td><a href="{{URL::asset('cita/clienteDetalles/'.$cita->id)}}">
+                                <td>{{Tools::formatearFechaVacia($cita->fecha)}}</td>
+                                <td>Sin determinar</td>
+                                <td>{{$cita->cliente}}</td>
+                                <td><a href="{{URL::asset('cita/detalles/')}}">
                                         <i class="fa fa-diamond text-red"></i></a></td>
-                                <td><a href="{{URL::asset('cliente/citaEliminar/'.$cita->id)}}">
-                                        <i class="fa fa-trash text-red"></i></a></td>
                             </tr>
                         @endforeach
                         </tbody>
@@ -103,5 +104,4 @@
 <!-- /.content-wrapper -->
 
 @include( "footer")
-
 

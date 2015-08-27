@@ -8,4 +8,15 @@
 
 class EventoController extends BaseController{
 
+    public function crear()
+    {
+        $respuesta = Evento::crear(Input::all());
+
+        if ($respuesta['error'] == true) {
+            return Redirect::back()->withErrors($respuesta['mensaje'])->withInput();
+        }
+        else {
+            return Redirect::back()->with('mensaje', $respuesta['mensaje']);
+        }
+    }
 }

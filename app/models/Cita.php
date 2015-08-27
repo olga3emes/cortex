@@ -38,9 +38,7 @@ class Cita extends Eloquent{
         $respuesta = array();
 
         $reglas = array(
-            $date= date('Y-m-d'),
-            $input['fecha']=Tools::formatearFechaBD($input['fecha']),
-            'fecha' => array('required', 'after:'.$date),
+            'fecha' => array('required'),
             'comentario' => array('required'),
 
         );
@@ -61,6 +59,7 @@ class Cita extends Eloquent{
 
             $cita->idCliente=$cliente->id;
             $cita->cliente= $cliente->nombre.' '.$cliente->apellidos;
+
 
             $cita->idServicio= $_POST['servicio'];
 
@@ -93,10 +92,12 @@ class Cita extends Eloquent{
         $respuesta = array();
 
         $reglas = array(
-            $date= date('Y-m-d'),
-            $input['fecha']=Tools::formatearFechaBD($input['fecha']),
-            'fecha' => array('required', 'after:'.$date),
-            'comentario' => array('required'),
+            'fecha' => array('required'),
+            'servicio' => array('required'),
+            'hora' => array('required'),
+            'horaInicio' => array('required'),
+            'horaFin' => array('required'),
+
 
         );
 
@@ -117,12 +118,13 @@ class Cita extends Eloquent{
             $cita->fecha= $input['fecha'];
 
             //Hora
-
+            $cita->horaInicio=$input['horaInicio'];
+            $cita->horaFin=$input['horaFin'];
 
 
             //Cliente
 
-            if(isset($_POST['clienteRegistrado'])){
+            if(isset($_POST['clienteRegistrado'])and $_POST['clienteRegistrado']!= 0){
                 $cita->idCliente=$_POST['clienteRegistrado'];
                 $cliente=DB::table('clientes')->where('id','=',$cita->idCliente)->first();
                 $cita->cliente=$cliente->nombre.' '.$cliente->apellidos;
@@ -138,7 +140,7 @@ class Cita extends Eloquent{
 
             //Hora fijada
 
-
+            $cita->hora=$input['hora'];
 
             //Comentario
 
