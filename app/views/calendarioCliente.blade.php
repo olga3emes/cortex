@@ -199,39 +199,58 @@
                     week: 'Semana',
                     day: 'Día'
                 },
-                //Random default events : Formato de la fecha año- mes (del 0 al 11)- dia- hora- minuto
+                // events : Formato de la fecha año- mes (del 0 al 11)- dia- hora- minuto
                 events: [
+                    @foreach($citas as $cita)
                     {
-                        id: 1,
-                        title: 'Lunch',
-                        start: new Date(2015, 7, 28, 11, 30),
-                        end: new Date(2015, 7, 29, 19, 50),
+                        id: '{{$cita->id}}',
+                        title: 'Ocupado',
+                        start: new Date(
+                                parseInt('{{Tools::year($cita->fecha)}}'),
+                                parseInt('{{Tools::month($cita->fecha)-1}}'),
+                                parseInt('{{Tools::day($cita->fecha)}}'),
+                                parseInt('{{Tools::hour($cita->horaInicio)}}'),
+                                parseInt('{{Tools::min($cita->horaInicio)}}')),
+                        end: new Date(
+                                parseInt('{{Tools::year($cita->fecha)}}'),
+                                parseInt('{{Tools::month($cita->fecha)-1}}'),
+                                parseInt('{{Tools::day($cita->fecha)}}'),
+                                parseInt('{{Tools::hour($cita->horaFin)}}'),
+                                parseInt('{{Tools::min($cita->horaInicio)}}')),
                         allDay: false,
-                        url: '{{URL::asset('administrador/eventos')}}',
-                        backgroundColor: "#00c0ef", //Info (aqua)
-                        borderColor: "#00c0ef" //Info (aqua)
+                        backgroundColor: "#AA1B30",
+                        borderColor: "#AA1B30"
 
-                    }, {
-                        id: 2,
-                        title: 'Lunch',
-                        start: new Date(2015, 8, 30, 12, 0),
-                        end: new Date(2015, 8, 30, 14, 30),
-                        allDay: false,
-                        url: '{{URL::asset('administrador/eventos')}}',
-                        backgroundColor: "#02c06f", //Info (aqua)
-                        borderColor: "#02c06f" //Info (aqua)
                     },
+                    @endforeach
+                      @foreach($eventos as $evento)
                     {
-                        id: 3,
-                        title: '2 días',
-                        start: new Date(2015, 7, 1, 0, 0),
-                        end: new Date(2015, 7, 1, 0, 0),
-                        allDay: true,
-                        url: '{{URL::asset('administrador/eventos')}}',
-                        backgroundColor: "#09a03f", //Info (aqua)
-                        borderColor: "#09a03f" //Info (aqua)
-                    }
-                ],
+                        id: '{{$evento->id}}',
+                        title: '{{$evento->nombre}}',
+
+                        start: new Date(
+                                parseInt('{{Tools::year($evento->fecha)}}'),
+                                parseInt('{{Tools::month($evento->fecha)-1}}'),
+                                parseInt('{{Tools::day($evento->fecha)}}'),
+                                parseInt('{{Tools::hour($evento->horaInicio)}}'),
+                                parseInt('{{Tools::min($evento->horaInicio)}}')),
+                        end: new Date(
+                                parseInt('{{Tools::year($evento->fecha)}}'),
+                                parseInt('{{Tools::month($evento->fecha)-1}}'),
+                                parseInt('{{Tools::day($evento->fecha)}}'),
+                                parseInt('{{Tools::hour($evento->horaFin)}}'),
+                                parseInt('{{Tools::min($evento->horaInicio)}}')),
+                        @if($evento->diaCompleto==0)
+                        allDay: false,
+                        @else
+                        allDay:true,
+                        @endif
+                        url: '{{URL::asset('evento/clienteDetalles/'.$evento->id)}}',
+                        backgroundColor: "{{$evento->color}}", //Info (aqua)
+                        borderColor: "{{$evento->color}}" //Info (aqua)
+                    },
+                    @endforeach
+            ],
                 editable: false,
                 droppable: true, // this allows things to be dropped onto the calendar !!!
                 drop: function (date, allDay) { // this function is called when something is dropped

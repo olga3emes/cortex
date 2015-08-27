@@ -20,6 +20,14 @@ class Oferta extends Eloquent{
     }
     //Fin: Relaciones
 
+
+    public static function encontrarOferta($productoTicket){
+
+        $oferta=DB::table('ofertas')->where('id','=',$productoTicket->idOferta)->first();
+
+        return $oferta;
+    }
+
     public static function crear($input){
 
         $respuesta = array();

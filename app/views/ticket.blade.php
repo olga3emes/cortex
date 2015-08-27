@@ -68,6 +68,15 @@
     </tr>
 
     <tr>
+        <td>Oferta:</td>
+        <td>nombre</td>
+        <td></td>
+        <td></td>
+        <td style="text-align:right ">-descuento</td>
+    </tr>
+
+
+    <tr>
         <td></td>
         <td></td>
         <td></td>

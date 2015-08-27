@@ -318,7 +318,7 @@
                                 parseInt('{{Tools::hour($cita->horaFin)}}'),
                                 parseInt('{{Tools::min($cita->horaInicio)}}')),
                         allDay: false,
-                        url: '{{URL::asset('administrador/citaDetalles/'.$cita->id)}}',
+                        url: '{{URL::asset('cita/administradorDetalles/'.$cita->id)}}',
                         backgroundColor: "#AA1B30",
                         borderColor: "#AA1B30"
 
@@ -373,7 +373,7 @@
                     // the last `true` argument determines if the event "sticks" (http://arshaw.com/fullcalendar/docs/event_rendering/renderEvent/)
                     $('#calendar').fullCalendar('renderEvent', copiedEventObject, true);
 
-                    // is the "remove after drop" checkbox checked?
+                    // is the "remove after drop" ckbox checked?
                     if ($('#drop-remove').is(':checked')) {
                         // if so, remove the element from the "Draggable Events" list
                         $(this).remove();

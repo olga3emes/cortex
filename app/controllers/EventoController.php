@@ -19,4 +19,12 @@ class EventoController extends BaseController{
             return Redirect::back()->with('mensaje', $respuesta['mensaje']);
         }
     }
+
+    public function administradorDetalles($id)
+    {
+
+        $evento = Evento::find($id);
+
+        return View::make('modEventos')->with(['evento' => $evento])->render();
+    }
 }

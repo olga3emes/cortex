@@ -24,6 +24,14 @@ class Producto extends Eloquent{
 
     //Fin: Relaciones
 
+
+    public static function encontrarProducto($productoTicket){
+
+        $producto=DB::table('productos')->where('id','=',$productoTicket->idProducto)->first();
+
+        return $producto;
+    }
+
     public static function crear($input)
     {
         $respuesta = array();

@@ -89,6 +89,13 @@ class Tools {
         return $precioTotal;
     }
 
+    public static function aplicaOferta($precio,$descuento) {
+        $porcentaje=($descuento)/100;
+        $precioTotal= $precio - ($precio*$porcentaje);
+        return $precioTotal;
+    }
+
+
 
 
 }

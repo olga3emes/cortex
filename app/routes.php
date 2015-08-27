@@ -246,12 +246,20 @@ Route::group(array('before' => 'auth'), function () {
         Route::post('cita/administradorCrear', 'CitaController@administradorCrear');
         Route::post('cita/administradorEditar/{id}', 'CitaController@administradorEditar');
         Route::get('cita/administradorEliminar/{id}', 'CitaController@administradorEliminar');
+        Route::get('cita/administradorDetalles/{id}', 'CitaController@administradorDetalles');
+
+        Route::get('productoTicket/eliminar/{id}', 'ProductosTicketController@eliminar');
+
+
+
+
 
         //FIN RUTAS CITAS
 
         //RUTAS EVENTOS
 
         Route::post('evento/crear', 'EventoController@crear');
+        Route::get('evento/detalles/{id}', 'EventoController@administradorDetalles');
 
         //FIN RUTAS EVENTOS
 

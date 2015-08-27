@@ -24,7 +24,8 @@
                                     <div class="input-group-addon">
                                         <i class="fa fa-calendar"></i>
                                     </div>
-                                    <input type="date" class="form-control"/>
+                                    <input id="fecha" name="fecha" type="date" class="form-control"
+                                           value="{{$cita->fecha}}"/>
                                 </div>
                                 <!-- /.input group -->
                             </div>
@@ -33,24 +34,34 @@
                         <div class="col-md-4 col-xs-12">
                             <div class="form-group">
                                 <label>Servicio deseado</label>
-                                <select class="form-control">
-                                    <option>opción 1</option>
-                                    <option>opción 2</option>
-                                    <option>opción 3</option>
-                                    <option>opción 4</option>
-                                    <option>opción 5</option>
+                                <select id="servicio" name="servicio" class="form-control">
+                                    <option value="{{$servicioActual->id}}">{{$servicioActual->nombre.': '.Tools::precioConIva($servicioActual->precio,$servicioActual->iva).'€'}}</option>
+                                    @foreach($servicios as $servicio)
+                                        <option value="{{$servicio->id}}">
+                                            {{$servicio->nombre.': '.Tools::precioConIva($servicio->precio,$servicio->iva).'€'}}</option>
+                                    @endforeach
                                 </select>
                             </div>
                         </div>
                         <div class="col-md-4 col-xs-12">
                             <div class="form-group">
                                 <label>Oferta Aplicable</label>
-                                <select class="form-control">
-                                    <option>Ninguna</option>
-                                    <option>opción 2</option>
-                                    <option>opción 3</option>
-                                    <option>opción 4</option>
-                                    <option>opción 5</option>
+                                <select id="oferta" name="oferta" class="form-control">
+                                    @if(isset($ofertaActual))
+                                        <option value="{{$ofertaActual->id}}">{{$ofertaActual->porcentaje.': '.'%'}}</option>
+
+                                        @foreach($ofertas as $oferta)
+                                            <option value="{{$oferta->id}}">
+                                                {{$oferta->nombre.': '.$oferta->porcentaje.'%'}}</option>
+                                        @endforeach
+                                    @else
+                                        <option value="0">Ninguna</option>
+
+                                        @foreach($ofertas as $oferta)
+                                            <option value="{{$oferta->id}}">
+                                                {{$oferta->nombre.': '.$oferta->porcentaje.'%'}}</option>
+                                        @endforeach
+                                    @endif
                                 </select>
                             </div>
                         </div>
@@ -71,7 +82,8 @@
                                             <div class="input-group-addon">
                                                 <i class="fa fa-clock-o"></i>
                                             </div>
-                                            <input type="time" class="form-control" placeholder="00:00">
+                                            <input type="time" id="horaInicio" name="horaInicio" class="form-control"
+                                                   value="{{$cita->horaInicio}}" placeholder="00:00">
                                         </div>
                                         <!-- /.input group -->
                                     </div>
@@ -86,7 +98,8 @@
                                             <div class="input-group-addon">
                                                 <i class="fa fa-clock-o"></i>
                                             </div>
-                                            <input type="time" class="form-control" placeholder="00:00">
+                                            <input type="time" id="horaFin" name="horaFin" class="form-control"
+                                                   value="{{$cita->horaFin}}" placeholder="00:00">
                                         </div>
                                         <!-- /.input group -->
                                     </div>
@@ -109,7 +122,8 @@
                                             <div class="input-group-addon">
                                                 <i class="fa fa-clock-o"></i>
                                             </div>
-                                            <input type="time" class="form-control" placeholder="00:00">
+                                            <input type="time" id="hora" name="hora" value="{{$cita->hora}}"
+                                                   class="form-control" placeholder="00:00">
                                         </div>
                                         <!-- /.input group -->
                                     </div>
@@ -132,13 +146,15 @@
                                 <div class="col-xs-6">
                                     <!-- Time 00:00 -->
                                     <div class="form-group">
-                                        <input class="form-control" id="InputNombre" placeholder="Nombre" type="text">
+                                        <input class="form-control" id="cliente" name="cliente"
+                                               value="{{$cita->cliente}}" placeholder="Nombre" type="text">
                                     </div>
                                 </div>
                                 <div class=" col-xs-6">
                                     <div class="form-group">
-                                        <textarea class="form-control" style="resize: vertical;" rows="3"
-                                                  placeholder="..."></textarea>
+                                        <textarea class="form-control" id="comentario" name="comentario"
+                                                  style="resize: vertical;" rows="3"
+                                                  placeholder="...">{{$cita->comentario}}</textarea>
                                     </div>
                                     <!-- /.form group -->
                                 </div>
@@ -154,67 +170,92 @@
                         <div class="col-md-12 col-xs-12" style="text-align: center;">
                             <div class="checkbox">
                                 <h4>
-                                    <input type="checkbox"> Aceptada
+                                    @if($cita->aceptada=='0')
+                                        <input id="aceptada" name="aceptada" type="checkbox"> Aceptada
+                                    @else
+                                        <input id="aceptada" checked="checked" name="aceptada" type="checkbox"> Aceptada
+                                    @endif
                                 </h4>
                             </div>
                         </div>
                     </div>
 
-                    <!--PRODUCTO-->
-                        <div class="row" style="margin-top: 30px; border-top: 1px solid #ededed; padding-top: 15px;">
 
-                            <div class="col-md-12 col-xs-12" style="text-align: center;padding-bottom: 7px;">
-                                <h4>Productos:</h4>
+                    <div class="row" style="margin-top: 30px; border-top: 1px solid #ededed; padding-top: 15px;">
+
+                        <div class="col-md-12 col-xs-12" style="text-align: center;padding-bottom: 7px;">
+                            <h4>Productos:</h4>
+                        </div>
+                        @foreach($productosTickets as $pticket)
+                        <div class="col-md-3 col-xs-12">
+                            <!-- Date dd/mm/yyyy -->
+                            <div class="form-group">
+                                <label>Nombre del producto:</label>
+
+                                <div class="input-group">
+
+                                    <h5>{{Producto::encontrarProducto($pticket)->nombre}}</h5>
                                 </div>
-
-                            <div class="col-md-4 col-xs-12" style="margin-left: 1%;">
-                                <!-- Date dd/mm/yyyy -->
-                                <div class="form-group">
-                                    <label>Nombre del producto:</label>
-
-                                    <div class="input-group">
-
-                                        <h5>Nombre</h5>
-                                    </div>
-                                    <!-- /.input group -->
-                                </div>
-                                <!-- /.form group -->
+                                <!-- /.input group -->
                             </div>
+                            <!-- /.form group -->
+                        </div>
                             <div class="col-md-2 col-xs-12">
                                 <div class="form-group">
-                                    <label>Cantidad:</label>
+                                    <label>Precio:</label>
+
                                     <div class="input-group">
-                                        <h5>Cantidad</h5>
+                                        <h5>{{Tools::precioConIva($pticket->precio,$pticket->iva).'€'}}</h5>
                                     </div>
                                     <!-- /.input group -->
                                 </div>
                             </div>
-                            <div class="col-md-3 col-xs-12">
-                                <div class="form-group">
-                                    <label>Oferta:</label>
-                                    <div class="input-group">
-                                        <h5>Descuento</h5>
-                                    </div>
-                                    <!-- /.input group -->
+                        <div class="col-md-2 col-xs-12">
+                            <div class="form-group">
+                                <label>Cantidad:</label>
+
+                                <div class="input-group">
+                                    <h5>{{$pticket->cantidad}}</h5>
                                 </div>
-                            </div>
-                            <div class="col-md-2 col-xs-12">
-                                <div class="form-group">
-                                    <label>Eliminar:</label>
-                                    <div class="input-group">
-                                        <a href="{{URL::asset('')}}">
-                                            <h4><i class="fa fa-trash text-red"></i></h4></a>
-                                    </div>
-                                    <!-- /.input group -->
-                                </div>
+                                <!-- /.input group -->
                             </div>
                         </div>
+                        <div class="col-md-2 col-xs-12">
+                            <div class="form-group">
+                                <label>Oferta:</label>
 
-                    <div class="row" style="margin-top: 30px; border-top: 1px solid #ededed; padding-top: 15px;text-align: center;">
+                                <div class="input-group">
+                                    @if(Oferta::encontrarOferta($pticket)!='')
+                                    <h5>{{Oferta::encontrarOferta($pticket)->nombre.''.Oferta::encontrarOferta($pticket)->porcentaje.'%'}}</h5>
+                                    @else
+                                        <h5>Ninguna</h5>
+                                    @endif
+                                </div>
+                                <!-- /.input group -->
+                            </div>
+                        </div>
+                        <div class="col-md-2 col-xs-12">
+                            <div class="form-group">
+                                <label>Eliminar:</label>
+                                <div class="input-group">
+                                    <a href="{{URL::asset('productoTicket/eliminar/'.$pticket->id)}}">
+                                        <h4><i class="fa fa-trash text-red"></i></h4></a>
+                                </div>
+                                <!-- /.input group -->
+                            </div>
+                        </div>
+                        @endforeach
+                    </div>
+
+
+
+
+                    <div class="row"
+                         style="margin-top: 30px; border-top: 1px solid #ededed; padding-top: 15px;text-align: center;">
                         <div class="form-group">
                             <h3>Total:</h3>
                             <br>
-                                <h4>Precio €</h4>
+                            <h4>{{$ticket->total}}€</h4>
 
                             <!-- /.input group -->
                         </div>
@@ -260,11 +301,10 @@
                     <div class="form-group">
                         <label>Producto</label>
                         <select class="form-control">
-                            <option>opción 1</option>
-                            <option>opción 2</option>
-                            <option>opción 3</option>
-                            <option>opción 4</option>
-                            <option>opción 5</option>
+                            @foreach($productos as $producto)
+                                <option value="{{$producto->id}}">
+                                    {{$producto->nombre.': '.$producto->codigo}}</option>
+                            @endforeach
                         </select>
                     </div>
                     <div class="form-group">
@@ -274,11 +314,11 @@
                     <div class="form-group">
                         <label>Ofertas</label>
                         <select class="form-control">
-                            <option>Ninguna</option>
-                            <option>opción 2</option>
-                            <option>opción 3</option>
-                            <option>opción 4</option>
-                            <option>opción 5</option>
+                            <option value="0">Ninguna</option>
+                            @foreach($ofertas as $oferta)
+                                <option value="{{$oferta->id}}">
+                                    {{$oferta->nombre.': '.$oferta->porcentaje.'%'}}</option>
+                            @endforeach
                         </select>
                     </div>
                 </div>
