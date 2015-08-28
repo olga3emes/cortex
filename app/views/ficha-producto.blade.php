@@ -23,6 +23,7 @@
         </div>
 
         <!-- /.box-body -->
+        @if(Administrador::esAdministrador())
         <div class="box-footer">
 
             <a type="button" class="btn btn-danger" data-toggle="modal"  href="" data-target="{{'#editar'.$producto->id}}">
@@ -119,6 +120,7 @@
 
 
         </div>
+        @endif
         <!-- /.box-body -->
     </div>
 

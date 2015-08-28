@@ -6,13 +6,17 @@
     <!-- Main content -->
     <section class="content">
         <div class="col-sm-7 col-md-9 col-xs-12">
-            <!-- Eventos Form -->
+
+
+
             <div class="box box-solid" style="margin-bottom: 5%;">
                 <div class="box-header with-border">
                     <h3 style="text-align: center; color: #AA1B30"><i class="fa fa-diamond"></i> Citas - Detalles</h3>
 
                 </div>
                 <!-- /.box-header -->
+
+                <form name="editarForm" id="editarForm"action="{{URL::asset('cita/editar/'.$cita->id)}}" method="POST">
                 <div class="box-body">
                     <div class="row">
                         <div class="col-md-4 col-xs-12">
@@ -48,9 +52,11 @@
                                 <label>Oferta Aplicable</label>
                                 <select id="oferta" name="oferta" class="form-control">
                                     @if(isset($ofertaActual))
-                                        <option value="{{$ofertaActual->id}}">{{$ofertaActual->porcentaje.': '.'%'}}</option>
-
+                                        <option value="{{$ofertaActual->id}}">{{$ofertaActual->nombre.': '.$ofertaActual->porcentaje.'%'}}</option>
+                                        <option value="0">
+                                            Ninguna</option>
                                         @foreach($ofertas as $oferta)
+
                                             <option value="{{$oferta->id}}">
                                                 {{$oferta->nombre.': '.$oferta->porcentaje.'%'}}</option>
                                         @endforeach
@@ -146,8 +152,7 @@
                                 <div class="col-xs-6">
                                     <!-- Time 00:00 -->
                                     <div class="form-group">
-                                        <input class="form-control" id="cliente" name="cliente"
-                                               value="{{$cita->cliente}}" placeholder="Nombre" type="text">
+                                       <p style="text-align: center">{{$cita->cliente}}</p>
                                     </div>
                                 </div>
                                 <div class=" col-xs-6">
@@ -187,7 +192,7 @@
                             <h4>Productos:</h4>
                         </div>
                         @foreach($productosTickets as $pticket)
-                        <div class="col-md-3 col-xs-12">
+                        <div class="col-md-4 col-xs-12">
                             <!-- Date dd/mm/yyyy -->
                             <div class="form-group">
                                 <label>Nombre del producto:</label>
@@ -200,7 +205,7 @@
                             </div>
                             <!-- /.form group -->
                         </div>
-                            <div class="col-md-2 col-xs-12">
+                            <div class="col-md-1 col-xs-12">
                                 <div class="form-group">
                                     <label>Precio:</label>
 
@@ -238,7 +243,7 @@
                             <div class="form-group">
                                 <label>Eliminar:</label>
                                 <div class="input-group">
-                                    <a href="{{URL::asset('productoTicket/eliminar/'.$pticket->id)}}">
+                                    <a href="{{URL::asset('cita/quitarProducto/'.$pticket->id)}}">
                                         <h4><i class="fa fa-trash text-red"></i></h4></a>
                                 </div>
                                 <!-- /.input group -->
@@ -253,9 +258,17 @@
                     <div class="row"
                          style="margin-top: 30px; border-top: 1px solid #ededed; padding-top: 15px;text-align: center;">
                         <div class="form-group">
-                            <h3>Total:</h3>
+                            <div class="col-md-6 col-xs-12">
+                                <h3>Total con IVA:</h3>
                             <br>
                             <h4>{{$ticket->total}}€</h4>
+                                </div>
+
+                            <div class="col-md-6 col-xs-12">
+                                <h3>Total sin IVA:</h3>
+                                <br>
+                                <h4>{{(Tools::precioQuitarIva($ticket->total,$ticket->iva))}}€</h4>
+                            </div>
 
                             <!-- /.input group -->
                         </div>
@@ -272,9 +285,9 @@
                                     <i class="fa fa-times"></i> Cancelar
                                 </a>
 
-                                <a type="submit" class="btn btn-labeled btn-success">
+                                <button type="submit" class="btn btn-labeled btn-success">
                                     <i class="fa fa-pencil-square"></i> Guardar
-                                </a>
+                                </button>
 
                                 <a type="button" class="btn btn-labeled btn-danger">
                                     <i class="fa fa-trash"></i> Eliminar
@@ -284,13 +297,15 @@
                         </div>
                     </div>
                 </div>
+                </form>
             </div>
+
             <!-- /.box -->
 
             <!-- END Tabla Servicios -->
         </div>
 
-
+        <form name="productoAdd" id="productoAdd" action="{{URL::asset('cita/añadirProducto/'.$cita->id)}}" method="POST">
         <div class="col-sm-5 col-md-3 col-xs-12">
             <div class="box box-solid">
                 <div class="box-header with-border">
@@ -300,7 +315,7 @@
                 <div class="box-body">
                     <div class="form-group">
                         <label>Producto</label>
-                        <select class="form-control">
+                        <select id="producto" name="producto" class="form-control">
                             @foreach($productos as $producto)
                                 <option value="{{$producto->id}}">
                                     {{$producto->nombre.': '.$producto->codigo}}</option>
@@ -309,11 +324,11 @@
                     </div>
                     <div class="form-group">
                         <label>Cantidad</label>
-                        <input class="form-control" id="InputNombre" placeholder="Cantidad" type="number">
+                        <input class="form-control" required id="cantidad" name="cantidad" placeholder="Cantidad" type="number">
                     </div>
                     <div class="form-group">
                         <label>Ofertas</label>
-                        <select class="form-control">
+                        <select id="oferta" name="oferta" class="form-control">
                             <option value="0">Ninguna</option>
                             @foreach($ofertas as $oferta)
                                 <option value="{{$oferta->id}}">
@@ -344,6 +359,7 @@
                 </div>
             </div>
         </div>
+            </form>
     </section>
     <!-- /.content -->
 

@@ -178,4 +178,6 @@ class Producto extends Eloquent{
 
     }
 
+
+
 }

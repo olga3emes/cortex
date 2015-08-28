@@ -28,6 +28,19 @@
     @if(Cliente::esCliente())
         <section class="content">
             <div class="col-md-12">
+                <div class="box box-solid" style="margin-top: 1%;">
+                    <div class="box-header with-border">
+                        <h3 style="color:#AA1B30;text-align: center"><i class="fa fa-shopping-cart"></i> Catálogo de productos</h3>
+                    </div>
+
+                    <div class="box-body">
+                        <p style="text-align: center"> Todo el catálogo de productos estará disponible en nuestra tienda.</p>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="col-md-12">
                 @foreach($productos as $producto)
                     @if($producto->publicado == 1)
                         <div class="col-sm-4 col-md-3 col-xs-12">

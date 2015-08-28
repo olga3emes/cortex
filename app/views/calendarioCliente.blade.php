@@ -12,7 +12,7 @@
             <div class="col-md-12">
                 <div class="box box-solid" style="margin-top: 1%;">
                     <div class="box-header with-border">
-                        <h3 class="box-title"><i class="fa fa-calendar"> Horario de apertura</i></h3>
+                        <h4 style="color:#000000;text-align: center"><i class="fa fa-calendar"></i> Horario de apertura</h4>
                     </div>
                     <table class="table table-bordered table-hover table-responsive" style="text-align: center;">
                         <tr >
@@ -51,7 +51,7 @@
         <!-- Main content -->
         <section class="content">
             <div class="row">
-                <div class="col-md-4">
+                <div class="col-md-5">
 
                     <div class="box box-primary">
                         <div class="box-header with-border">
@@ -70,7 +70,7 @@
                                     <div class="input-group-addon">
                                         <i class="fa fa-calendar"></i>
                                     </div>
-                                    <input type="date" required id="fecha" name="fecha" class="form-control" placeholder="dd/mm/aaaa"/>
+                                    <input type="date" min="{{date('Y-m-d')}}" required id="fecha" name="fecha" class="form-control" placeholder="dd/mm/aaaa"/>
 
 
                                 </div>
@@ -118,10 +118,9 @@
                         <!-- /.box-body -->
                     </div>
                     <!-- /. box -->
-                <div class="col-md-1">
-                </div>
 
-                <div class="col-md-6">
+
+                <div class="col-md-7">
                     <div class="box box-primary">
                         <div class="box-header with-border">
                             <h4 style="color:#AA1B30;text-align: center"><i class="fa fa-calendar"></i> Consulta nuestra disponibilidad</h4>
@@ -143,8 +142,7 @@
     </div>
     <!-- /.content-wrapper -->
 
-    <div class="col-md-1">
-    </div>
+
 
 
     @include('footer')

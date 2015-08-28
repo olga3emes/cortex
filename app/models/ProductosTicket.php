@@ -10,7 +10,7 @@ class ProductosTicket extends Eloquent{
 
     protected $table = 'productosTickets';
 
-    protected $fillable = array('id','cantidad','precio','iva');
+    protected $fillable = array('id','cantidad','precio','iva', 'idTicket','idOferta','idProducto');
 
     //Inicio: Relaciones
 
@@ -20,6 +20,10 @@ class ProductosTicket extends Eloquent{
 
     public function ticket(){
         return $this->hasOne('Ticket', 'idTicket', 'id');
+    }
+
+    public function oferta(){
+        return $this->hasOne('Oferta', 'idOferta', 'id');
     }
 
     //Fin: Relaciones

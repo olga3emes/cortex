@@ -27,4 +27,36 @@ class EventoController extends BaseController{
 
         return View::make('modEventos')->with(['evento' => $evento])->render();
     }
+
+    public function clienteDetalles($id)
+    {
+
+        $evento = Evento::find($id);
+
+        return View::make('detallesEvento')->with(['evento' => $evento])->render();
+    }
+
+    public function editar($id)
+    {
+        $respuesta = Evento::editar($id,Input::all());
+
+        if ($respuesta['error'] == true) {
+            return Redirect::back()->withErrors($respuesta['mensaje'])->withInput();
+        }
+        else {
+            return Redirect::to('administrador/calendario')->with('mensaje', $respuesta['mensaje']);
+        }
+    }
+
+    public function eliminar($id)
+    {
+        $respuesta = Evento::eliminar($id);
+
+        if ($respuesta['error'] == true) {
+            return Redirect::back()->withErrors($respuesta['mensaje'])->withInput();
+        }
+        else {
+            return Redirect::to('administrador/calendario')->with('mensaje', $respuesta['mensaje']);
+        }
+    }
 }

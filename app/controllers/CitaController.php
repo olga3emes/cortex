@@ -141,5 +141,27 @@ class CitaController extends BaseController
         }
     }
 
+    public function añadirProducto($id)
+    {
+        $respuesta = Cita::añadirProducto($id,Input::all());
+
+        if ($respuesta['error'] == true) {
+            return Redirect::back()->withErrors($respuesta['mensaje'])->withInput();
+        } else {
+            return Redirect::back()->with('mensaje', $respuesta['mensaje']);
+        }
+    }
+
+    public function quitarProducto($id)
+    {
+        $respuesta = Cita::quitarProducto($id);
+
+        if ($respuesta['error'] == true) {
+            return Redirect::back()->withErrors($respuesta['mensaje'])->withInput();
+        } else {
+            return Redirect::back()->with('mensaje', $respuesta['mensaje']);
+        }
+    }
+
 
 }

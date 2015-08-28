@@ -96,13 +96,13 @@ Route::filter('administrador', function () {
     if (!Administrador::esAdministrador())
 
 
-    return Response::view('401', array(), 401);
+        return Response::view('401', array(), 401);
 });
 
 Route::filter('cliente', function () {
     if (!Cliente::esCliente())
 
-    return Response::view('401', array(), 401);
+        return Response::view('401', array(), 401);
 });
 
 
@@ -124,12 +124,6 @@ Route::group(array('before' => 'auth'), function () {
 
         //RUTAS DEL CLIENTE__________________________________________________________
 
-
-        Route::get('cliente/tickets', function () {
-
-            return View::make('tickets');
-
-        });
 
         Route::get('cliente/servicios', 'ServicioController@servicios');
 
@@ -153,16 +147,16 @@ Route::group(array('before' => 'auth'), function () {
         Route::get('cliente/calendario', 'CitaController@citasEventosyServicios');
 
 
-        Route::get('cliente/calendario2', function () {
-
-            return View::make('calendario');
-
-        });
-
         Route::post('cita/clienteCrear', 'CitaController@clienteCrear');
         Route::post('cita/clienteEditar/{id}', 'CitaController@clienteEditar');
         Route::get('cita/clienteEliminar/{id}', 'CitaController@clienteEliminar');
         Route::get('cita/clienteDetalles/{id}', 'CitaController@clienteDetalles');
+
+        //FIN RUTAS CITAS
+
+        //RUTAS EVENTOS
+
+        Route::get('evento/clienteDetalles/{id}', 'EventoController@clienteDetalles');
 
 
     });//FIN FILTRO CLIENTE
@@ -171,27 +165,12 @@ Route::group(array('before' => 'auth'), function () {
         //RUTAS DEL ADMINISTRADOR___________________________________________________________
 
 
-
         Route::get('administrador/clientes', 'ClienteController@clientes');
 
         Route::post('administrador/actualizarFicha/{id}', 'ClienteController@actualizarFicha');
 
-        Route::get('administrador/eventos', function () {
-
-            return View::make('modCitas');
-
-        });
-
-
-
 
         Route::get('administrador/servicios', 'ServicioController@servicios');
-
-        Route::get('administrador/tickets', function () {
-
-            return View::make('tickets');
-
-        });
 
 
         //RUTAS PERFIL ADMIN
@@ -244,14 +223,12 @@ Route::group(array('before' => 'auth'), function () {
         Route::get('administrador/citas', 'CitaController@citasPendientes');
 
         Route::post('cita/administradorCrear', 'CitaController@administradorCrear');
-        Route::post('cita/administradorEditar/{id}', 'CitaController@administradorEditar');
+        Route::post('cita/editar/{id}', 'CitaController@editar');
+        Route::post('cita/añadirProducto/{id}', 'CitaController@añadirProducto');
+        Route::get('cita/quitarProducto/{id}', 'CitaController@quitarProducto');
+
         Route::get('cita/administradorEliminar/{id}', 'CitaController@administradorEliminar');
         Route::get('cita/administradorDetalles/{id}', 'CitaController@administradorDetalles');
-
-        Route::get('productoTicket/eliminar/{id}', 'ProductosTicketController@eliminar');
-
-
-
 
 
         //FIN RUTAS CITAS
@@ -259,9 +236,17 @@ Route::group(array('before' => 'auth'), function () {
         //RUTAS EVENTOS
 
         Route::post('evento/crear', 'EventoController@crear');
+        Route::post('evento/editar/{id}', 'EventoController@editar');
         Route::get('evento/detalles/{id}', 'EventoController@administradorDetalles');
+        Route::get('evento/eliminar/{id}', 'EventoController@eliminar');
 
         //FIN RUTAS EVENTOS
+
+        //RUTAS PRODUCTOSTICKET
+
+        Route::get('productoTicket/eliminar/{id}', 'ProductosTicketController@eliminar');
+
+        //FIN RUTAS PRODUCTOSTICKET
 
     });
 

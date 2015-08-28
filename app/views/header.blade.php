@@ -158,7 +158,7 @@
 
                         <li>
                             <a href="{{URL::asset('cliente/calendario')}}">
-                                <i class="fa fa-calendar"></i> <span>Calendario de Citas</span>
+                                <i class="fa fa-calendar"></i> <span>Coger Cita</span>
                             </a>
                         </li>
 
@@ -180,12 +180,6 @@
                             </a>
                         </li>
 
-
-                        <li>
-                            <a href="{{URL::asset('cliente/tickets')}}">
-                                <i class="fa fa-ticket"></i> <span>Mis Tickets</span>
-                            </a>
-                        </li>
 
                         <li>
                             <a href="{{URL::asset('cliente/productos')}}">
@@ -223,11 +217,6 @@
                     <li>
                         <a href="{{URL::asset('administrador/servicios')}}">
                             <i class="fa fa-scissors"></i> <span>Servicios</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="{{URL::asset('administrador/eventos')}}">
-                            <i class="fa fa-diamond"></i> <span>Eventos</span>
                         </a>
                     </li>
                     <li>

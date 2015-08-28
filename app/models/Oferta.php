@@ -18,6 +18,9 @@ class Oferta extends Eloquent{
     public function cita(){
         return $this->belongsTo('Cita', 'idOferta', 'id');
     }
+    public function productosTicket(){
+        return $this->belongsTo('ProductosTicket', 'idOferta', 'id');
+    }
     //Fin: Relaciones
 
 

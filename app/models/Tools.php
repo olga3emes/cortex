@@ -86,13 +86,18 @@ class Tools {
     public static function precioConIva($precio,$iva) {
         $porcentaje=(100+$iva)/100;
         $precioTotal= $precio*$porcentaje;
-        return $precioTotal;
+        return round($precioTotal,2);
+    }
+
+    public static function precioQuitarIva($precio,$iva) {
+        $quita=1+($iva/100);
+        return round($precio/$quita);
     }
 
     public static function aplicaOferta($precio,$descuento) {
         $porcentaje=($descuento)/100;
         $precioTotal= $precio - ($precio*$porcentaje);
-        return $precioTotal;
+        return round($precioTotal,2);
     }
 
 

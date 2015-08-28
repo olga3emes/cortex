@@ -154,7 +154,7 @@
                                 <label>Nombre del evento</label>
                                 <!-- Time 00:00 -->
                                 <div class="input-group">
-                                    <input class="form-control" id="nombre" name="nombre" placeholder="Nombre" type="text">
+                                    <input class="form-control" id="nombre" required name="nombre" placeholder="Nombre" type="text">
                                     <!-- /.input group -->
                                 </div>
                                 <!-- /.form group -->
@@ -167,7 +167,7 @@
                                 <div class="input-group-addon">
                                     <i class="fa fa-calendar"></i>
                                 </div>
-                                <input min='{{date('Y-m-d')}}' type="date" id="fecha" name="fecha" class="form-control"  placeholder="dd/mm/aaaa"/>
+                                <input min='{{date('Y-m-d')}}' required type="date" id="fecha" name="fecha" class="form-control"  placeholder="dd/mm/aaaa"/>
                             </div>
                             <label style="margin-bottom: 5%;">Hora</label>
 
@@ -177,7 +177,7 @@
                                         <label>Desde:</label>
 
                                         <div class="input-group">
-                                            <input type="time" placeholder="0:00" id="horaInicio" name="horaInicio"class="form-control timepicker"/>
+                                            <input type="time" placeholder="0:00" required id="horaInicio" name="horaInicio"class="form-control timepicker"/>
 
                                             <div class="input-group-addon">
                                                 <i class="fa fa-clock-o"></i>
@@ -193,7 +193,7 @@
                                             <label>Hasta:</label>
 
                                             <div class="input-group">
-                                                <input type="time" placeholder="0:00" id="horaFin" name="horaFin"class="form-control timepicker"/>
+                                                <input type="time" placeholder="0:00" required id="horaFin" name="horaFin"class="form-control timepicker"/>
 
                                                 <div class="input-group-addon">
                                                     <i class="fa fa-clock-o"></i>

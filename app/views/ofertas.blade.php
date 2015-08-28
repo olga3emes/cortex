@@ -7,7 +7,10 @@
          @if(Administrador::esAdministrador())
              <div class="col-sm-7 col-md-9 col-xs-12">
                  @else
-                     <div class="col-sm-7 col-md-12 col-xs-12">
+
+                     <div class="col-sm-7 col-md-2 col-xs-12">
+                     </div>
+                     <div class="col-sm-7 col-md-8 col-xs-12">
                          @endif
             <!-- Tabla Ofertas -->
             <div class="box box-solid">
