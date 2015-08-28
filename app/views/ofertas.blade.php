@@ -59,7 +59,7 @@
                                                     </div>
                                                     <div class="form-group">
                                                         <label for="InputPrecio">Fecha de Fin de la oferta</label>
-                                                        <input class="form-control" id="fechaFin"  name="fechaFin" placeholder="dd/mm/yyyy" value="{{$oferta->fechaFin}}"  type="date">
+                                                        <input class="form-control" id="fechaFin"  name="fechaFin" placeholder="dia-mes-20XX" value="{{$oferta->fechaFin}}"  type="date">
                                                     </div>
                                                 </div>
                                                 <div class="modal-footer">
@@ -110,7 +110,7 @@
                     </div>
                     <div class="form-group">
                         <label for="InputPrecio">Fecha de Fin de la oferta</label>
-                        <input class="form-control"name="fechaFin" id="fechaFin"  placeholder="dd/mm/yyyy" type="date">
+                        <input class="form-control"name="fechaFin" id="fechaFin"  placeholder="dia-mes-20XX" type="date">
                     </div>
                 </div>
                 <div class="box-footer">

@@ -234,11 +234,6 @@
                             <i class="fa fa-picture-o"></i> <span>Modificar Galería</span>
                         </a>
                     </li>
-                    <li>
-                        <a href="{{URL::asset('administrador/tickets')}}">
-                            <i class="fa fa-ticket"></i> <span>Mis Tickets</span>
-                        </a>
-                    </li>
 
                         @endif
                 </ul>

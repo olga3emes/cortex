@@ -34,7 +34,7 @@
                             <td>{{Tools::formatearFechaVacia($proxCita->fecha)}}</td>
                             <td>{{Tools::formatearHora($proxCita->hora)}}</td>
                             <td>{{$proxCita->cliente}}</td>
-                            <td><a href="{{URL::asset('cita/detalles/')}}">
+                            <td><a href="{{URL::asset('cita/administradorDetalles/'.$proxCita->id)}}">
                                     <i class="fa fa-diamond text-green"></i></a></td>
                         </tr>
                         @endforeach
@@ -80,7 +80,7 @@
                                 <td>{{Tools::formatearFechaVacia($cita->fecha)}}</td>
                                 <td>Sin determinar</td>
                                 <td>{{$cita->cliente}}</td>
-                                <td><a href="{{URL::asset('cita/detalles/')}}">
+                                <td><a href="{{URL::asset('cita/administradorDetalles/'.$cita->id)}}">
                                         <i class="fa fa-diamond text-red"></i></a></td>
                             </tr>
                         @endforeach

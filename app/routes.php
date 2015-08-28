@@ -25,7 +25,7 @@ Route::get('inicio', function () {
 
 Route::get('ticket', function () {
 
-    return View::make('ticket');
+    return View::make('ticketFactura');
 
 });
 

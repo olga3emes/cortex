@@ -29,5 +29,22 @@ class ProductosTicket extends Eloquent{
     //Fin: Relaciones
 
 
+    public static function eliminar($id){
+
+        $respuesta = array();
+
+        $productosTicket = ProductosTicket::find($id);
+        $productosTicket->delete();
+
+        //Mensajes de exito
+        $respuesta['mensaje'] = '';
+        $respuesta['error'] = null;
+        $respuesta['data'] = $productosTicket;
+
+        return $respuesta;
+
+    }
+
+
 }
 

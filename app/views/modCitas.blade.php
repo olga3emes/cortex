@@ -289,7 +289,7 @@
                                     <i class="fa fa-pencil-square"></i> Guardar
                                 </button>
 
-                                <a type="button" class="btn btn-labeled btn-danger">
+                                <a type="button" href="{{URL::asset('cita/administradorEliminar/'.$cita->id)}}" class="btn btn-labeled btn-danger">
                                     <i class="fa fa-trash"></i> Eliminar
                                 </a>
                             </div>

@@ -130,15 +130,36 @@ class CitaController extends BaseController
         }
     }
 
-    public function eliminar($id)
+    public function AdministradorEliminar($id)
     {
         $respuesta = Cita::eliminar($id);
 
         if ($respuesta['error'] == true) {
             return Redirect::back()->withErrors($respuesta['mensaje'])->withInput();
         } else {
-            return Redirect::to('cliente/ofertas')->with('mensaje', $respuesta['mensaje']);
+            return Redirect::to('administrador/calendario')->with('mensaje', $respuesta['mensaje']);
         }
+    }
+
+    public function clienteEliminar($id)
+    {
+        $cita = Cita::find($id);
+        $idUsuario = Auth::getUser()->id;
+        $cliente = DB::table('clientes')->where('idUsuario', '=', $idUsuario)->first();
+        $idC = $cliente->id;
+        if ($cita->idCliente == $idC) {
+            $respuesta = Cita::eliminarCliente($id);
+
+            if ($respuesta['error'] == true) {
+                return Redirect::back()->withErrors($respuesta['mensaje'])->withInput();
+            } else {
+                return Redirect::to('cliente/citas')->with('mensaje', $respuesta['mensaje']);
+            }
+        }else{
+
+            return Redirect::to('401');
+        }
+
     }
 
     public function añadirProducto($id)

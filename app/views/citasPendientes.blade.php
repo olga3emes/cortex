@@ -79,7 +79,7 @@
                                 <td>Pendiente</td>
                                 <td><a href="{{URL::asset('cita/clienteDetalles/'.$cita->id)}}">
                                         <i class="fa fa-diamond text-red"></i></a></td>
-                                <td><a href="{{URL::asset('cliente/citaEliminar/'.$cita->id)}}">
+                                <td><a href="{{URL::asset('cita/clienteEliminar/'.$cita->id)}}">
                                         <i class="fa fa-trash text-red"></i></a></td>
                             </tr>
                         @endforeach

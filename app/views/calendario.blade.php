@@ -30,7 +30,7 @@
                                     <div class="input-group-addon">
                                         <i class="fa fa-calendar"></i>
                                     </div>
-                                    <input type="date" min="{{date('Y-m-d')}}"required id="fecha" name="fecha" class="form-control" placeholder="dd/mm/yyyy"/>
+                                    <input type="date" min="{{date('Y-m-d')}}"required id="fecha" name="fecha" class="form-control" placeholder="dia-mes-20XX"/>
                                 </div>
                                 <!-- /.input group -->
                             </div>

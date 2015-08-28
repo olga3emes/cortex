@@ -168,12 +168,24 @@
                                             <div>Ir a mi panel</div>
                                         </a>
                                     </li>
+
+                                    <li>
+                                        <a href="{{URL::asset('logout')}}">
+                                            <div>Cerrar Sesión</div>
+                                        </a>
+                                    </li>
                                 @else
                                 <li>
                                     <a href="{{URL::asset('administrador/calendario')}}">
                                         <div>Ir a mi panel</div>
                                     </a>
                                 </li>
+
+                                    <li>
+                                        <a href="{{URL::asset('logout')}}">
+                                            <div>Cerrar Sesión</div>
+                                        </a>
+                                    </li>
 
                                 @endif
                             @else

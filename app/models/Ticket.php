@@ -25,4 +25,22 @@ class Ticket extends Eloquent{
 
     //Fin: Relaciones
 
+    public static function eliminar($id){
+
+        $respuesta = array();
+
+        $ticket = Ticket::find($id);
+        $ticket->delete();
+
+        //Mensajes de exito
+        $respuesta['mensaje'] = 'Ticket Eliminado';
+        $respuesta['error'] = null;
+        $respuesta['data'] = $ticket;
+
+        return $respuesta;
+
+    }
+
+
+
 }
