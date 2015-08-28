@@ -49,7 +49,7 @@
                     <div class="col-md-12 col-xs-12" style="text-align: center">
                         <div class="form-group">
                             <h4>Comentarios:</h4>
-                            <p>{{$cita->comentarios}}</p>
+                            <p>{{$cita->comentario}}</p>
                         </div>
                     </div>
                     <!-- /.form group -->

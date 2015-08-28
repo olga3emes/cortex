@@ -355,7 +355,7 @@
                     </div>
                 </div>
                 <div class="box-footer">
-                    <button type="submit" class="btn btn-primary pull-right">Generar</button>
+                    <a type="button" href="{{URL::asset('ticketFactura/'.$cita->id)}}" class="btn btn-primary pull-right">Generar</a>
                 </div>
             </div>
         </div>

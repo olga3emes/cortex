@@ -89,15 +89,19 @@ class Cliente extends Eloquent
     {
         $respuesta = array();
 
-        $reglas = array(
-            'email' => array('required', 'email', 'max:100'),
-            'username' => array('required', 'min:3', 'max:100'),
-            'nombre' => array('required', 'min:3', 'max:100'),
-            'apellidos' => array('required', 'min:3', 'max:100'),
-            'telefono' => array('required', 'min:9', 'max:12'),
-        );
+
+            $reglas = array(
+                'email' => array('required', 'email'),
+                'username' => array('required', 'min:3', 'max:100'),
+                'nombre' => array('required', 'min:3', 'max:100'),
+                'apellidos' => array('required', 'min:3', 'max:100'),
+                'telefono' => array('required', 'min:9', 'max:12'),
+            );
+
+
 
         $validator = Validator::make($input, $reglas);
+
 
         if ($validator->fails()) {
             $respuesta['mensaje'] = $validator;

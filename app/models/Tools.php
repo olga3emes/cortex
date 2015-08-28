@@ -15,7 +15,7 @@ class Tools {
         if ($fecha == '0000-00-00')
             $fecha = 'Sin determinar';
         else
-            $fecha = date("m-d-Y", strtotime($fecha));
+            $fecha = date("d-m-Y", strtotime($fecha));
         return $fecha;
     }
 

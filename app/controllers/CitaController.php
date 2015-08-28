@@ -103,7 +103,7 @@ class CitaController extends BaseController
         if ($respuesta['error'] == true) {
             return Redirect::back()->withErrors($respuesta['mensaje'])->withInput();
         } else {
-            return Redirect::back()->with('mensaje', $respuesta['mensaje']);
+            return Redirect::to('cliente/citas')->with('mensaje', $respuesta['mensaje']);
         }
     }
 
@@ -182,6 +182,32 @@ class CitaController extends BaseController
         } else {
             return Redirect::back()->with('mensaje', $respuesta['mensaje']);
         }
+    }
+
+
+    public function ticketFactura($id)
+    {
+
+        $cita = Cita::find($id);
+        $servicioActual = Servicio::find($cita->idServicio);
+        $ofertaActual = Oferta::find($cita->idOferta);
+        $ticket = Ticket::find($cita->idTicket);
+
+
+        $servicios = Servicio::all();
+        $ofertas = Oferta::all();
+        $productos = Producto::all();
+
+        $productosTickets = DB::table('productosTickets')->where('idTicket', "=", $ticket->id)->get();
+
+
+
+        return View::make('ticketFactura')->with(['cita' => $cita, 'ticket' => $ticket,
+            'servicioActual'=>$servicioActual, 'ofertaActual'=>$ofertaActual,
+            'productosTickets'=>$productosTickets,
+            'servicios' => $servicios, 'ofertas' => $ofertas, 'productos' => $productos])->render();
+
+
     }
 
 

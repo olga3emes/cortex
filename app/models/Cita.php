@@ -307,6 +307,13 @@ class Cita extends Eloquent
 
         if ($productosTickets != "") {
             foreach ($productosTickets as $pticket) {
+
+                $producto=Producto::find($pticket->idProducto);
+
+                $producto->cantidadActual=($producto->cantidadActual+$pticket->cantidad);
+
+                $producto->save();
+
                 ProductosTicket::eliminar($pticket->id);
             }
         }
@@ -344,6 +351,13 @@ class Cita extends Eloquent
 
         if ($productosTickets != "") {
             foreach ($productosTickets as $pticket) {
+
+                $producto=Producto::find($pticket->idProducto);
+
+                $producto->cantidadActual=($producto->cantidadActual+$pticket->cantidad);
+
+                $producto->save();
+
                 $pticket->delete();
             }
         }
@@ -394,6 +408,8 @@ class Cita extends Eloquent
 
             $pticket->idProducto = $_POST['producto'];
 
+
+
             //Cantidad
 
             $pticket->cantidad = $input['cantidad'];
@@ -431,9 +447,15 @@ class Cita extends Eloquent
 
                 $pticket->save();
 
+                $producto=Producto::find($pticket->idProducto);
+
+                $producto->cantidadActual=($producto->cantidadActual-$pticket->cantidad);
+
                 $ticket->total = $ticket->total + (Tools::precioConIva($pticket->precio * $pticket->cantidad, $pticket->iva));
 
                 $ticket->save();
+
+                $producto->save();
 
                 $respuesta['mensaje'] = 'Producto añadido';
                 $respuesta['error'] = false;
@@ -480,7 +502,14 @@ class Cita extends Eloquent
 
             $ticket->save();
 
+            $producto=Producto::find($pticket->idProducto);
+
+            $producto->cantidadActual=($producto->cantidadActual+$pticket->cantidad);
+
+            $producto->save();
+
             $pticket->delete();
+
 
             $respuesta['mensaje'] = 'Producto quitado';
             $respuesta['error'] = false;

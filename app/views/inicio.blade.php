@@ -326,7 +326,7 @@
 
                         <strong style="color: #AA1B30;">Teléfono:</strong> +34 955 677 264
                         <br>
-                        <strong style="color: #AA1B30;">Email:</strong> peluqueriacortex@gmail.com
+                        <strong style="color: #AA1B30;">Email:</strong> infopeluqueriacortex@gmail.com
                     </div>
                 </div>
             </div>

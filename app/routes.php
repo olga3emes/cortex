@@ -248,6 +248,8 @@ Route::group(array('before' => 'auth'), function () {
 
         //FIN RUTAS PRODUCTOSTICKET
 
+        Route::get('ticketFactura/{id}', 'CitaController@ticketFactura');
+
     });
 
 
