@@ -240,9 +240,17 @@
                                 </div>
                             </div>
                                 </form>
+
+                            @if(Cliente::esCliente())
+                                <div class="col-md-12">
+                                    <p>Si desea darse de baja en el sistema, por favor póngase en contacto con: <strong>infopeluqueriacortex@gmail.com</strong> y tramitaremos su petición lo más rápido posible. Gracias.</p>
+                                </div>
+                            @endif
                         </div>
                         @endif
                     @endif
+
+
                 </div>
             </div>
         </div>

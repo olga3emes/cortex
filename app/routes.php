@@ -166,6 +166,7 @@ Route::group(array('before' => 'auth'), function () {
 
 
         Route::get('administrador/clientes', 'ClienteController@clientes');
+        Route::get('cliente/eliminar/{id}', 'ClienteController@eliminar');
 
         Route::post('administrador/actualizarFicha/{id}', 'ClienteController@actualizarFicha');
 

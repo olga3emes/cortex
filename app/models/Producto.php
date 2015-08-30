@@ -37,7 +37,7 @@ class Producto extends Eloquent{
         $respuesta = array();
 
         $reglas = array(
-            'nombre' => array('required', 'min:3', 'max:45'),
+            'nombre' => array('required', 'min:3', 'max:100'),
             'cantidadActual' => array('required', 'min:0', 'max:999'),
             'cantidadMinima' => array('required', 'min:0', 'max:999'),
             'precio' => array('required', 'min:0', 'max:99999'),
@@ -170,7 +170,7 @@ class Producto extends Eloquent{
         Imagen::eliminar($producto->idImagen);
 
         //Mensajes de exito
-        $respuesta['mensaje'] = 'oferta Eliminado';
+        $respuesta['mensaje'] = 'Producto Eliminado';
         $respuesta['error'] = null;
         $respuesta['data'] = $producto;
 

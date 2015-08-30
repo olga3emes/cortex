@@ -21,6 +21,7 @@
                             <th>Teléfono</th>
                             <th class="no-sorting" width="60">Ficha</th>
                             <th class="no-sorting" width="60">Ver foto</th>
+                            <th class="no-sorting" width="60">Eliminar</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -97,7 +98,10 @@
                                     </div>
                                 </div>
                                 <!-- END Modal Foto -->
+                                <td><a href="{{URL::asset('cliente/eliminar/'.$cliente->id)}}">
+                                        <i class="fa fa-trash text-red"></i></a></td>
                             </tr>
+
                         @endforeach
                         </tbody>
                     </table>

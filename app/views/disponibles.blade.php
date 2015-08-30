@@ -84,11 +84,11 @@
                     </div>
                     <div class="form-group">
                         <label for="InputCantidadAct">Cantidad Actual</label>
-                        <input class="form-control" id="cantidadActual" name="cantidadActual" placeholder="Cantidad Actual" type="number">
+                        <input class="form-control" id="cantidadActual" name="cantidadActual" placeholder="Cantidad Actual" step="any" type="number">
                     </div>
                     <div class="form-group">
                         <label for="InputCantidadMin">Cantidad Mínima</label>
-                        <input class="form-control" id="cantidadMinima" name="cantidadMinima" placeholder="Cantidad Mínima" type="number">
+                        <input class="form-control" id="cantidadMinima" name="cantidadMinima" placeholder="Cantidad Mínima" step="any" type="number">
                     </div>
                     <div class="form-group">
                         <label>Descripción</label>

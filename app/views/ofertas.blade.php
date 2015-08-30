@@ -55,7 +55,7 @@
                                                     </div>
                                                     <div class="form-group">
                                                         <label for="InputDescuento">Descuento</label>
-                                                        <input class="form-control" id="porcentaje" required name="porcentaje" value="{{$oferta->porcentaje}}" placeholder="%" type="number">
+                                                        <input class="form-control" id="porcentaje" required name="porcentaje" value="{{$oferta->porcentaje}}" placeholder="%" step="any" type="number">
                                                     </div>
                                                     <div class="form-group">
                                                         <label for="InputPrecio">Fecha de Fin de la oferta</label>
@@ -106,7 +106,7 @@
                     </div>
                     <div class="form-group">
                         <label for="InputDescuento">Descuento</label>
-                        <input class="form-control" name="porcentaje" required id="porcentaje" placeholder="%" type="number">
+                        <input class="form-control" name="porcentaje" required id="porcentaje" placeholder="%" step="any" type="number">
                     </div>
                     <div class="form-group">
                         <label for="InputPrecio">Fecha de Fin de la oferta</label>

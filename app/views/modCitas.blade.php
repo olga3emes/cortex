@@ -324,7 +324,7 @@
                     </div>
                     <div class="form-group">
                         <label>Cantidad</label>
-                        <input class="form-control" required id="cantidad" name="cantidad" placeholder="Cantidad" type="number">
+                        <input class="form-control" required id="cantidad" name="cantidad" placeholder="Cantidad" step="any" type="number">
                     </div>
                     <div class="form-group">
                         <label>Ofertas</label>

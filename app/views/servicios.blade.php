@@ -56,7 +56,7 @@
                                                     </div>
                                                     <div class="form-group">
                                                         <label for="InputPrecio">Precio sin IVA</label>
-                                                        <input class="form-control" id="precio" name="precio" placeholder="Precio" value="{{$servicio->precio}}" type="text">
+                                                        <input class="form-control" id="precio" name="precio" placeholder="Precio" value="{{$servicio->precio}}" step="any" type="number">
                                                     </div>
                                                 </div>
                                                 <div class="modal-footer">
@@ -105,7 +105,7 @@
                     </div>
                     <div class="form-group">
                         <label for="InputPrecio">Precio</label>
-                        <input class="form-control" required name="precio"id="precio" placeholder="Precio" type="text">
+                        <input class="form-control" required name="precio"id="precio" placeholder="Precio" step="any"type="number">
                     </div>
                 </div>
                 <div class="box-footer">
@@ -117,6 +117,7 @@
 
         </div>
         </form>
+
 
     </section>
     <!-- /.content -->

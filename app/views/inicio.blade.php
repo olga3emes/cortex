@@ -125,6 +125,8 @@
             <p>La pasión que ponemos en todo lo relacionado con el mundo de la peluquería y las tendencias, se refleja en cada uno de los trabajos que realizamos en nuestro salón.</p>
 
             <p>Consideramos que cada cliente es único, y por tanto merece un trato personalizado, asesorándole siempre sobre las mejores opciones respecto a su estilo, facciones y personalidad,así como teniendo en cuenta sus preferencias y gustos,  para así,  con todo ello, obtener unos resultados óptimos y vanguardistas.</p>
+
+            <p>Es por eso que Corte'x cumple 10 años y queremos celebrándolo ofreciéndole a nuestros clientes nuestros servicios a través de las nuevas tecnologías.</p>
         </div>
     </div>
 
@@ -181,16 +183,16 @@
                         </thead>
                         <tbody>
                         <tr>
-                            <td>Todos los jueves lavar y peinar</td>
-                            <td>15% más barato</td>
+                            <td>Todos los jueves nuestros peinados</td>
+                            <td>15% más baratos</td>
                         </tr>
                         <tr>
-                            <td>Lorem Ipsum</td>
-                            <td>17€</td>
+                            <td>Los lunes del tinte: </td>
+                            <td>10% más baratos todos los tintes</td>
                         </tr>
                         <tr>
-                            <td>Lorem Ipsum</td>
-                            <td>17€</td>
+                            <td>El 25 de cada mes</td>
+                            <td>25% en productos de pelquería profesional</td>
                         </tr>
                         </tbody>
                     </table>
@@ -207,50 +209,39 @@
                         <thead>
                             <tr>
                                 <th>&nbsp;</th>
-                                <th>Precio</th>
+                                <th>Precio (IVA incluido)</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <td>Lorem Ipsum</td>
+                                <td>Lavar, Cortar y Peinar</td>
                                 <td>17€</td>
                             </tr>
                             <tr>
-                                <td>Lorem Ipsum</td>
-                                <td>17€</td>
+                                <td>Tinte y Peinar</td>
+                                <td>28€</td>
                             </tr>
                             <tr>
-                                <td>Lorem Ipsum</td>
-                                <td>17€</td>
+                                <td>Rulos</td>
+                                <td>15€</td>
                             </tr>
                             <tr>
-                                <td>Lorem Ipsum</td>
-                                <td>17€</td>
+                                <td>Mechas y Peinar</td>
+                                <td>47€</td>
                             </tr>
                             <tr>
-                                <td>Lorem Ipsum</td>
-                                <td>17€</td>
+                                <td>Reflejos</td>
+                                <td>18€</td>
                             </tr>
                             <tr>
-                                <td>Lorem Ipsum</td>
-                                <td>17€</td>
+                                <td>Lavar y Peinar</td>
+                                <td>9,50€</td>
                             </tr>
                             <tr>
-                                <td>Lorem Ipsum</td>
-                                <td>17€</td>
+                                <td>Corte niños</td>
+                                <td>10€</td>
                             </tr>
-                            <tr>
-                                <td>Lorem Ipsum</td>
-                                <td>17€</td>
-                            </tr>
-                            <tr>
-                                <td>Lorem Ipsum</td>
-                                <td>17€</td>
-                            </tr>
-                            <tr>
-                                <td>Lorem Ipsum</td>
-                                <td>17€</td>
-                            </tr>
+
                         </tbody>
                     </table>
 
@@ -326,7 +317,7 @@
 
                         <strong style="color: #AA1B30;">Teléfono:</strong> +34 955 677 264
                         <br>
-                        <strong style="color: #AA1B30;">Email:</strong> infopeluqueriacortex@gmail.com
+                        <strong style="color: #AA1B30;">Email:</strong>infopeluqueriacortex@gmail.com
                     </div>
                 </div>
             </div>

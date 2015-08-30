@@ -48,7 +48,7 @@ class ServicioController extends BaseController{
             return Redirect::back()->withErrors($respuesta['mensaje'])->withInput();
         }
         else {
-            return Redirect::to('cliente/servicios')->with('mensaje', $respuesta['mensaje']);
+            return Redirect::to('administrador/servicios')->with('mensaje', $respuesta['mensaje']);
         }
     }
 

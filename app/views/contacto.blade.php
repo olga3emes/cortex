@@ -162,7 +162,7 @@
 
                         <strong style="color: #AA1B30;">Teléfono:</strong> +34 625 623 616
                         <br>
-                        <strong style="color: #AA1B30;">Email:</strong> infopeluqueriacortex@gmail.com
+                        <strong style="color: #AA1B30;">Email:</strong>infopeluqueriacortex@gmail.com
                     </div>
                 </div>
             </div>

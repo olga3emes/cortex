@@ -47,7 +47,7 @@ class OfertaController extends BaseController{
             return Redirect::back()->withErrors($respuesta['mensaje'])->withInput();
         }
         else {
-            return Redirect::to('cliente/ofertas')->with('mensaje', $respuesta['mensaje']);
+            return Redirect::to('administrador/ofertas')->with('mensaje', $respuesta['mensaje']);
         }
     }
 

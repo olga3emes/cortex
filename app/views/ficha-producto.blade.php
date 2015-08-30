@@ -81,11 +81,11 @@
 
                                 <div class="col-md-6" style="margin-bottom: 10px;">
                                     <label for="InputCantidadAct">Cantidad Actual</label>
-                                    <input class="form-control" id="cantidadActual" name="cantidadActual" value="{{$producto->cantidadActual}}" placeholder="Cantidad Actual" type="number">
+                                    <input class="form-control" id="cantidadActual" name="cantidadActual" value="{{$producto->cantidadActual}}" placeholder="Cantidad Actual" step="any" type="number">
                                 </div>
                                 <div class="col-md-6" style="margin-bottom: 10px;">
                                     <label for="InputCantidadMin">Cantidad Mínima</label>
-                                    <input class="form-control" id="cantidadMinima" name="cantidadMinima" value="{{$producto->cantidadMinima}}" placeholder="Cantidad Mínima" type="number">
+                                    <input class="form-control" id="cantidadMinima" name="cantidadMinima" value="{{$producto->cantidadMinima}}" placeholder="Cantidad Mínima" step="any" type="number">
                                 </div>
                                 <div class="col-md-12">
                                     <label>Descripción</label>

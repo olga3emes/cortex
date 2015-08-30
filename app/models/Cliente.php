@@ -223,10 +223,33 @@ class Cliente extends Eloquent
             }
         }
 
-
-
         return $respuesta;
 
+
+    }
+
+    public static function eliminar($id){
+
+        $respuesta = array();
+
+        $cliente = Cliente::find($id);
+        $usuario=Usuario::find($cliente->idUsuario);
+        $citas= DB::table('citas')->where('idCliente','=',$id)->get();
+        if(empty($citas)){
+            $usuario->delete();
+            $cliente->delete();
+            Imagen::eliminar($usuario->idImagen);
+            //Mensajes de exito
+            $respuesta['mensaje'] = 'Cliente Eliminado';
+            $respuesta['error'] = null;
+            $respuesta['data'] = $cliente;
+        }else{
+            $respuesta['mensaje'] = 'El cliente tiene citas en el sistema, elimínelas antes de eliminar a su cliente.';
+            $respuesta['error'] = true;
+            $respuesta['data'] = $cliente;
+        }
+
+        return $respuesta;
 
     }
 

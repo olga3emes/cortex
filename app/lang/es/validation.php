@@ -21,14 +21,16 @@ return array(
     "alpha"          => "El campo :attribute sólo puede contener letras.",
     "alpha_dash"     => "El campo :attribute sólo puede contener letras, números y guiones.",
     "alpha_num"      => "El campo :attribute sólo puede contener letras y números.",
-    "array"          => "El campo :attribute debe ser un arreglo.",
+    "array"          => "El campo :attribute debe ser una lista.",
     "before"         => "El campo :attribute debe ser una fecha antes :date.",
+
     "between"        => array(
         "numeric" => "El campo :attribute debe estar entre :min - :max.",
-        "file"    => "El campo :attribute debe estar entre :min - :max kilobytes.",
+        "file"    => "El campo :attribute debe estar entre :min - :max bytes.",
         "string"  => "El campo :attribute debe estar entre :min - :max caracteres.",
         "array"   => "El campo :attribute debe tener entre :min y :max elementos.",
     ),
+
     "confirmed"      => "El campo :attribute confirmación no coincide.",
     "date"           => "El campo :attribute no es una fecha válida.",
     "date_format" 	 => "El campo :attribute no corresponde con el formato :format.",
@@ -42,18 +44,22 @@ return array(
     "integer"        => "El campo :attribute debe ser un entero.",
     "ip"             => "El campo :attribute Debe ser una dirección IP válida.",
     "match"          => "El formato :attribute es inválido.",
+
     "max"            => array(
         "numeric" => "El campo :attribute debe ser menor que :max.",
-        "file"    => "El campo :attribute debe ser menor que :max kilobytes.",
+        "file"    => "El campo :attribute debe ser menor que :max bytes.",
         "string"  => "El campo :attribute debe ser menor que :max caracteres.",
         "array"   => "El campo :attribute debe tener al menos :min elementos.",
     ),
+
     "mimes"         => "El campo :attribute debe ser un archivo de tipo :values.",
+
     "min"           => array(
         "numeric" => "El campo :attribute debe tener al menos :min.",
-        "file"    => "El campo :attribute debe tener al menos :min kilobytes.",
+        "file"    => "El campo :attribute debe tener al menos :min bytes.",
         "string"  => "El campo :attribute debe tener al menos :min caracteres.",
     ),
+
     "not_in"                => "El campo :attribute seleccionado es invalido.",
     "numeric"               => "El campo :attribute debe ser un numero.",
     "regex"                 => "El formato del campo :attribute es inválido.",
@@ -64,12 +70,14 @@ return array(
     "required_without"      => "El campo :attribute es requerido cuando :values no está presente.",
     "required_without_all"  => "El campo :attribute es requerido cuando ningún :values está presentes.",
     "same"                  => "El campo :attribute y :other debe coincidir.",
+
     "size"                  => array(
         "numeric" => "El campo :attribute debe ser :size.",
-        "file"    => "El campo :attribute debe terner :size kilobytes.",
+        "file"    => "El campo :attribute debe terner :size bytes.",
         "string"  => "El campo :attribute debe tener :size caracteres.",
         "array"   => "El campo :attribute debe contener :size elementos.",
     ),
+
     "unique" => "El :attribute ya está en uso.",
     "url"    => "El formato de :attribute es inválido.",
     /*
@@ -106,8 +114,29 @@ return array(
     |
     */
     'attributes' => array(
-        'username' => 'usuario',
+        'username' => 'nombre de usuario',
         'password' => 'contraseña',
-        'email' => "email"
+        'email' => 'email',
+        'nombre' => "nombre",
+        'apellidos' => "apellidos",
+        'telefono' => "telefono",
+        'comentario' => "comentario",
+        'precio' => "precio",
+        'descuento' =>'descuento',
+        'porcentaje' =>'porcentaje',
+        'diaCompleto' =>'todo el día',
+        'fecha' =>'fecha',
+        'hora' =>'hora',
+        'horaInicio' =>'hora de inicio',
+        'horaFin' =>'hora de finalización',
+        'color' =>'color',
+        'aceptada' =>'aceptada',
+        'iva' =>'iva',
+        'descripcion' =>'descripcion',
+        'cantidadActual' =>'cantidad actual',
+        'cantidadMinima' =>'cantidad minima',
+        'imagen' => 'imagen',
+
+
     ),
 );

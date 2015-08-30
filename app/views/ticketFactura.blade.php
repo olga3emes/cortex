@@ -50,6 +50,7 @@
     @foreach($productosTickets as $pticket)
     <tr>
         <td style="text-align:right">Producto __ </td>
+
         <td>{{Producto::encontrarProducto($pticket)->nombre}}</td>
         <td></td>
         <td>x{{$pticket->cantidad}}</td>

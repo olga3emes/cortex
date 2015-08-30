@@ -93,16 +93,23 @@ class Servicio extends Eloquent
         $respuesta = array();
 
         $servicio = Servicio::find($id);
-        $servicio->delete();
+        $citas= DB::table('citas')->where('idServicio','=',$id)->get();
+        if(empty($citas)) {
+            $servicio->delete();
 
-        //Mensajes de exito
-        $respuesta['mensaje'] = 'Servicio Eliminado';
-        $respuesta['error'] = null;
-        $respuesta['data'] = $servicio;
-
+            //Mensajes de exito
+            $respuesta['mensaje'] = 'Servicio Eliminado';
+            $respuesta['error'] = null;
+            $respuesta['data'] = $servicio;
+        }else{
+            $respuesta['mensaje'] = 'Este servicio no podrá borrarse mientras esté asociado a citas en el sistema.';
+            $respuesta['error'] = true;
+            $respuesta['data'] = $servicio;
+        }
         return $respuesta;
 
     }
+
 
 
 

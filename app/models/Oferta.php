@@ -103,13 +103,19 @@ class Oferta extends Eloquent{
         $respuesta = array();
 
         $oferta = oferta::find($id);
-        $oferta->delete();
+        $citas= DB::table('citas')->where('idOferta','=',$id)->get();
+        if(empty($citas)) {
+            $oferta->delete();
 
-        //Mensajes de exito
-        $respuesta['mensaje'] = 'oferta Eliminado';
-        $respuesta['error'] = null;
-        $respuesta['data'] = $oferta;
-
+            //Mensajes de exito
+            $respuesta['mensaje'] = 'Oferta Eliminada';
+            $respuesta['error'] = null;
+            $respuesta['data'] = $oferta;
+        }else{
+            $respuesta['mensaje'] = 'Esta oferta no podrá borrarse mientras esté asociada a citas en el sistema.';
+            $respuesta['error'] = true;
+            $respuesta['data'] = $oferta;
+        }
         return $respuesta;
 
     }

@@ -78,4 +78,17 @@ class ClienteController extends BaseController{
         }
     }
 
+    public function eliminar($id){
+
+
+        $respuesta =Cliente::eliminar($id);
+
+        if ($respuesta['error'] == true) {
+            return Redirect::back()->withErrors($respuesta['mensaje'])->withInput();
+        }
+        else {
+            return Redirect::to('administrador/clientes')->with('mensaje', $respuesta['mensaje']);
+        }
+    }
+
 }
