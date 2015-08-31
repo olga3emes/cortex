@@ -277,22 +277,22 @@
 
 
                     <div class="row" style="margin-top: 30px; border-top: 1px solid #ededed; padding-top: 15px;">
-                        <div class="col-md-12 col-xs-12">
+                        <div class="col-md-12 col-xs-12" style="text-align: center;">
 
-                            <div class="btn-group btn-group-justified" role="group">
-                                <a type="button" href="{{URL::asset('administrador/calendario')}}"
-                                   class="btn btn-labeled btn-warning">
+                            <ul class="list-inline">
+                                <li><a type="button" href="{{URL::asset('administrador/calendario')}}"
+                                   class="btn btn-labeled btn-warning btn-lg">
                                     <i class="fa fa-times"></i> Cancelar
-                                </a>
+                                </a></li>
 
-                                <button type="submit" class="btn btn-labeled btn-success">
+                                <li><button type="submit" class="btn btn-labeled btn-success btn-lg">
                                     <i class="fa fa-pencil-square"></i> Guardar
-                                </button>
+                                </button></li>
 
-                                <a type="button" href="{{URL::asset('cita/administradorEliminar/'.$cita->id)}}" class="btn btn-labeled btn-danger">
+                                <li><a type="button" class="btn btn-labeled btn-danger btn-lg" href="{{URL::asset('cita/administradorEliminar/'.$cita->id)}}" class="btn btn-labeled btn-danger">
                                     <i class="fa fa-trash"></i> Eliminar
-                                </a>
-                            </div>
+                                </a></li>
+                            </ul>
 
                         </div>
                     </div>

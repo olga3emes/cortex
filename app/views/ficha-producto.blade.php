@@ -4,7 +4,7 @@
 
         <div class="box-header with-border">
 
-            <img src="{{URL::asset('img/producto/Cortex-Producto-' . $producto->id . '.jpg')}}" class="img-responsive">
+            <img src="{{URL::asset('img/producto/Cortex-Producto-' . $producto->id . '.jpg')}}" class="img-responsive" style="max-height: 167px;">
             <div class="precio"><h4 style="color: #AA1B30;"><strong>{{Tools::precioConIva($producto->precio,$producto->iva)}} €</strong></h4></div>
 
         </div>
@@ -12,11 +12,11 @@
         <div class="box-body">
             <ul class="list-unstyled productos">
 
-                <li>Nombre: <span>{{$producto->nombre}}</span>
+                <li>Nombre: <span class="word-wrap">{{$producto->nombre}}</span>
                 </li>
-                <li>Código: <span>{{$producto->codigo}}</span>
+                <li>Código: <span class="word-wrap">{{$producto->codigo}}</span>
                 </li>
-                <li>Quedan: <span>{{$producto->cantidadActual}}</span>
+                <li>Quedan: <span class="word-wrap">{{$producto->cantidadActual}}</span>
                 </li>
 
             </ul>

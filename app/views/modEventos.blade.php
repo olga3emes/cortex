@@ -64,7 +64,7 @@
                                             <i class="fa fa-clock-o"></i>
                                         </div>
                                         <input type="time" required id="horaInicio" name="horaInicio"
-                                               value="{{Tools::formatearHora($evento->horaInicio)}}" class="form-control" placeholder="00:00">
+                                               value="{{$evento->horaInicio}}" class="form-control" placeholder="00:00">
                                     </div>
                                     <!-- /.input group -->
                                 </div>
@@ -80,7 +80,7 @@
                                             <i class="fa fa-clock-o"></i>
                                         </div>
                                         <input type="time" required id="horaFin" name="horaFin" class="form-control"
-                                               value="{{Tools::formatearHora($evento->horaFin)}}" placeholder="00:00">
+                                               value="{{$evento->horaFin}}" placeholder="00:00">
                                     </div>
                                     <!-- /.input group -->
                                 </div>
@@ -117,24 +117,26 @@
                 </div>
             </div>
             <div class="box-footer">
-                <div class="row">
+                <div class="row" style="margin-top: 30px; border-top: 1px solid #ededed; padding-top: 15px;">
+                    <div class="col-md-12 col-xs-12" style="text-align: center;">
 
-                    <div class="col-md-12 col-xs-12">
-                        <div class="btn-group btn-group-justified" role="group">
-                            <a  href="{{URL::asset('administrador/calendario')}}"
-                               class="btn btn-labeled btn-warning">
-                                <i class="fa fa-times"></i> Volver
-                            </a>
+                        <ul class="list-inline">
+                            <li><a type="button" href="{{URL::asset('administrador/calendario')}}"
+                                   class="btn btn-labeled btn-warning btn-lg">
+                                    <i class="fa fa-times"></i> Cancelar
+                                </a></li>
 
-                            <button type="submit" class="btn btn-labeled btn-success">
-                                <i class="fa fa-pencil-square"></i> Guardar
-                            </button>
+                            <li><button type="submit" class="btn btn-labeled btn-success btn-lg">
+                                    <i class="fa fa-pencil-square"></i> Guardar
+                                </button></li>
 
-                            <a type="button" href="{{URL::asset('evento/eliminar/'.$evento->id)}}" class="btn btn-labeled btn-danger">
-                                <i class="fa fa-trash"></i> Eliminar
-                            </a>
-                        </div>
+                            <li><a type="button" class="btn btn-labeled btn-danger btn-lg" href="{{URL::asset('evento/eliminar/'.$evento->id)}}" class="btn btn-labeled btn-danger">
+                                    <i class="fa fa-trash"></i> Eliminar
+                                </a></li>
+                        </ul>
+
                     </div>
+                </div>
                 </div>
             </div>
             </form>

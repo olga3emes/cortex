@@ -5295,3 +5295,15 @@ fieldset[disabled] .btn-vk.active {
     position: relative;
     top: 5px;
 }
+
+.word-wrap{
+    overflow: hidden; width: 100px;
+    text-align: right;
+    height: 20px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.img-galeria{
+    width: 100%; margin-bottom: 10px; text-align: center; background-color: #f9f9f9; padding: 3px;
+}

@@ -49,11 +49,10 @@
                 <!-- Main content -->
                 @foreach($imagenes as $imagen)
 
-                <article class="col-sm-3 col-md-3 col-xs-12"
-                         style="display:inline;width:300px;margin:10px;text-align:center;border-radius:5px;">
-                    <div class="portfolio-image">
+                <article class="col-sm-3 col-md-3 col-xs-12">
+                    <div class="portfolio-image" style="width: 100%; margin-bottom: 10px; text-align: center; background-color: #f9f9f9; padding: 3px; border: 1px solid #ededed;">
                         <a href="#">
-                            <img src="{{URL::asset('img/galeria/'.$galeria->id.'/'.$imagen->nombre)}}"  data-toggle="modal" data-target="{{'#foto'.$imagen->id}}">
+                            <img style="max-height: 190px;" src="{{URL::asset('img/galeria/'.$galeria->id.'/'.$imagen->nombre)}}"  data-toggle="modal" data-target="{{'#foto'.$imagen->id}}">
                         </a>
                         <!-- Modal Foto -->
                         <div class="modal fade" id="{{'foto'.$imagen->id}}" tabindex="-1" role="dialog"

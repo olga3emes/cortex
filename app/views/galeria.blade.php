@@ -38,10 +38,10 @@
                     <div class="col-sm-3 col-md-3 col-xs-12" >
                         <a href="{{URL::asset('galeria/imagenes/'.$galeria->id)}}"> <img
                                     src="{{URL::asset('img/portada/Cortex-Galeria-'.$galeria->id.'.jpg')}}"
-                                    style="height: 300px; width: auto;margin-left: 5%; margin-right: 5%;" alt=""></a>
+                                    style="max-height: 300px; width: auto;margin-left: 5%; margin-right: 5%;" alt=""></a>
 
                         <a href="{{URL::asset('galeria/imagenes/'.$galeria->id)}}"><h4
-                                    style="text-align: center; width: 250px;">Galería: <span>{{$galeria->nombre}}</span>
+                                    style="text-align: center; width: 250px;"><span>{{$galeria->nombre}}</span>
                             </h4></a>
 
                     </div>

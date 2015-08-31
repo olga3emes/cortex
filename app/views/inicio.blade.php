@@ -120,13 +120,13 @@
                 <h2>La filosofía<span> Corte'x</span></h2>
             </div>
 
-            <p>Nuestra filosofía es mantenernos siempre informados de las últimas tendencias en el mundo de la  peluquería, tanto en corte y técnicas cómo en productos de peluquería, para así  poder ofrece a nuestros clientes siempre el mejor servicio.</p>
+            <p>Nuestra filosofía es mantenernos siempre informados de las últimas tendencias en el mundo de la  peluquería, tanto en corte y técnicas cómo en productos de peluquería, para así  poder ofrecer a nuestros clientes siempre el mejor servicio.</p>
 
             <p>La pasión que ponemos en todo lo relacionado con el mundo de la peluquería y las tendencias, se refleja en cada uno de los trabajos que realizamos en nuestro salón.</p>
 
             <p>Consideramos que cada cliente es único, y por tanto merece un trato personalizado, asesorándole siempre sobre las mejores opciones respecto a su estilo, facciones y personalidad,así como teniendo en cuenta sus preferencias y gustos,  para así,  con todo ello, obtener unos resultados óptimos y vanguardistas.</p>
 
-            <p>Es por eso que Corte'x cumple 10 años y queremos celebrándolo ofreciéndole a nuestros clientes nuestros servicios a través de las nuevas tecnologías.</p>
+            <p>Es por eso que Corte'x cumple 10 años y queremos celebrarlo ofreciéndole a los clientes nuestros servicios a través de las nuevas tecnologías.</p>
         </div>
     </div>
 
@@ -309,7 +309,7 @@
                     <div style="font-size: 16px; line-height: 1.7;">
                         <address style="line-height: 1.7;">
 										C/Las Cabezas de San Juan<br>
-										41700 Dos Hermanas<br>
+										41701 Dos Hermanas<br>
                                         Sevilla<br>
 									</address>
 
@@ -329,7 +329,7 @@
         <script type="text/javascript">
             jQuery(window).load(function () {
                 jQuery('#headquarters-map').gMap({
-                    address: 'Las Cabezas de San Juan, Dos Hermanas, Sevilla, 41700',
+                    address: 'Las Cabezas de San Juan, Dos Hermanas, Sevilla, 41701',
                     maptype: 'ROADMAP',
                     zoom: 17,
                     panControl: true,
@@ -343,8 +343,8 @@
                     },
                     markers: [
                         {
-                            address: "Las Cabezas de San Juan, Dos Hermanas, Sevilla, 41700",
-                            html: "Las Cabezas de San Juan, Dos hermanas, Sevilla, 41700",
+                            address: "Las Cabezas de San Juan, Dos Hermanas, Sevilla, 41701",
+                            html: "Las Cabezas de San Juan, Dos Hermanas, Sevilla, 41701",
                             icon: {
                                 image: "images/icons/map-icon.png",
                                 iconsize: [34, 34],
