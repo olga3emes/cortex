@@ -70,7 +70,7 @@
                                 </div>
                                 <div class="info">
                                     <div class="title">
-                                        Desi
+                                        Desi Romero Martín
 
                                     </div>
                                 </div>
