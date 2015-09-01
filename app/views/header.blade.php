@@ -23,6 +23,9 @@
     <!-- iCheck -->
     {{HTML::style('plugins/iCheck/flat/blue.css')}}
 
+
+    <link rel="shortcut icon" href="{{URL::asset('favicon.ico') }}">
+
     <!-- Morris chart -->
     {{HTML::style('plugins/morris/morris.css')}}
     <!-- jvectormap -->

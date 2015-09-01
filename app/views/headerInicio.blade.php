@@ -17,6 +17,7 @@
     {{HTML::style('css/magnific-popup.css')}}
     {{HTML::style('css/calendar.css')}}
 
+    <link rel="shortcut icon" href="{{URL::asset('favicon.ico') }}">
 
     {{HTML::style('css/responsive.css')}}
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
