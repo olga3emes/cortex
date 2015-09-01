@@ -18,6 +18,15 @@
                         <div class="col-md-12 col-xs-12" style="text-align: center">
                             <!-- Date dd/mm/yyyy -->
                             <div class="form-group">
+                                <h4> Nombre:</h4>
+                                <p>{{($evento->nombre)}}</p>
+
+                            </div>
+                            <!-- /.form group -->
+                        </div>
+                        <div class="col-md-12 col-xs-12" style="text-align: center">
+                            <!-- Date dd/mm/yyyy -->
+                            <div class="form-group">
                                 <h4> Fecha:</h4>
                                 <p>{{Tools::formatearFechaVacia($evento->fecha)}}</p>
 

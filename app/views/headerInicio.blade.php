@@ -36,8 +36,8 @@
             var n = noty({
                 text: texto,
                 theme: 'relax',
-                type: 'sucess',
-                layout: 'top',
+                type: 'information',
+                layout: 'topCenter',
                 timeout: 6000
             });
         }
@@ -47,7 +47,7 @@
                 text: texto,
                 type: 'error',
                 theme: 'relax',
-                layout: 'top',
+                layout: 'topCenter',
                 timeout: 6000
             });
         }
@@ -81,7 +81,55 @@
         notificar(variablejs);
     </script>
 @endif
+@if($errors->has('mensaje'))
+    @foreach($errors->get('mensaje') as $error)
+        <script type="text/javascript">
+            var variablejs = "<?= $error ?>" ;
+            notificarError(variablejs);
+        </script>
+    @endforeach
+@endif
 
+@if($errors->has('email'))
+    @foreach($errors->get('email') as $error)
+        <script type="text/javascript">
+            var variablejs = "<?= $error ?>" ;
+            notificarError(variablejs);
+        </script>
+    @endforeach
+@endif
+@if($errors->has('username'))
+    @foreach($errors->get('username') as $error)
+        <script type="text/javascript">
+            var variablejs = "<?= $error ?>" ;
+            notificarError(variablejs);
+        </script>
+    @endforeach
+@endif
+@if($errors->has('nombre'))
+    @foreach($errors->get('nombre') as $error)
+        <script type="text/javascript">
+            var variablejs = "<?= $error ?>" ;
+            notificarError(variablejs);
+        </script>
+    @endforeach
+@endif
+@if($errors->has('apellidos'))
+    @foreach($errors->get('apellidos') as $error)
+        <script type="text/javascript">
+            var variablejs = "<?= $error ?>" ;
+            notificarError(variablejs);
+        </script>
+    @endforeach
+@endif
+@if($errors->has('telefono'))
+    @foreach($errors->get('telefono') as $error)
+        <script type="text/javascript">
+            var variablejs = "<?= $error ?>" ;
+            notificarError(variablejs);
+        </script>
+    @endforeach
+@endif
 @if($errors->has('email'))
     @foreach($errors->get('email') as $error)
         <script type="text/javascript">
@@ -98,14 +146,7 @@
         </script>
     @endforeach
 @endif
-@if($errors->has('mensaje'))
-    @foreach($errors->get('mensaje') as $error)
-        <script type="text/javascript">
-            var variablejs = "<?= $error ?>" ;
-            notificarError(variablejs);
-        </script>
-        @endforeach
-        @endif
+
     <!-- Document Wrapper
     ============================================= -->
     <div id="wrapper" class="clearfix">

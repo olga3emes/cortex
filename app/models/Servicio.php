@@ -103,7 +103,7 @@ class Servicio extends Eloquent
             $respuesta['data'] = $servicio;
         }else{
             $respuesta['mensaje'] = 'Este servicio no podrá borrarse mientras esté asociado a citas en el sistema.';
-            $respuesta['error'] = true;
+            $respuesta['error'] = null;
             $respuesta['data'] = $servicio;
         }
         return $respuesta;

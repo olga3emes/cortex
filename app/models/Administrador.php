@@ -40,8 +40,9 @@ class Administrador extends Eloquent
         $respuesta = array();
 
         $reglas = array(
-            'email' => array('required', 'email', 'max:100'),
-            'username' => array('required', 'min:3', 'max:100'),
+            'email' => array('email', 'max:100', 'unique:usuarios,email'),
+            'username' => array('min:3', 'max:100','unique:usuarios,username'),
+            'imagen' =>array ('image'),
         );
 
         $validator = Validator::make($input, $reglas);
@@ -76,9 +77,12 @@ class Administrador extends Eloquent
                     $usuario->save();
                 }
             }
-
-            $usuario->email = $input['email'];
-            $usuario->username = $input['username'];
+            if($input['email']!="") {
+                $usuario->email = $input['email'];
+            }
+            if($input['username']!=""){
+                $usuario->username = $input['username'];
+            }
             $usuario->save();
 
 
@@ -99,22 +103,21 @@ class Administrador extends Eloquent
         $respuesta = array();
 
         $reglas = array(
-            'password' => array('required', 'min:8', 'max:100'),
+            'password' => array('required', 'min:8', 'max:100','same:password2'),
             'password2' => array('required', 'min:8', 'max:100'),
         );
 
         $validator = Validator::make($input, $reglas);
 
         if ($validator->fails()) {
-            $respuesta['mensaje'] = 'La contraseña introducida
-             no tiene el tamaño adecuado,éste debe estar entre 8 y 100 caracteres.';
+            $respuesta['mensaje'] = $validator;
             $respuesta['error'] = true;
         } else {
 
             $administrador = Administrador::find($id);
             $usuario = Usuario::find($administrador->idUsuario);
 
-            if ($input['password'] == $input['password2']) {
+
 
                 $usuario->password = Hash::make($input['password']);
                 $usuario->save();
@@ -123,14 +126,7 @@ class Administrador extends Eloquent
                 $respuesta['error'] = false;
                 $respuesta['data'] = $administrador;
 
-            }else{
 
-                $respuesta['mensaje'] = 'Las contraseñas introducidas no son iguales';
-                $respuesta['error'] = true;
-                $respuesta['data'] = $administrador;
-
-
-            }
         }
 
 

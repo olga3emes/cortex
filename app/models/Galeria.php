@@ -59,14 +59,11 @@ class Galeria extends Eloquent
             $imagen->idGaleria = $galeria->id;
             $imagen->save();
 
-            $respuesta['mensaje'] = 'Su perfil ha sido actualizado';
+            $respuesta['mensaje'] = 'Galería añadida';
             $respuesta['error'] = false;
             $respuesta['data'] = $galeria;
 
         }
-
-
-
         return $respuesta;
 
 

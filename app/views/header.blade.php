@@ -1,30 +1,6 @@
 
 <head>
 
-    {{HTML::script('js/jquery-scrolltofixed.js')}}
-    {{HTML::script('js/noty/packaged/jquery.noty.packaged.js')}}
-    <script type="text/javascript">
-        function notificar(texto) {
-            var n = noty({
-                text: texto,
-                theme: 'relax',
-                type: 'alert',
-                layout: 'center',
-                timeout: 6000
-            });
-        }
-        function notificarError(texto) {
-            var n = noty({
-                text: texto,
-                type: 'error',
-                theme: 'relax',
-                layout: 'center',
-                timeout: 6000
-            });
-        }
-
-
-    </script>
 
     <meta charset="UTF-8">
     <title>Corte´x | Panel de Control</title>
@@ -74,8 +50,34 @@
 
     <![endif]-->
 
+    {{HTML::script('js/plugins.js')}}
+    {{HTML::script('js/jquery.js')}}
+
+    {{HTML::script('js/jquery-scrolltofixed.js')}}
+    {{HTML::script('js/noty/packaged/jquery.noty.packaged.js')}}
+
+    <script type="text/javascript">
+        function notificar(texto) {
+            var n = noty({
+                text: texto,
+                theme: 'relax',
+                type: 'information',
+                layout: 'topCenter',
+                timeout: 6000
+            });
+        }
+        function notificarError(texto) {
+            var n = noty({
+                text: texto,
+                type: 'error',
+                theme: 'relax',
+                layout: 'topCenter',
+                timeout: 6000
+            });
+        }
 
 
+    </script>
 
 </head>
 
@@ -100,7 +102,199 @@
     @endforeach
 @endif
 
+@if($errors->has('email'))
+    @foreach($errors->get('email') as $error)
+        <script type="text/javascript">
+            var variablejs = "<?= $error ?>" ;
+            notificarError(variablejs);
+        </script>
+    @endforeach
+@endif
+@if($errors->has('username'))
+    @foreach($errors->get('username') as $error)
+        <script type="text/javascript">
+            var variablejs = "<?= $error ?>" ;
+            notificarError(variablejs);
+        </script>
+    @endforeach
+@endif
+@if($errors->has('nombre'))
+    @foreach($errors->get('nombre') as $error)
+        <script type="text/javascript">
+            var variablejs = "<?= $error ?>" ;
+            notificarError(variablejs);
+        </script>
+    @endforeach
+@endif
+@if($errors->has('apellidos'))
+    @foreach($errors->get('apellidos') as $error)
+        <script type="text/javascript">
+            var variablejs = "<?= $error ?>" ;
+            notificarError(variablejs);
+        </script>
+    @endforeach
+@endif
+@if($errors->has('telefono'))
+    @foreach($errors->get('telefono') as $error)
+        <script type="text/javascript">
+            var variablejs = "<?= $error ?>" ;
+            notificarError(variablejs);
+        </script>
+    @endforeach
+@endif
+@if($errors->has('email'))
+    @foreach($errors->get('email') as $error)
+        <script type="text/javascript">
+            var variablejs = "<?= $error ?>" ;
+            notificarError(variablejs);
+        </script>
+    @endforeach
+@endif
+@if($errors->has('password'))
+    @foreach($errors->get('password') as $error)
+        <script type="text/javascript">
+            var variablejs = "<?= $error ?>" ;
+            notificarError(variablejs);
+        </script>
+    @endforeach
+@endif
+@if($errors->has('comentario'))
+    @foreach($errors->get('comentario') as $error)
+        <script type="text/javascript">
+            var variablejs = "<?= $error ?>" ;
+            notificarError(variablejs);
+        </script>
+    @endforeach
+@endif
+@if($errors->has('precio'))
+    @foreach($errors->get('precio') as $error)
+        <script type="text/javascript">
+            var variablejs = "<?= $error ?>" ;
+            notificarError(variablejs);
+        </script>
+    @endforeach
+@endif
+@if($errors->has('descuento'))
+    @foreach($errors->get('descuento') as $error)
+        <script type="text/javascript">
+            var variablejs = "<?= $error ?>" ;
+            notificarError(variablejs);
+        </script>
+    @endforeach
+@endif
+@if($errors->has('porcentaje'))
+    @foreach($errors->get('porcentaje') as $error)
+        <script type="text/javascript">
+            var variablejs = "<?= $error ?>" ;
+            notificarError(variablejs);
+        </script>
+    @endforeach
+@endif
+@if($errors->has('diaCompleto'))
+    @foreach($errors->get('diaCompleto') as $error)
+        <script type="text/javascript">
+            var variablejs = "<?= $error ?>" ;
+            notificarError(variablejs);
+        </script>
+    @endforeach
+@endif
+@if($errors->has('fecha'))
+    @foreach($errors->get('fecha') as $error)
+        <script type="text/javascript">
+            var variablejs = "<?= $error ?>" ;
+            notificarError(variablejs);
+        </script>
+    @endforeach
+@endif
+@if($errors->has('hora'))
+    @foreach($errors->get('hora') as $error)
+        <script type="text/javascript">
+            var variablejs = "<?= $error ?>" ;
+            notificarError(variablejs);
+        </script>
+    @endforeach
+@endif
+@if($errors->has('horaInicio'))
+    @foreach($errors->get('horaInicio') as $error)
+        <script type="text/javascript">
+            var variablejs = "<?= $error ?>" ;
+            notificarError(variablejs);
+        </script>
+    @endforeach
+@endif
+@if($errors->has('horaFin'))
+    @foreach($errors->get('horaFin') as $error)
+        <script type="text/javascript">
+            var variablejs = "<?= $error ?>" ;
+            notificarError(variablejs);
+        </script>
+    @endforeach
+@endif
 
+@if($errors->has('color'))
+    @foreach($errors->get('color') as $error)
+        <script type="text/javascript">
+            var variablejs = "<?= $error ?>" ;
+            notificarError(variablejs);
+        </script>
+    @endforeach
+@endif
+@if($errors->has('aceptada'))
+    @foreach($errors->get('aceptada') as $error)
+        <script type="text/javascript">
+            var variablejs = "<?= $error ?>" ;
+            notificarError(variablejs);
+        </script>
+    @endforeach
+@endif
+@if($errors->has('iva'))
+    @foreach($errors->get('iva') as $error)
+        <script type="text/javascript">
+            var variablejs = "<?= $error ?>" ;
+            notificarError(variablejs);
+        </script>
+    @endforeach
+@endif
+@if($errors->has('descripcion'))
+    @foreach($errors->get('descripcion') as $error)
+        <script type="text/javascript">
+            var variablejs = "<?= $error ?>" ;
+            notificarError(variablejs);
+        </script>
+    @endforeach
+@endif
+@if($errors->has('horaInicio'))
+    @foreach($errors->get('horaInicio') as $error)
+        <script type="text/javascript">
+            var variablejs = "<?= $error ?>" ;
+            notificarError(variablejs);
+        </script>
+    @endforeach
+@endif
+@if($errors->has('cantidadActual'))
+    @foreach($errors->get('cantidadActual') as $error)
+        <script type="text/javascript">
+            var variablejs = "<?= $error ?>" ;
+            notificarError(variablejs);
+        </script>
+    @endforeach
+@endif
+@if($errors->has('cantidadMinima'))
+    @foreach($errors->get('cantidadMinima') as $error)
+        <script type="text/javascript">
+            var variablejs = "<?= $error ?>" ;
+            notificarError(variablejs);
+        </script>
+    @endforeach
+@endif
+@if($errors->has('imagen'))
+    @foreach($errors->get('imagen') as $error)
+        <script type="text/javascript">
+            var variablejs = "<?= $error ?>" ;
+            notificarError(variablejs);
+        </script>
+    @endforeach
+@endif
     <div class="wrapper" >
 
         <header class="main-header" >

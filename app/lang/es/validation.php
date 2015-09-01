@@ -18,6 +18,7 @@ return array(
     "accepted"       => "El campo :attribute debe ser aceptado.",
     "active_url"     => "El campo :attribute no es una URL válida.",
     "after"          => "El campo :attribute debe ser una fecha después de :date.",
+    "aftertime"          => "El campo :attribute debe ser una hora posterior de :date.",
     "alpha"          => "El campo :attribute sólo puede contener letras.",
     "alpha_dash"     => "El campo :attribute sólo puede contener letras, números y guiones.",
     "alpha_num"      => "El campo :attribute sólo puede contener letras y números.",
@@ -47,7 +48,7 @@ return array(
 
     "max"            => array(
         "numeric" => "El campo :attribute debe ser menor que :max.",
-        "file"    => "El campo :attribute debe ser menor que :max bytes.",
+        "file"    => "El campo :attribute debe ser menor que :max kilobytes.",
         "string"  => "El campo :attribute debe ser menor que :max caracteres.",
         "array"   => "El campo :attribute debe tener al menos :min elementos.",
     ),
@@ -56,7 +57,7 @@ return array(
 
     "min"           => array(
         "numeric" => "El campo :attribute debe tener al menos :min.",
-        "file"    => "El campo :attribute debe tener al menos :min bytes.",
+        "file"    => "El campo :attribute debe tener al menos :min kilbytes.",
         "string"  => "El campo :attribute debe tener al menos :min caracteres.",
     ),
 
@@ -116,6 +117,7 @@ return array(
     'attributes' => array(
         'username' => 'nombre de usuario',
         'password' => 'contraseña',
+        'password2' => 'la contraseña de validación',
         'email' => 'email',
         'nombre' => "nombre",
         'apellidos' => "apellidos",

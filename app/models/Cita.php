@@ -195,7 +195,8 @@ class Cita extends Eloquent
             'servicio' => array('required'),
             'hora' => array('required'),
             'horaInicio' => array('required'),
-            'horaFin' => array('required'),
+            'horaFin' => array('required', 'after:horaInicio'),
+            'comentario' => array('required', 'max:300'),
 
 
         );

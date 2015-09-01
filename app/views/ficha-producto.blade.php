@@ -4,7 +4,7 @@
 
         <div class="box-header with-border">
 
-            <img src="{{URL::asset('img/producto/Cortex-Producto-' . $producto->id . '.jpg')}}" class="img-responsive" style="max-height: 167px;">
+            <img src="{{URL::asset('img/producto/Cortex-Producto-' . $producto->id . '.jpg')}}" class="img-responsive" style="max-height: 167px;min-height: 167px;">
             <div class="precio"><h4 style="color: #AA1B30;"><strong>{{Tools::precioConIva($producto->precio,$producto->iva)}} €</strong></h4></div>
 
         </div>

@@ -36,7 +36,7 @@ class Oferta extends Eloquent{
         $respuesta = array();
 
         $reglas = array(
-            'porcentaje' => array('required', 'min:0', 'max:9999'),
+            'porcentaje' => array('required', 'min:0', 'max:9999','integer'),
             'nombre' => array('required', 'min:3', 'max:100'),
         );
 
@@ -55,7 +55,7 @@ class Oferta extends Eloquent{
             $oferta = new oferta($input);
             $oferta->save();
 
-            $respuesta['mensaje'] = 'oferta creado';
+            $respuesta['mensaje'] = 'Oferta creada';
             $respuesta['error'] = false;
             $respuesta['data'] = $oferta;
 
@@ -91,7 +91,7 @@ class Oferta extends Eloquent{
             $oferta->fechaFin=$input['fechaFin'];
             $oferta->save();
 
-            $respuesta['mensaje'] = 'oferta editado';
+            $respuesta['mensaje'] = 'Oferta editada';
             $respuesta['error'] = false;
             $respuesta['data'] = $oferta;
         }
@@ -113,7 +113,7 @@ class Oferta extends Eloquent{
             $respuesta['data'] = $oferta;
         }else{
             $respuesta['mensaje'] = 'Esta oferta no podrá borrarse mientras esté asociada a citas en el sistema.';
-            $respuesta['error'] = true;
+            $respuesta['error'] = null;
             $respuesta['data'] = $oferta;
         }
         return $respuesta;

@@ -38,9 +38,9 @@ class Producto extends Eloquent{
 
         $reglas = array(
             'nombre' => array('required', 'min:3', 'max:100'),
-            'cantidadActual' => array('required', 'min:0', 'max:999'),
-            'cantidadMinima' => array('required', 'min:0', 'max:999'),
-            'precio' => array('required', 'min:0', 'max:99999'),
+            'cantidadActual' => array('required','integer' ,'min:0', 'max:999'),
+            'cantidadMinima' => array('required','integer', 'min:0', 'max:999'),
+            'precio' => array('required', 'between:0,9999.99'),
             
         );
 
@@ -76,15 +76,13 @@ class Producto extends Eloquent{
 
                     $producto->idImagen=$imagen->id;
                     $producto->save();
+
+                //Mensajes de exito
+                $respuesta['mensaje'] = 'Producto añadido';
+                $respuesta['error'] = false;
+                $respuesta['data'] = $producto;
                 }
             }
-
-
-
-            //Mensajes de exito
-            $respuesta['mensaje'] = 'Producto añadido';
-            $respuesta['error'] = false;
-            $respuesta['data'] = $producto;
 
 
 
@@ -99,8 +97,8 @@ class Producto extends Eloquent{
 
         $reglas = array(
             'nombre' => array('required', 'min:3', 'max:45'),
-            'cantidadActual' => array('required', 'min:0', 'max:999'),
-            'cantidadMinima' => array('required', 'min:0', 'max:999'),
+            'cantidadActual' => array('required','integer', 'max:999'),
+            'cantidadMinima' => array('required','integer', 'max:999'),
             'precio' => array('required', 'min:0', 'max:99999'),
 
         );
@@ -144,16 +142,14 @@ class Producto extends Eloquent{
                     $producto->idImagen = $imagen->id;
                     $producto->save();
                 }
+
             }
 
+            //Mensajes de exito
+            $respuesta['mensaje'] = 'Producto añadido';
+            $respuesta['error'] = false;
+            $respuesta['data'] = $producto;
         }
-
-
-        //Mensajes de exito
-        $respuesta['mensaje'] = 'Producto añadido';
-        $respuesta['error'] = false;
-        $respuesta['data'] = $producto;
-
 
 
         return $respuesta;

@@ -92,14 +92,16 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="InputUser">Nombre de Usuario</label>
-                                    <input class="form-control" id="username"name="username" value="{{$usuario->username}}" placeholder="Introduce tu usuario"
+                                    <p>En uso:{{$usuario->username}} </p>
+                                    <input class="form-control" id="username"name="username" placeholder="Introduce un nuevo nombre de usuario"
                                            type="text">
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="InputEmail">Email</label>
-                                    <input class="form-control" id="email" name="email"value="{{$usuario->email}}"placeholder="Introduce tu email"
+                                    <p>En uso:{{$usuario->email}} </p>
+                                    <input class="form-control" id="email" name="email"value=""placeholder="Introduce un nuevo email"
                                            type="email">
                                 </div>
                             </div>
@@ -202,14 +204,16 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="InputUser">Nombre de Usuario</label>
-                                        <input class="form-control" id="username"name="username" value="{{$usuario->username}}" placeholder="Introduce tu usuario"
+                                        <p>Actual:{{$usuario->username}} </p>
+                                        <input class="form-control" id="username"name="username" value="" placeholder="Introduce un nuevo usuario"
                                                type="text">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="InputEmail">Email</label>
-                                        <input class="form-control" id="email" name="email"value="{{$usuario->email}}"placeholder="Introduce tu email"
+                                        <p>Actual:{{$usuario->email}} </p>
+                                        <input class="form-control" id="email" name="email" placeholder="Introduce un nuevo email"
                                                type="email">
                                     </div>
                                 </div>

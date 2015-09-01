@@ -74,7 +74,7 @@ class ClienteController extends BaseController{
         if ($respuesta['error'] == true) {
             return Redirect::back()->withErrors($respuesta['mensaje'])->withInput();
         } else {
-            return Redirect::to('cliente/perfil')->with('mensaje', ($respuesta['mensaje']));
+            return Redirect::back()->with('mensaje', ($respuesta['mensaje']));
         }
     }
 
@@ -84,7 +84,7 @@ class ClienteController extends BaseController{
         $respuesta =Cliente::eliminar($id);
 
         if ($respuesta['error'] == true) {
-            return Redirect::back()->withErrors($respuesta['mensaje'])->withInput();
+            return Redirect::back()->with('mensaje',$respuesta['mensaje']);
         }
         else {
             return Redirect::to('administrador/clientes')->with('mensaje', $respuesta['mensaje']);
