@@ -77,7 +77,7 @@
                                 <div class="bottom">
                                     <p>"Soy peluquera ayudante, ya llevo años en esto y  cada vez me apasiona más."</p>
 
-                                    En Corte'x. Desi ayuda a Chari a atender a los clientes y ofrecerles un trato agradable y sin esperas.
+                                    En Corte'x, Desi ayuda a Chari a atender a los clientes y ofrecerles un trato agradable y sin esperas.
                                     Siempre atenta a las nuevas tendencias, y con su juventud, Desi es un respiro de aire fresco y nuevo en Corte'x.
 
                                 </div>

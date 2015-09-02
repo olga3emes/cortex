@@ -39,7 +39,7 @@ class Cliente extends Eloquent
             'password2' => array('required', 'min:8', 'max:64'),
             'nombre' => array('required', 'min:3', 'max:100'),
             'apellidos' => array('required', 'min:3', 'max:100'),
-            'telefono' => array('required', 'min:9', 'max:12', 'integer'),
+            'telefono' => array('required', 'min:9', 'max:12'),
         );
 
         $validator = Validator::make($input, $reglas);
@@ -86,11 +86,11 @@ class Cliente extends Eloquent
 
 
         $reglas = array(
-            'email' => array('required', 'email', 'max:100', 'unique:usuarios,email'),
-            'username' => array('required', 'min:3', 'max:100', 'unique:usuarios,username'),
+            'email' => array('email', 'max:100', 'unique:usuarios,email'),
+            'username' => array( 'min:3', 'max:100', 'unique:usuarios,username'),
             'nombre' => array('required', 'min:3', 'max:100'),
             'apellidos' => array('required', 'min:3', 'max:100'),
-            'telefono' => array('required', 'min:9', 'max:12'),
+            'telefono' => array('required', 'min:9'),
 
         );
 
